@@ -6,8 +6,10 @@ from PyQt5.QtCore import QThread,pyqtSignal,Qt
 from plugins.Craw_cnki.Craw_cnki import Craw_cnki
 import LoadPlugins as lp
 class CrawCnkiThread(QThread):
-    cnkiSignal=pyqtSignal(str)
-    craw_cnki = Craw_cnki()
+    crawSignal=pyqtSignal(str)
+    def __init__(self,filepath=None,propath=None):
+        super().__init__()
+        self.craw_cnki = Craw_cnki(filepath=filepath,propath=propath)
     def run(self):
         # self.craw_cnki = Craw_cnki()
         self.craw_cnki.CrawProcess.connect(self.update)
@@ -16,7 +18,7 @@ class CrawCnkiThread(QThread):
         self.craw_cnki.saveData()
 
     def update(self,data):
-        self.cnkiSignal.emit(data)
+        self.crawSignal.emit(data)
     def stop(self):
         self.craw_cnki.stop()
     def loadFromConfig(self):
@@ -29,12 +31,15 @@ class Window(QMainWindow):
         super().__init__()
         # self.initUI()
         self.names=self.__dict__
+        self.filePath=None
+        self.proPath=None
+        '''plugin_job用来存储插件线程,jobList用来存储插件名'''
+        self.plugin_job=[]
+        self.jobList = []
 
         self.setup_main_window()
         self.set_window_layout()
-        self.craw_cnki_thread = CrawCnkiThread()
-        self.filePath=None
-        self.proPath=None
+        self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
 
     def setup_main_window(self):
         self.centralwidget = QWidget()
@@ -44,16 +49,13 @@ class Window(QMainWindow):
 
     def set_window_layout(self):
         self.textEdit = QTextEdit()
-
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
-        # self.horizontalLayout.addWidget(self.textEdit)
 
-        # 设置表格
+        '''设置表格'''
         self.TableWidget = QTableWidget(5, 5)
         self.TableWidget.setHorizontalHeaderLabels(['序号','选中', '状态', '名称', '描述'])
         self.TableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.TableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        # self.TableWidget.setTextAlignment()
 
 
         self.horizontalGroupBox = QGroupBox("My Group")
@@ -109,15 +111,44 @@ class Window(QMainWindow):
         self.main_vertical_layout.addLayout(self.main_horizontal_3_layout)
         self.main_vertical_layout.addWidget(self.textEdit)
 
+    '''根据插件名，加载对应的插件线程'''
+    def Plugin_Switch(self,plugin_name):
+        plugins={
+            'Craw_cnki':[self.cnki_plugin_init(),plugin_name[1]],
+            'Craw_baidu':None
+        }
+        return plugins.get(plugin_name[0],None)
+
     def work(self):
         self.btn3.setEnabled(True)
         self.btn2.setEnabled(False)
+        QApplication.processEvents()
         print(self.jobList)
-        self.craw_cnki_thread.cnkiSignal.connect(self.updateTextEdit)
-        self.craw_cnki_thread.start()
+        temp=[]
+        for job_name in self.jobList:
+            temp.append(self.Plugin_Switch(job_name))
+        self.plugin_job=temp
+        print(self.plugin_job)
+        QApplication.processEvents()
+        '''job[0]为线程对象,job[1]为对应的行号,通过行号修改爬取状态'''
+        for job in self.plugin_job:
+            try:
+                state = QTableWidgetItem('正在爬取')
+                state.setTextAlignment(Qt.AlignCenter)
+                job[0].start()
+                self.TableWidget.setItem(job[1], 2,state)
+            except:
+                pass
         QApplication.processEvents()
 
+    '''cnki插件线程初始化'''
+    def cnki_plugin_init(self):
+        self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
+        '''通过信号槽传递,实现实时更新爬取进度'''
+        self.craw_cnki_thread.crawSignal.connect(self.updateTextEdit)
+        return self.craw_cnki_thread
 
+    '''更新页面显示进度'''
     def updateTextEdit(self,info):
         self.textEdit.setText(info)
 
@@ -125,10 +156,17 @@ class Window(QMainWindow):
         self.btn3.setEnabled(False)
         self.btn2.setEnabled(True)
         QApplication.processEvents()
-        self.craw_cnki_thread.stop()
+        print(self.plugin_job)
+        for job in self.plugin_job:
+            try:
+                state = QTableWidgetItem('结束爬取')
+                state.setTextAlignment(Qt.AlignCenter)
+                self.TableWidget.setItem(job[1], 2, state)
+                job[0].stop()
+            except:
+                pass
         QApplication.processEvents()
-
-
+        self.textEdit.setText('爬取结束')
 
 
     def center(self):
@@ -140,27 +178,28 @@ class Window(QMainWindow):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
         self.le_filepath.setText(path)
         self.filePath=path
-        self.craw_cnki=Craw_cnki(filepath=self.filePath,propath=self.proPath)
+        '''修改默认文件存储路径'''
+        self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
 
     def modifPropath(self):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
         self.le_propath.setText(path)
         self.proPath=path
-        self.craw_cnki=Craw_cnki(filepath=self.filePath,propath=self.proPath)
+        '''修改默认属性文件存储路径'''
+        self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
+
+        # self.craw_cnki=Craw_cnki(filepath=self.filePath,propath=self.proPath)
 
     def showDialog(self):
         self.filename=QFileDialog.getExistingDirectory(self,'choose file')
         self.textEdit_configPath.setText(self.filename)
 
-        self.jobList = []
         if self.filename != " " and self.filename !="":
 
             plgs = lp.getAllPlugin(self.filename)
             if len(plgs):
                 print(plgs)
-
-                self.cb_list=[]
-
+                self.cb_dict={}
                 for index, plg in enumerate(plgs):
                     plg_info=lp.call_plugin(plg,'getParameters',filepath=self.filePath,propath=self.proPath)
                     if plg_info['name']:
@@ -182,8 +221,8 @@ class Window(QMainWindow):
                         h.setAlignment(Qt.AlignCenter)
                         w = QWidget()
                         w.setLayout(h)
-                        self.cb_list.append(self.names['cb_'+str(index)])
-                        # self.TableWidget.setCellWidget(index, 0, self.names['cb_'+str(index)])
+                        '''将行号一并传递'''
+                        self.cb_dict[self.names['cb_'+str(index)]]=[plg,index]
                         self.TableWidget.setItem(index, 0, id)
                         self.TableWidget.setCellWidget(index, 1, w)
                         self.TableWidget.setItem(index, 2, state)
@@ -192,15 +231,16 @@ class Window(QMainWindow):
                         self.le_filepath.setText(plg_info['filepath'])
                         self.le_propath.setText(plg_info['propath'])
 
-                for cb in self.cb_list:
+                # print(self.cb_dict)
+                for cb in self.cb_dict.keys():
                     cb.stateChanged.connect(lambda :self.changecb())
 
-    #动态改变多选框选择内容，通过循环遍历实现动态加载
+    '''动态改变多选框选择内容，通过循环遍历实现动态加载'''
     def changecb(self):
         cb_checked=[]
-        for cb in self.cb_list:
+        for cb in self.cb_dict.keys():
             if cb.isChecked():
-                cb_checked.append(cb)
+                cb_checked.append(self.cb_dict[cb])
         self.jobList=cb_checked
         print(self.jobList)
 

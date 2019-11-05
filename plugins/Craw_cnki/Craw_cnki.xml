@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Crawer>
+    <Address>
+        <Record>
+            <CrawId>Craw_cnki</CrawId >
+            <Name>知网爬虫</Name>
+            <Describe>知网爬虫描述</Describe>
+            <Condition>
+                <Motif>无人驾驶</Motif>
+                <Keyword></Keyword>
+                <Relation></Relation>
+                <Magazine></Magazine>
+                <Publishdate_from>1999</Publishdate_from>
+                <Publishdate_to>2019</Publishdate_to>
+                <DownloadCounts>1</DownloadCounts>
+            </Condition>
+        </Record>
+    </Address>
+    <FilePath>/Users/macbookair/Plugin_project/plugins/Craw_cnki/craw_data</FilePath>
+    <PropertyPath>/Users/macbookair/Plugin_project/plugins/Craw_cnki/craw_data_property</PropertyPath>
+</Crawer>

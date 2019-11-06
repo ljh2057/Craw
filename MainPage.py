@@ -47,20 +47,21 @@ class Window(QMainWindow):
         self.centralwidget = QWidget()
         self.setCentralWidget(self.centralwidget)
         self.resize(800, 600)
-        self.setWindowTitle("Test")
+        self.setWindowTitle("基于科技文献资料的数据抓取、识别及分析技术开发及应用")
 
     def set_window_layout(self):
         self.textEdit = QTextEdit()
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
 
         '''设置表格'''
-        self.TableWidget = QTableWidget(5, 6)
+        self.TableWidget = QTableWidget(6, 6)
         self.TableWidget.setHorizontalHeaderLabels(['序号','选中', '状态', '名称', '描述','配置文件修改'])
         self.TableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.TableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        '''第一列随内容改变列宽'''
+        self.TableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
 
-
-        self.horizontalGroupBox = QGroupBox("My Group")
+        self.horizontalGroupBox = QGroupBox("数据自动采集、移植及更新")
         self.horizontalLayout.addWidget(self.horizontalGroupBox)
 
         btn = QPushButton('选择目录', self)
@@ -96,22 +97,46 @@ class Window(QMainWindow):
         self.btn_propath = QPushButton('选择', self)
         self.btn_propath.clicked.connect(self.modifPropath)
 
-        self.main_horizontal_2_layout = QHBoxLayout()
-        self.main_horizontal_2_layout.addWidget(self.lb_filepath)
-        self.main_horizontal_2_layout.addWidget(self.le_filepath)
-        self.main_horizontal_2_layout.addWidget(self.btn_filepath)
+        self.main_horizontal_2_layout = QVBoxLayout()
 
-        self.main_horizontal_3_layout = QHBoxLayout()
-        self.main_horizontal_3_layout.addWidget(self.lb_propath)
-        self.main_horizontal_3_layout.addWidget(self.le_propath)
-        self.main_horizontal_3_layout.addWidget(self.btn_propath)
+        self.filepath_horizontal_layout = QHBoxLayout()
+        self.filepath_horizontal_layout.addWidget(self.lb_filepath)
+        self.filepath_horizontal_layout.addWidget(self.le_filepath)
+        self.filepath_horizontal_layout.addWidget(self.btn_filepath)
+
+        self.propath_horizontal_layout = QHBoxLayout()
+        self.propath_horizontal_layout.addWidget(self.lb_propath)
+        self.propath_horizontal_layout.addWidget(self.le_propath)
+        self.propath_horizontal_layout.addWidget(self.btn_propath)
+
+        self.main_horizontal_2_layout.addLayout(self.filepath_horizontal_layout)
+        self.main_horizontal_2_layout.addLayout(self.propath_horizontal_layout)
+        self.main_horizontal_2_layout.setSpacing(6)
 
         self.main_vertical_layout.addLayout(self.main_horizontal_1_layout)
         self.main_vertical_layout.addLayout(self.main_horizontal_layout)
+
+        self.label_1=QLabel(self)
+        self.label_1.setText('爬虫列表')
+        self.label_1.setAlignment(Qt.AlignLeft)
+        self.main_vertical_layout.addWidget(self.label_1)
+
         self.main_vertical_layout.addWidget(self.TableWidget)
+
+        self.label_2 = QLabel(self)
+        self.label_2.setText('路径')
+        self.label_2.setAlignment(Qt.AlignLeft)
+        self.main_vertical_layout.addWidget(self.label_2)
+
         self.main_vertical_layout.addLayout(self.main_horizontal_2_layout)
-        self.main_vertical_layout.addLayout(self.main_horizontal_3_layout)
+
+        self.label_3 = QLabel(self)
+        self.label_3.setText('爬取进度')
+        self.label_3.setAlignment(Qt.AlignLeft)
+        self.main_vertical_layout.addWidget(self.label_3)
+
         self.main_vertical_layout.addWidget(self.textEdit)
+
 
     '''根据插件名，加载对应的插件线程'''
     def Plugin_Switch(self,plugin_name):

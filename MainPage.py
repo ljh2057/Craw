@@ -6,27 +6,29 @@ from PyQt5.QtCore import QThread,pyqtSignal,Qt
 from plugins.Craw_cnki.Craw_cnki import Craw_cnki
 import LoadPlugins as lp
 class CrawCnkiThread(QThread):
+    '''信号槽获取爬虫对象的爬取进度信息'''
     crawSignal=pyqtSignal(str)
     def __init__(self,filepath=None,propath=None):
         super().__init__()
+        '''实例化爬虫对象'''
         self.craw_cnki = Craw_cnki(filepath=filepath,propath=propath)
+    '''启动线程'''
     def run(self):
-        # self.craw_cnki = Craw_cnki()
         self.craw_cnki.CrawProcess.connect(self.update)
-        # self.craw_cnki.loadFromConfig()
         self.craw_cnki.run()
         self.craw_cnki.saveData()
-
+    '''传递爬虫对象中的进度信息'''
     def update(self,data):
         self.crawSignal.emit(data)
+    '''停止线程'''
     def stop(self):
         self.craw_cnki.stop()
+    '''加载爬虫对象属性信息'''
     def loadFromConfig(self):
         # self.craw_cnki.loadFromConfig()
         return self.craw_cnki.getParameters()
 
 class Window(QMainWindow):
-
     def __init__(self):
         super().__init__()
         # self.initUI()
@@ -52,8 +54,8 @@ class Window(QMainWindow):
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
 
         '''设置表格'''
-        self.TableWidget = QTableWidget(5, 5)
-        self.TableWidget.setHorizontalHeaderLabels(['序号','选中', '状态', '名称', '描述'])
+        self.TableWidget = QTableWidget(5, 6)
+        self.TableWidget.setHorizontalHeaderLabels(['序号','选中', '状态', '名称', '描述','配置文件修改'])
         self.TableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.TableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
@@ -118,17 +120,20 @@ class Window(QMainWindow):
             'Craw_baidu':None
         }
         return plugins.get(plugin_name[0],None)
-
+    '''启动插件'''
     def work(self):
+        '''修改对应按钮状态'''
         self.btn3.setEnabled(True)
         self.btn2.setEnabled(False)
+        '''强制页面刷新'''
         QApplication.processEvents()
-        print(self.jobList)
+        # print(self.jobList)
+        '''更新当前选中插件列表'''
         temp=[]
         for job_name in self.jobList:
             temp.append(self.Plugin_Switch(job_name))
         self.plugin_job=temp
-        print(self.plugin_job)
+        # print(self.plugin_job)
         QApplication.processEvents()
         '''job[0]为线程对象,job[1]为对应的行号,通过行号修改爬取状态'''
         for job in self.plugin_job:
@@ -152,13 +157,16 @@ class Window(QMainWindow):
     def updateTextEdit(self,info):
         self.textEdit.setText(info)
 
+    '''停止插件运行'''
     def stop(self):
         self.btn3.setEnabled(False)
         self.btn2.setEnabled(True)
         QApplication.processEvents()
-        print(self.plugin_job)
+        # print(self.plugin_job)
+        '''依次执行插件任务'''
         for job in self.plugin_job:
             try:
+                '''修改爬取状态'''
                 state = QTableWidgetItem('结束爬取')
                 state.setTextAlignment(Qt.AlignCenter)
                 self.TableWidget.setItem(job[1], 2, state)
@@ -168,59 +176,88 @@ class Window(QMainWindow):
         QApplication.processEvents()
         self.textEdit.setText('爬取结束')
 
+    '''显示配置文件内容'''
+    def showConfigFile(self,ConfigFilePath):
+        dialog=QDialog()
+        dialog.resize(600, 400)
+        config_layout = QHBoxLayout(dialog)
+        '''用于显示配置文件内容'''
+        configEdit=QTextEdit()
+        btn_save=QPushButton('保存')
+        try:
+            str_xml = open(ConfigFilePath, 'r').read()
+            configEdit.setText(str_xml)
+        except:
+            pass
+        btn_save.clicked.connect(lambda: self.saveConfigFile(ConfigFilePath,configEdit.toPlainText()))
+        config_layout.addWidget(configEdit)
+        config_layout.addWidget(btn_save)
+        dialog.setWindowTitle('修改配置文件')
+        dialog.setWindowModality(Qt.ApplicationModal)
+        dialog.exec_()
 
-    def center(self):
-        qr = self.frameGeometry()
-        cp = QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
+    '''保存修改的配置文件,ConfigFilePath为文件路径,content为修改后的内容'''
+    def saveConfigFile(self,ConfigFilePath,content):
+        try:
+            '''将修改后的配置文件内容保存'''
+            with open(ConfigFilePath,'w') as f:
+                f.write(content)
+                QMessageBox.about(self,'提示','修改成功')
+        except:
+            pass
+        self.initTable()
+
+    '''修改默认文件存储路径'''
     def modifFilepath(self):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
         self.le_filepath.setText(path)
         self.filePath=path
-        '''修改默认文件存储路径'''
         self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
 
+    '''修改默认属性文件存储路径'''
     def modifPropath(self):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
         self.le_propath.setText(path)
         self.proPath=path
-        '''修改默认属性文件存储路径'''
         self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
 
-        # self.craw_cnki=Craw_cnki(filepath=self.filePath,propath=self.proPath)
-
+    '''选择插件目录'''
     def showDialog(self):
         self.filename=QFileDialog.getExistingDirectory(self,'choose file')
         self.textEdit_configPath.setText(self.filename)
+        self.initTable()
 
+    '''表格内容刷新'''
+    def initTable(self):
         if self.filename != " " and self.filename !="":
-
             plgs = lp.getAllPlugin(self.filename)
             if len(plgs):
-                print(plgs)
+                # print(plgs)
+                '''CheckBox键值对，键为CheckBox对象，值为对应的插件库名称'''
                 self.cb_dict={}
+                btn_modify_config=[i for i in range(len(plgs))]
                 for index, plg in enumerate(plgs):
                     plg_info=lp.call_plugin(plg,'getParameters',filepath=self.filePath,propath=self.proPath)
                     if plg_info['name']:
+                        '''对应表格中序号、状态、名称、描述，并设置居中'''
                         id=QTableWidgetItem(str(index+1))
                         id.setTextAlignment(Qt.AlignCenter)
                         state = QTableWidgetItem('等待爬取')
                         state.setTextAlignment(Qt.AlignCenter)
                         name = QTableWidgetItem(plg_info['name'])
                         name.setTextAlignment(Qt.AlignCenter)
-
                         describe = QTableWidgetItem(plg_info['describe'])
                         describe.setTextAlignment(Qt.AlignCenter)
 
+                        '''在CheckBox外添加一层layout，使其居中'''
                         h = QHBoxLayout()
                         self.names['cb_'+str(index)]=QCheckBox('', self)
-
                         h.addWidget(self.names['cb_'+str(index)])
-
+                        '''设置居中'''
                         h.setAlignment(Qt.AlignCenter)
                         w = QWidget()
                         w.setLayout(h)
+
                         '''将行号一并传递'''
                         self.cb_dict[self.names['cb_'+str(index)]]=[plg,index]
                         self.TableWidget.setItem(index, 0, id)
@@ -228,12 +265,19 @@ class Window(QMainWindow):
                         self.TableWidget.setItem(index, 2, state)
                         self.TableWidget.setItem(index, 3, name)
                         self.TableWidget.setItem(index, 4, describe)
+                        '''动态添加修改配置文件按钮'''
+                        self.setRowData(index,btn_modify_config,plg_info['configPath'])
                         self.le_filepath.setText(plg_info['filepath'])
                         self.le_propath.setText(plg_info['propath'])
-
-                # print(self.cb_dict)
+                '''绑定CheckBox改变事件'''
                 for cb in self.cb_dict.keys():
                     cb.stateChanged.connect(lambda :self.changecb())
+
+    '''动态在TableWidget中添加组件'''
+    def setRowData(self, row, btn_modify_config,ConfigFilePath):
+        btn_modify_config[row] = QPushButton('修改')
+        btn_modify_config[row].clicked.connect(lambda: self.showConfigFile(ConfigFilePath))
+        self.TableWidget.setCellWidget(row, 5, btn_modify_config[row])
 
     '''动态改变多选框选择内容，通过循环遍历实现动态加载'''
     def changecb(self):
@@ -248,6 +292,6 @@ class Window(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    programWindow = Window()
-    programWindow.show()
+    win = Window()
+    win.show()
     sys.exit(app.exec_())

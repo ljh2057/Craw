@@ -1,9 +1,13 @@
 # from PyQt5.QtWidgets import QMainWindow, QTextEdit,QDesktopWidget, QFileDialog, QApplication,QPushButton,QTableWidget,QAbstractItemView,QComboBox,QHBoxLayout,QWidget,QGroupBox,QVBoxLayout
 import sys
 from PyQt5.QtWidgets import *
+from plugins.Craw_cnki import Getxml
+from ImportFile import SaveData
+import pymysql
 
 from PyQt5.QtCore import QThread,pyqtSignal,Qt
 from plugins.Craw_cnki.Craw_cnki import Craw_cnki
+import os
 import LoadPlugins as lp
 class CrawCnkiThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
@@ -27,8 +31,38 @@ class CrawCnkiThread(QThread):
     def loadFromConfig(self):
         # self.craw_cnki.loadFromConfig()
         return self.craw_cnki.getParameters()
+class UploadThread(QThread):
+    '''信号槽获取爬虫对象的爬取进度信息'''
+    uploadSignal = pyqtSignal(str)
 
-class Window(QMainWindow):
+    def __init__(self, filepath=None, propath=None):
+        super().__init__()
+        '''实例化爬虫对象'''
+        self.craw_cnki = Craw_cnki(filepath=filepath, propath=propath)
+
+    '''启动线程'''
+
+    def run(self):
+        self.craw_cnki.CrawProcess.connect(self.update)
+        self.craw_cnki.run()
+        self.craw_cnki.saveData()
+
+    '''传递爬虫对象中的进度信息'''
+
+    def update(self, data):
+        self.crawSignal.emit(data)
+
+    '''停止线程'''
+
+    def stop(self):
+        self.craw_cnki.stop()
+
+    '''加载爬虫对象属性信息'''
+
+    def loadFromConfig(self):
+        # self.craw_cnki.loadFromConfig()
+        return self.craw_cnki.getParameters()
+class Window(QTabWidget):
     def __init__(self):
         super().__init__()
         # self.initUI()
@@ -38,20 +72,23 @@ class Window(QMainWindow):
         '''plugin_job用来存储插件线程,jobList用来存储插件名'''
         self.plugin_job=[]
         self.jobList = []
-
-        self.setup_main_window()
-        self.set_window_layout()
         self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
-
-    def setup_main_window(self):
-        self.centralwidget = QWidget()
-        self.setCentralWidget(self.centralwidget)
-        self.resize(800, 600)
         self.setWindowTitle("基于科技文献资料的数据抓取、识别及分析技术开发及应用")
+        self.resize(800, 600)
 
-    def set_window_layout(self):
+        self.tab1=QWidget()
+        self.tab2=QWidget()
+
+        self.addTab(self.tab1,'数据采集')
+        self.addTab(self.tab2,'数据移植')
+        '''加载tab1'''
+        self.set_tab1_layout()
+        self.set_tab2_layout()
+
+    '''数据采集页面start'''
+    def set_tab1_layout(self):
         self.textEdit = QTextEdit()
-        self.horizontalLayout = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout = QHBoxLayout(self.tab1)
 
         '''设置表格'''
         self.TableWidget = QTableWidget(6, 6)
@@ -61,7 +98,7 @@ class Window(QMainWindow):
         '''第一列随内容改变列宽'''
         self.TableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
 
-        self.horizontalGroupBox = QGroupBox("数据自动采集、移植及更新")
+        self.horizontalGroupBox = QGroupBox("数据自动采集")
         self.horizontalLayout.addWidget(self.horizontalGroupBox)
 
         btn = QPushButton('选择目录', self)
@@ -99,11 +136,12 @@ class Window(QMainWindow):
 
         self.main_horizontal_2_layout = QVBoxLayout()
 
+        '''文件位置布局'''
         self.filepath_horizontal_layout = QHBoxLayout()
         self.filepath_horizontal_layout.addWidget(self.lb_filepath)
         self.filepath_horizontal_layout.addWidget(self.le_filepath)
         self.filepath_horizontal_layout.addWidget(self.btn_filepath)
-
+        '''属性文件位置布局'''
         self.propath_horizontal_layout = QHBoxLayout()
         self.propath_horizontal_layout.addWidget(self.lb_propath)
         self.propath_horizontal_layout.addWidget(self.le_propath)
@@ -313,7 +351,246 @@ class Window(QMainWindow):
         self.jobList=cb_checked
         print(self.jobList)
 
+    '''数据采集页面end'''
 
+    '''数据移植页面start'''
+    def set_tab2_layout(self):
+        self.textEdit_tab2 = QTextEdit()
+        self.horizontalLayout_tab2 = QHBoxLayout(self.tab2)
+
+        self.horizontalGroupBox_tab2 = QGroupBox("数据自动移植")
+        self.horizontalLayout_tab2.addWidget(self.horizontalGroupBox_tab2)
+
+        btn_tab2 = QPushButton('选择配置文件', self)
+        btn_tab2.clicked.connect(self.SelectConfigFile)
+
+        self.btn_start = QPushButton('开始导入', self)
+        self.btn_start.clicked.connect(self.work_tab2)
+
+        self.btn_stop = QPushButton('结束导入', self)
+        self.btn_stop.clicked.connect(self.stop_tab2)
+        self.btn_stop.setEnabled(False)
+
+        self.tab2_horizontal_RadioButton_layout = QHBoxLayout()
+        self.simple_rb=QRadioButton('简单导入')
+        self.pfile_rb=QRadioButton('从属性文件导入')
+        self.txt_rb=QRadioButton('导入txt文本')
+        self.tab2_horizontal_RadioButton_layout.addWidget(self.simple_rb)
+        self.tab2_horizontal_RadioButton_layout.addWidget(self.pfile_rb)
+        self.tab2_horizontal_RadioButton_layout.addWidget(self.txt_rb)
+
+
+
+        self.tab2_horizontal_layout = QHBoxLayout()
+        self.tab2_vertical_layout = QVBoxLayout()
+        self.horizontalGroupBox_tab2.setLayout(self.tab2_vertical_layout)
+        self.tab2_vertical_layout.addStretch(1)
+
+        self.main_horizontal_tab2_layout = QHBoxLayout()
+        self.textEdit_configPath_tab2 = QLineEdit(self)
+
+        btn_edit = QPushButton('修改', self)
+        btn_edit.clicked.connect(lambda: self.showConfigFile_tab2(self.textEdit_configPath_tab2.text()))
+
+        self.main_horizontal_tab2_layout.addWidget(btn_tab2)
+        self.main_horizontal_tab2_layout.addWidget(self.textEdit_configPath_tab2)
+        self.main_horizontal_tab2_layout.addWidget(btn_edit)
+
+
+        self.tab2_horizontal_layout.addWidget(self.btn_start)
+        self.tab2_horizontal_layout.addWidget(self.btn_stop)
+
+        self.lb_filepath_tab2=QLabel('文件位置',self)
+        self.le_filepath_tab2=QLineEdit()
+        self.btn_filepath_tab2 = QPushButton('选择', self)
+        self.btn_filepath_tab2.clicked.connect(self.modifFilepath_tab2)
+
+        self.lb_propath_tab2=QLabel('属性位置',self)
+        self.le_propath_tab2=QLineEdit(self)
+        self.btn_propath_tab2 = QPushButton('选择', self)
+        self.btn_propath_tab2.clicked.connect(self.modifPropath_tab2)
+
+        self.main_horizontal_tab2_2_layout = QVBoxLayout()
+
+        '''文件位置布局'''
+        self.filepath_horizontal_tab2_layout = QHBoxLayout()
+        self.filepath_horizontal_tab2_layout.addWidget(self.lb_filepath_tab2)
+        self.filepath_horizontal_tab2_layout.addWidget(self.le_filepath_tab2)
+        self.filepath_horizontal_tab2_layout.addWidget(self.btn_filepath_tab2)
+        '''属性文件位置布局'''
+        self.propath_horizontal_tab2_layout = QHBoxLayout()
+        self.propath_horizontal_tab2_layout.addWidget(self.lb_propath_tab2)
+        self.propath_horizontal_tab2_layout.addWidget(self.le_propath_tab2)
+        self.propath_horizontal_tab2_layout.addWidget(self.btn_propath_tab2)
+
+        self.main_horizontal_tab2_2_layout.addLayout(self.filepath_horizontal_tab2_layout)
+        self.main_horizontal_tab2_2_layout.addLayout(self.propath_horizontal_tab2_layout)
+        self.main_horizontal_tab2_2_layout.setSpacing(6)
+
+        self.tab2_vertical_layout.addLayout(self.main_horizontal_tab2_layout)
+
+        self.tab2_vertical_layout.addLayout(self.tab2_horizontal_layout)
+
+        self.label_1 = QLabel(self)
+        self.label_1.setText('导入方式')
+        self.label_1.setAlignment(Qt.AlignLeft)
+        self.tab2_vertical_layout.addWidget(self.label_1)
+
+        self.tab2_vertical_layout.addLayout(self.tab2_horizontal_RadioButton_layout)
+
+
+        self.label_2 = QLabel(self)
+        self.label_2.setText('路径')
+        self.label_2.setAlignment(Qt.AlignLeft)
+        self.tab2_vertical_layout.addWidget(self.label_2)
+        self.tab2_vertical_layout.addLayout(self.main_horizontal_tab2_2_layout)
+
+        self.label_3 = QLabel(self)
+        self.label_3.setText('导入进度')
+        self.label_3.setAlignment(Qt.AlignLeft)
+        self.tab2_vertical_layout.addWidget(self.label_3)
+        self.tab2_vertical_layout.addWidget(self.textEdit_tab2)
+
+
+
+    '''启动插件'''
+    def work_tab2(self,filename):
+        '''修改对应按钮状态'''
+        self.btn_stop.setEnabled(True)
+        self.btn_start.setEnabled(False)
+        QApplication.processEvents()
+        if filename!= "" and filename !=" ":
+            getxml = Getxml.getXml(filename)
+            configs = getxml.getDestination2()
+            db = SaveData.BlobDataTestor(configs)
+            if os.path.exists(configs['path']):
+                if configs['type']=='simple':
+                    db.upload_simple(configs["path"], self.args2)
+                elif configs['type']=='pfile':
+                    filenames = [configs['path'] + '/文献属性.xls',configs['path'] + '/文献属性.xlsx']
+                    if os.path.exists(filenames[0]):
+                        db.upload_pfile(filenames[0],self.args2)
+                    elif os.path.exists(filenames[1]):
+                        db.upload_pfile(filenames[1],self.args2)
+                    else:
+                        QMessageBox.about(self, '提示', '文献属性文件不存在')
+                elif configs['type']=='uptxt':
+                    db.upload_txt(configs["path"], self.args2)
+                else:
+                    QMessageBox.about(self, '提示', '导入方式有误,请检查配置文件')
+                db.closedb()
+                print("导入完毕")
+                self.textEdit_tab2.setText('导入完毕')
+                print('导入完毕')
+            else:
+                QMessageBox.about(self, '提示', '文件目录不存在')
+        else:
+            QMessageBox.about(self, '提示', '请先选择配置文件')
+        QApplication.processEvents()
+
+    '''cnki插件线程初始化'''
+    def cnki_plugin_init(self):
+        self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
+        '''通过信号槽传递,实现实时更新爬取进度'''
+        self.craw_cnki_thread.crawSignal.connect(self.updateTextEdit)
+        return self.craw_cnki_thread
+
+    '''更新页面显示进度'''
+    def updateTextEdit(self,info):
+        self.textEdit.setText(info)
+
+    '''停止插件运行'''
+    def stop_tab2(self):
+        self.btn_stop.setEnabled(False)
+        self.btn_start.setEnabled(True)
+        QApplication.processEvents()
+        # print(self.plugin_job)
+        '''依次执行插件任务'''
+        for job in self.plugin_job:
+            try:
+                '''修改爬取状态'''
+                state = QTableWidgetItem('结束爬取')
+                state.setTextAlignment(Qt.AlignCenter)
+                self.TableWidget.setItem(job[1], 2, state)
+                job[0].stop()
+            except:
+                pass
+        QApplication.processEvents()
+        self.textEdit.setText('爬取结束')
+
+    '''显示配置文件内容'''
+    def showConfigFile_tab2(self,ConfigFilePath):
+        dialog=QDialog()
+        dialog.resize(600, 400)
+        config_layout = QHBoxLayout(dialog)
+        '''用于显示配置文件内容'''
+        configEdit=QTextEdit()
+        btn_save=QPushButton('保存')
+        try:
+            str_xml = open(ConfigFilePath, 'r').read()
+            configEdit.setText(str_xml)
+        except:
+            pass
+        btn_save.clicked.connect(lambda: self.saveConfigFile_tab2(ConfigFilePath,configEdit.toPlainText()))
+        config_layout.addWidget(configEdit)
+        config_layout.addWidget(btn_save)
+        dialog.setWindowTitle('修改配置文件')
+        dialog.setWindowModality(Qt.ApplicationModal)
+        dialog.exec_()
+
+    '''保存修改的配置文件,ConfigFilePath为文件路径,content为修改后的内容'''
+    def saveConfigFile_tab2(self,ConfigFilePath,content):
+        try:
+            '''将修改后的配置文件内容保存'''
+            with open(ConfigFilePath,'w') as f:
+                f.write(content)
+                QMessageBox.about(self,'提示','修改成功')
+        except:
+            pass
+        self.verifyConfigFile(ConfigFilePath)
+    '''选择文件存储路径'''
+    def modifFilepath_tab2(self):
+        path = QFileDialog.getExistingDirectory(self, 'choose file')
+        self.le_filepath_tab2.setText(path)
+        self.filePath=path
+
+    '''选择属性文件存储路径'''
+    def modifPropath_tab2(self):
+        path = QFileDialog.getExistingDirectory(self, 'choose file')
+        self.le_propath_tab2.setText(path)
+        self.proPath=path
+
+    '''选择插件目录'''
+    def SelectConfigFile(self):
+        filename,filetype=QFileDialog.getOpenFileName(self,'choose file','','Text Files(importer.xml)')
+        self.textEdit_configPath_tab2.setText(filename)
+        self.verifyConfigFile(filename)
+    def verifyConfigFile(self,filename):
+        if filename!= "" and filename!=" ":
+            getxml = Getxml.getXml(filename)
+            configs = getxml.getDestination2()
+            try:
+                self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']), user=configs['username'],passwd=configs['password'], db=configs['servicename'])
+            except Exception as e:
+                QMessageBox.about(self,'提示','数据库连接错误')
+                print(e)
+            try:
+                if self.conn.open:
+                    if configs['type'] == 'simple':
+                        self.simple_rb.click()
+                    elif configs['type'] == 'pfile':
+                        self.pfile_rb.click()
+                    elif configs['type'] == 'uptxt':
+                        self.txt_rb.click()
+                    else:
+                        QMessageBox.about(self, '提示', '导入方式有误,请检查配置文件')
+                QApplication.processEvents()
+
+            except Exception as e:
+                print(e)
+        else:
+            QMessageBox.about(self, '提示', '请先选择配置文件')
+    '''数据移植页面end'''
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

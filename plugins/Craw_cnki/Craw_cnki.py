@@ -2,7 +2,7 @@ from plugins.BasePlugin.BasePlugin import BasePlugin
 from plugins.Craw_cnki import Getxml
 from plugins.Craw_cnki import main
 import os
-from PyQt5.QtCore import QThread, QObject, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import  pyqtSignal
 import shutil
 
 class Craw_cnki(BasePlugin):
@@ -28,9 +28,6 @@ class Craw_cnki(BasePlugin):
         print(configfilePath)
         self.getxml =Getxml.getXml(configfilePath)
         configDate = self.getxml.getfull()
-
-        # print(configDate)
-
         self.configPath=configfilePath
         #加载配置信息
         #获取爬虫name，爬虫描述、保存文件路径和属性文件路径
@@ -59,10 +56,7 @@ class Craw_cnki(BasePlugin):
         except OSError:
             pass
         print('－－－－－－－－－－－－－－－－－－－－－－－－－－')
-        # self.progress_text.set("爬取完毕，共运行：" + self.s2h(time.perf_counter()))
         self.args["flag"] = False
-        # self.progressbar.after(2000, self.progress(count))
-        # self.progressbar.update()
         self.args["count"] = 0
         self.trigger.emit()
     def start(self):
@@ -72,7 +66,6 @@ class Craw_cnki(BasePlugin):
         self.args["count"] = 0
         self.args["state"] = '正在爬取'
         self.args["text"] =self.text
-
         getxml = Getxml.getXml(self.configPath)
         user_input = getxml.getData()
         count = int(getxml.getCount())*20
@@ -82,10 +75,7 @@ class Craw_cnki(BasePlugin):
         except OSError:
             pass
         print('－－－－－－－－－－－－－－－－－－－－－－－－－－')
-        # self.progress_text.set("爬取完毕，共运行：" + self.s2h(time.perf_counter()))
         self.args["flag"] = False
-        # self.progressbar.after(2000, self.progress(count))
-        # self.progressbar.update()
         self.args["count"] = 0
     def stop(self):
         self.args["flag"] = False
@@ -100,13 +90,9 @@ class Craw_cnki(BasePlugin):
             count = self.getxml.getCount()
             search = main.SearchTools(count)
             search.move_file('data/CAJs',savepath)
-            # proPath = os.getcwd() + '/' + 'plugins/' + self.__class__.__name__ + '/'
-
-            # shutil.copy(savepath+'/文献属性.xls',self.propath)
             shutil.copy2(savepath+'/文献属性.xls',self.propath)
             print("文件已存到%s目录下"%savepath)
         else:
-            # self.label_notice_text.set("文件目录不存在")
             print("文件目录不存在")
 
     def func(self):
@@ -124,53 +110,3 @@ class Craw_cnki(BasePlugin):
 # craw_cnki=Craw_cnki()
 # craw_cnki.loadFromConfig()
 # craw_cnki.start()
-# from .BasePlugin import BasePlugin
-# class Craw_cnki(BasePlugin):
-#     def __init__(self,configPath，state,text):
-#         super(Craw_cnki, self).__init__(configPath,state)
-#
-#         super.__init__(configPath,state)
-#         BasePlugin.__init__(self,configPath,state)
-#         self.text=text
-#     def start(self):
-#         #对知网论文进行多条件爬取
-#         #更新state、text
-#         pass
-#     def stop(self):
-#         #结束爬取
-#         #更新state、text
-#         pass
-#     def func(self):
-#         #自定义扩展方法
-#         pass
-#
-# # class plugin1:
-# #     def mod1(self):
-# #         pass
-# #
-# #     def start(self):
-# #         print("this is plugin1 function start")
-# #     def pause(self):
-# #         print("this is plugin1 function pause")
-# #     def stop(self):
-# #         print("this is plugin1 function stop")
-#
-# # class BasePlugin(object):
-# #     def __init__(self,configPath):
-# #         self.configPath=configPath
-# #     def start(self):
-# #         pass
-# #     def stop(self):
-# #         pass
-# # class Craw_cnki(BasePlugin):
-# #     def __init__(self,configPath):
-# #         BasePlugin.__init__(self,configPath)
-# #     def start(self):
-# #         #对知网论文进行爬取
-# #         pass
-# #     def stop(self):
-# #         #结束爬取
-# #         pass
-# #     def func(self):
-# #         #自定义扩展方法
-# #         pass

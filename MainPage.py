@@ -4,9 +4,9 @@ from PyQt5.QtWidgets import *
 from plugins.Craw_cnki import Getxml
 from ImportFile import SaveData
 import pymysql
-
 from PyQt5.QtCore import QThread,pyqtSignal,Qt
 from plugins.Craw_cnki.Craw_cnki import Craw_cnki
+from plugins.Craw_baidu.Craw_baidu import Craw_baidu
 import os
 import LoadPlugins as lp
 class CrawCnkiThread(QThread):
@@ -29,39 +29,58 @@ class CrawCnkiThread(QThread):
         self.craw_cnki.stop()
     '''加载爬虫对象属性信息'''
     def loadFromConfig(self):
-        # self.craw_cnki.loadFromConfig()
         return self.craw_cnki.getParameters()
-class UploadThread(QThread):
+class CrawBaiduThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
-    uploadSignal = pyqtSignal(str)
-
-    def __init__(self, filepath=None, propath=None):
+    crawSignal=pyqtSignal(str)
+    def __init__(self,filepath=None,propath=None):
         super().__init__()
         '''实例化爬虫对象'''
-        self.craw_cnki = Craw_cnki(filepath=filepath, propath=propath)
-
+        self.craw_baidu = Craw_baidu(filepath=filepath,propath=propath)
     '''启动线程'''
-
     def run(self):
-        self.craw_cnki.CrawProcess.connect(self.update)
-        self.craw_cnki.run()
-        self.craw_cnki.saveData()
-
+        self.craw_baidu.CrawProcess.connect(self.update)
+        self.craw_baidu.run()
     '''传递爬虫对象中的进度信息'''
-
-    def update(self, data):
+    def update(self,data):
         self.crawSignal.emit(data)
-
     '''停止线程'''
-
     def stop(self):
-        self.craw_cnki.stop()
-
+        self.craw_baidu.stop()
     '''加载爬虫对象属性信息'''
-
     def loadFromConfig(self):
-        # self.craw_cnki.loadFromConfig()
-        return self.craw_cnki.getParameters()
+        return self.craw_baidu.getParameters()
+# class UploadThread(QThread):
+#     '''信号槽获取爬虫对象的爬取进度信息'''
+#     uploadSignal = pyqtSignal(str)
+#
+#     def __init__(self, filepath=None, propath=None):
+#         super().__init__()
+#         '''实例化爬虫对象'''
+#         self.craw_cnki = Craw_cnki(filepath=filepath, propath=propath)
+#
+#     '''启动线程'''
+#
+#     def run(self):
+#         self.craw_cnki.CrawProcess.connect(self.update)
+#         self.craw_cnki.run()
+#         self.craw_cnki.saveData()
+#
+#     '''传递爬虫对象中的进度信息'''
+#
+#     def update(self, data):
+#         self.crawSignal.emit(data)
+#
+#     '''停止线程'''
+#
+#     def stop(self):
+#         self.craw_cnki.stop()
+#
+#     '''加载爬虫对象属性信息'''
+#
+#     def loadFromConfig(self):
+#         # self.craw_cnki.loadFromConfig()
+#         return self.craw_cnki.getParameters()
 class Window(QTabWidget):
     def __init__(self):
         super().__init__()
@@ -80,7 +99,7 @@ class Window(QTabWidget):
         self.tab2=QWidget()
 
         self.addTab(self.tab1,'数据采集')
-        self.addTab(self.tab2,'数据移植')
+        # self.addTab(self.tab2,'数据移植')
         '''加载tab1'''
         self.set_tab1_layout()
         self.set_tab2_layout()
@@ -180,7 +199,7 @@ class Window(QTabWidget):
     def Plugin_Switch(self,plugin_name):
         plugins={
             'Craw_cnki':[self.cnki_plugin_init(),plugin_name[1]],
-            'Craw_baidu':None
+            'Craw_baidu':[self.baidu_plugin_init(),plugin_name[1]]
         }
         return plugins.get(plugin_name[0],None)
     '''启动插件'''
@@ -215,6 +234,13 @@ class Window(QTabWidget):
         '''通过信号槽传递,实现实时更新爬取进度'''
         self.craw_cnki_thread.crawSignal.connect(self.updateTextEdit)
         return self.craw_cnki_thread
+
+    '''baidu插件线程初始化'''
+    def baidu_plugin_init(self):
+        self.craw_baidu_thread = CrawBaiduThread(filepath=self.filePath, propath=self.proPath)
+        '''通过信号槽传递,实现实时更新爬取进度'''
+        self.craw_baidu_thread.crawSignal.connect(self.updateTextEdit)
+        return self.craw_baidu_thread
 
     '''更新页面显示进度'''
     def updateTextEdit(self,info):
@@ -275,14 +301,14 @@ class Window(QTabWidget):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
         self.le_filepath.setText(path)
         self.filePath=path
-        self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
+        # self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
 
     '''修改默认属性文件存储路径'''
     def modifPropath(self):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
         self.le_propath.setText(path)
         self.proPath=path
-        self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
+        # self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
 
     '''选择插件目录'''
     def showDialog(self):
@@ -330,8 +356,8 @@ class Window(QTabWidget):
                         self.TableWidget.setItem(index, 4, describe)
                         '''动态添加修改配置文件按钮'''
                         self.setRowData(index,btn_modify_config,plg_info['configPath'])
-                        self.le_filepath.setText(plg_info['filepath'])
-                        self.le_propath.setText(plg_info['propath'])
+                        # self.le_filepath.setText(plg_info['filepath'])
+                        # self.le_propath.setText(plg_info['propath'])
                 '''绑定CheckBox改变事件'''
                 for cb in self.cb_dict.keys():
                     cb.stateChanged.connect(lambda :self.changecb())
@@ -488,16 +514,6 @@ class Window(QTabWidget):
             QMessageBox.about(self, '提示', '请先选择配置文件')
         QApplication.processEvents()
 
-    '''cnki插件线程初始化'''
-    def cnki_plugin_init(self):
-        self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
-        '''通过信号槽传递,实现实时更新爬取进度'''
-        self.craw_cnki_thread.crawSignal.connect(self.updateTextEdit)
-        return self.craw_cnki_thread
-
-    '''更新页面显示进度'''
-    def updateTextEdit(self,info):
-        self.textEdit.setText(info)
 
     '''停止插件运行'''
     def stop_tab2(self):

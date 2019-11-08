@@ -1,5 +1,13 @@
 from plugins.BasePlugin.BasePlugin import BasePlugin
+from plugins.Craw_baidu import Craw1
+from plugins.Craw_baidu import getxml
+import time
+from PyQt5.QtCore import pyqtSignal
+import threading
+
 class Craw_baidu(BasePlugin):
+    trigger = pyqtSignal()
+    CrawProcess=pyqtSignal(str)
     def __init__(self, state=None, text=None, args={}, filepath=None, propath=None):
         super().__init__(state)
         self.text=text
@@ -10,87 +18,57 @@ class Craw_baidu(BasePlugin):
         self.propath=propath
         self.loadFromConfig()
         self.args=args
+        self.args['flag']=True
+        self.p_keys = ['name', 'describe', 'configPath', 'text', 'filepath', 'propath']
+        self.parameters = {}.fromkeys(self.p_keys)
+        self.loadFromConfig()
+        self.bd = Craw1.Baidu(filepath=self.filepath)
+
     def loadFromConfig(self):
         #遍历找到xml配置信息文件'path'
-        self.configPath='path'
-        #加载配置信息
         #获取爬虫name，爬虫描述、保存文件路径和属性文件路径
-        self.name='百度军事爬虫'
-        self.describe='百度军事爬虫描述'
+        configDate = getxml.rxi.getfull()
+        self.configPath=getxml.rxi.pathos
+        self.name = configDate['name']
+        self.describe = configDate['describe']
+        if self.filepath == None:
+            self.filepath = configDate['filepath']
+        if self.propath == None:
+            self.propath = configDate['propertypath']
+    def run(self):
+        urls=[]
+        urls = self.bd.geturls()
+        for url in urls:
+            if (int(self.bd.num) < int(getxml.rxi.getcount())) and self.args['flag']:
+                self.bd.getdetail(url)
+                print("正在爬取第" + str(self.bd.num) + "篇：" + self.bd.title)
 
-    def start(self):
-        #百度军事新闻爬取
-        #更新state、text
-        pass
+                self.CrawProcess.emit(str("正在爬取第" + str(self.bd.num) + "篇：" + self.bd.title))
+            else:
+                break
+        self.bd.workbook.save(self.propath+'/Craw_baidu文献属性.xls')
+        self.args['flag']=False
+
     def stop(self):
-        #结束爬取
-        #更新state、text
-        pass
-    def func(self):
-        #自定义扩展方法
-        pass
+        self.args['flag'] = False
+        self.trigger.emit()
+
 
     def getParameters(self):
-        p_keys=['name','describe','configPath','state','text','filepath','propath']
-        parameters={}.fromkeys(p_keys)
-        parameters['name']=self.name
-        parameters['describe']=self.describe
-        parameters['configPath']=self.configPath
-        parameters['state']=self.state
-        parameters['text']=self.text
-        parameters['filepath']=self.filepath
-        parameters['propath']=self.propath
-        # parameters['propath']='/Users/macbookair/Plugin_project/plugins/Craw_cnki/craw_data_property'
-        return parameters
+        self.parameters['name'] = self.name
+        self.parameters['describe'] = self.describe
+        self.parameters['configPath'] = self.configPath
+        self.parameters['text'] = self.text
+        self.parameters['filepath'] = self.filepath
+        self.parameters['propath'] = self.propath
+        print(self.parameters)
+        return self.parameters
 
-
-# from .BasePlugin import BasePlugin
-# class Craw_cnki(BasePlugin):
-#     def __init__(self,configPath，state,text):
-#         super(Craw_cnki, self).__init__(configPath,state)
-#
-#         super.__init__(configPath,state)
-#         BasePlugin.__init__(self,configPath,state)
-#         self.text=text
-#     def start(self):
-#         #对知网论文进行多条件爬取
-#         #更新state、text
-#         pass
-#     def stop(self):
-#         #结束爬取
-#         #更新state、text
-#         pass
-#     def func(self):
-#         #自定义扩展方法
-#         pass
-#
-# # class plugin1:
-# #     def mod1(self):
-# #         pass
-# #
-# #     def start(self):
-# #         print("this is plugin1 function start")
-# #     def pause(self):
-# #         print("this is plugin1 function pause")
-# #     def stop(self):
-# #         print("this is plugin1 function stop")
-#
-# # class BasePlugin(object):
-# #     def __init__(self,configPath):
-# #         self.configPath=configPath
-# #     def start(self):
-# #         pass
-# #     def stop(self):
-# #         pass
-# # class Craw_cnki(BasePlugin):
-# #     def __init__(self,configPath):
-# #         BasePlugin.__init__(self,configPath)
-# #     def start(self):
-# #         #对知网论文进行爬取
-# #         pass
-# #     def stop(self):
-# #         #结束爬取
-# #         pass
-# #     def func(self):
-# #         #自定义扩展方法
-# #         pass
+if __name__ == '__main__':
+    cb = Craw_baidu()
+    cb.getParameters()
+    t = threading.Thread(target=cb.run)
+    t.start()  # 开始爬取
+    time.sleep(20)
+    cb.stop()  # 停止爬取
+    t.join()

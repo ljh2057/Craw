@@ -1,15 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Crawer>
     <Address>
         <Record>
-            <CrawId>Craw_baidu</ CrawId >
+            <CrawId>Craw_baidu</CrawId >
             <Name>百度军事爬虫</Name>
             <Describe>百度军事爬虫描述</Describe>
             <Condition>
-                <Motif>军事</Motif>
-                <DownloadCounts>10</DownloadCounts>
+                <Motif></Motif>
+                <Keyword></Keyword>
+                <Relation></Relation>
+                <Magazine></Magazine>
+                <Publishdate_from></Publishdate_from>
+                <Publishdate_to></Publishdate_to>
+                <DownloadCounts>14</DownloadCounts>
             </Condition>
         </Record>
     </Address>
-    <FilePath>D:\Plugin_project\craw_datas</FilePath>
-    <PropertyPath>D:\Plugin_project\craw_datas_property</PropertyPath>
+    <FilePath>/Users/macbookair/Plugin_project/craw_datas</FilePath>
+    <PropertyPath>/Users/macbookair/Plugin_project/craw_datas_property</PropertyPath>
 </Crawer>

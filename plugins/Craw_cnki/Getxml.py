@@ -1,6 +1,5 @@
 #coding=utf-8
 import  xml.dom.minidom
-import os
 class getXml:
     def __init__(self,file):
         self.file=file
@@ -17,53 +16,9 @@ class getXml:
             assert 1
         else:
             return DownloadCounts[0].firstChild.data
-    def getType(self):
-        dom = xml.dom.minidom.parse(self.file)
-        name=dom.getElementsByTagName('Name')
-        if self.isNone(name[0].firstChild):
-            assert 1
-        else:
-            return name[0].firstChild.data
 
+    '''获取导入文件配置信息'''
     def getDestination(self):
-        dom = xml.dom.minidom.parse(self.file)
-        Destinations = dom.getElementsByTagName('Destination')
-        IP=dom.getElementsByTagName('IP')
-        Port=dom.getElementsByTagName('Port')
-        serviceName=dom.getElementsByTagName('serviceName')
-        userName=dom.getElementsByTagName('userName')
-        passWord=dom.getElementsByTagName('password')
-        Path=dom.getElementsByTagName('Path')
-        configs={}
-        if self.isNone(Destinations[0].firstChild):
-            assert 1
-        else:
-            if Destinations[0].firstChild.data=="db":
-                ip=IP[0].firstChild.data
-                port=Port[0].firstChild.data
-                servicename=serviceName[0].firstChild.data
-                username=userName[0].firstChild.data
-                password=passWord[0].firstChild.data
-                configs['type']='db'
-                configs['ip']=ip
-                configs['port']=port
-                configs['servicename']=servicename
-                configs['username']=username
-                configs['password']=password
-                configs['path']=os.getcwd()
-                return configs
-            elif Destinations[0].firstChild.data=="dir":
-                configs['type'] = 'dir'
-                if Path[0].firstChild.data[-1] == "/":
-                    configs['path'] = Path[0].firstChild.data
-                else:
-                    configs['path'] = Path[0].firstChild.data+'/'
-                return configs
-            else:
-                configs['type'] = '存储方式选择错误'
-                return configs
-
-    def getDestination2(self):
         dom = xml.dom.minidom.parse(self.file)
         IP = dom.getElementsByTagName('IP')
         Port = dom.getElementsByTagName('Port')
@@ -120,42 +75,9 @@ class getXml:
         Conditions['propertypath']=" " if self.isNone(PropertyPath[0].firstChild) else PropertyPath[0].firstChild.data
         return Conditions
     def getData(self):
-        #打开xml文档
+        '''解析知网爬虫配置文件中爬取条件'''
         dom = xml.dom.minidom.parse(self.file)
-
-        #得到文档元素对象
-        root = dom.documentElement
-
-        # Names=dom.getElementsByTagName('Name')
-        #
-        # Name1=Names[0]
-        # print(Name1.firstChild.data)
-        #
-        # # Name2=Names[1]
-        # # print(Name2.firstChild.data)
-        #
-        # Urls=dom.getElementsByTagName('URL')
-        #
-        # Url1=Urls[0]
-        # print(Url1.firstChild.data)
-        #
-        # Url2=Urls[1]
-        # print(Url2.firstChild.data)
-
-        # Conditions=dom.getElementsByTagName('Condition')
-        #
-        # Condition1=Conditions[0]
-        #
-        # if isNone(Condition1.firstChild):
-        #     print(Condition1.firstChild.firstChild)
-        #     print("None")
-        # else:
-        #     print(Condition1.firstChild.firstChild)
-
-        #Conditions
         Conditions={}
-
-
         Motifs=dom.getElementsByTagName('Motif')
         Keywords=dom.getElementsByTagName('Keyword')
         Relations=dom.getElementsByTagName('Relation')
@@ -188,7 +110,6 @@ class getXml:
                 Conditions['txt_%s_relation'%i] = '#CNKI_AND'
                 Conditions['txt_%s_special1'%i] = '='
 
-
         if self.isNone(Magazines[0].firstChild):
             assert 1
         else:
@@ -202,5 +123,4 @@ class getXml:
             assert 1
         else:
             Conditions['publishdate_to']=Publishdate_tos[0].firstChild.data+"-12-31"
-
         return Conditions

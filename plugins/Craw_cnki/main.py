@@ -1,9 +1,8 @@
-
+# -*- coding: UTF-8 -*-
 import urllib
 import requests
 import re
 import time, os, shutil, logging
-from .UserInput import get_uesr_inpt
 from .GetConfig import config
 from .CrackVerifyCode import crack
 from .GetPageDetail import page_detail
@@ -12,13 +11,6 @@ from urllib.parse import quote
 # 引入beautifulsoup
 from bs4 import BeautifulSoup
 import shutil
-import xlrd
-import traceback
-from tkinter import *
-from PyQt5.QtWidgets import (QMainWindow, QTextEdit,QDesktopWidget, QFileDialog, QApplication,QPushButton)
-
-
-
 
 HEADER = config.crawl_headers
 # 获取cookie
@@ -38,7 +30,6 @@ class SearchTools(object):
     构建搜索类
     实现搜索方法
     '''
-
     def __init__(self,count):
         self.session = requests.Session()
         self.sheet_name = "CRA" + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
@@ -75,6 +66,7 @@ class SearchTools(object):
         }
         # 将固定字段与自定义字段组合
         post_data = {**static_post_data, **ueser_input}
+
         # 必须有第一次请求，否则会提示服务器没有用户
         first_post_res = self.session.post(
             SEARCH_HANDLE_URL, data=post_data, headers=HEADER)
@@ -107,7 +99,7 @@ class SearchTools(object):
                                   page_source).group(1)
         reference_num_int = int(reference_num.replace(',', ''))
         print('检索到' + reference_num + '条结果，全部下载大约需要' +
-              s2h(reference_num_int * 5) + '。')
+              self.s2h(reference_num_int * 5) + '。')
         # is_all_download = input('是否要全部下载（y/n）?')
         is_all_download = 'n'
         # 将所有数量根据每页20计算多少页
@@ -235,47 +227,29 @@ class SearchTools(object):
             args['count']+=1
             self.pg="正在下载第%s/%s篇文献"%(args['count'],str(self.select_download_num))
             self.info='节点1_正在下载: ' + single_refence_list[1] + '.caj'
-            # try:
-            #     # print(args['text'])
-            #     # args['text'].setText('')
-            # except OSError:
-            #     pass
-            args["CrawProcess"].emit(str(self.pg+"\n"+self.info))
-            # args['text'].setText(self.pg+"\n"+self.info)
-            # args['text'].setText(self.info+"\n")
-            # print(args['text'].toPlainText())
-            #解决线程执行，耗时久页面卡顿问题
-            # QApplication.processEvents()
 
-            # print(args['text'])
+            args["CrawProcess"].emit(str(self.pg+"\n"+self.info))
+
 
             name = single_refence_list[1]
             # name = single_refence_list[1] + '_' + single_refence_list[2]
-            # 检查文件命名，防止网站资源有特殊字符本地无法保存
+            '''检查文件命名，防止网站资源有特殊字符本地无法保存'''
             file_pattern_compile = re.compile(r'[\\/:\*\?"<>\|]')
             name = re.sub(file_pattern_compile, '', name)
             with open('data/Links.txt', 'a', encoding='utf-8') as file:
                 file.write(self.download_url + '\n')
-            # 检查是否下载
             # if config.crawl_isdownload ==1:
             if not os.path.isdir('data/CAJs'):
                 os.mkdir(r'data/CAJs')
-            # refence_file = requests.get(self.download_url, headers=HEADER)
-            # refence_file = urllib2.urlopen(self.download_url)
-            # data = refence_file.read()
-            # with open('data/CAJs/' + name + '.caj', 'wb') as file:
             filename=self.docid+name+".caj"
             try:
                 if not os.path.isfile(os.path.join("data/CAJs/", filename)):
                     urllib.request.urlretrieve(self.download_url, os.path.join('data/CAJs/', filename))
-                    # file.write(refence_file.content)
-                    # file.write(data)
             except Exception as e:
                 logging.error('下载出错')
 
             time.sleep(config.crawl_stepWaitTime)
-
-
+    '''移动文件到指定路径'''
     def move_file(self,src_dir, target_dir):
         if not os.path.exists(target_dir):
             os.mkdir(target_dir)
@@ -284,69 +258,10 @@ class SearchTools(object):
             target_name = os.path.join(target_dir, item)
             shutil.move(src_name, target_name)
 
-
-
-
-def s2h(seconds):
-    '''
-    将秒数转为小时数
-    '''
-    m, s = divmod(seconds, 60)
-    h, m = divmod(m, 60)
-    return ("%02d小时%02d分钟%02d秒" % (h, m, s))
-
-
-
-
-
-
-if __name__ == '__main__':
-    # main()
-    list1=['a.caj','b.docx','c.txt','d.xls','ff.caj','ss.pdf','qssa.doc','sas.jpg']
-    list2=[]
-    tag = "UP" + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
-    for i, f in enumerate(list1):
-        if os.path.splitext(f)[1] in {'.caj', '.pdf', '.txt', '.doc', '.docx'}:
-            list2.append(tag +str(i).zfill(4) + f)
-    # print(list2)
-    # print(os.getcwd())
-    # cur_dir="/Users/macbookair/cnki/文献属性.xlsx/"
-    # # print(cur_dir[:len(cur_dir)-8])
-    # # for f in list1:
-    #     # print(cur_dir+f)
-    # # book = xlrd.open_workbook(cur_dir)
-    # # # sheet = book.sheet_by_index(len(book.sheets())-1)
-    # # sheets = book.sheets()
-    # # for sheet in sheets:
-    # #     print(sheet.name)
-    # print(cur_dir[-1])
-    # print(cur_dir[0:len(cur_dir)-1])
-    sss='2019-12-01'
-    # import datetime
-    # import datetime
-    # # print(time.strftime("%Y-%m-%d %X",sss))
-    # # print(sss.apply(lambda x: type(time.strptime(x, '%Y-%m-%d'))))
-    # print(datetime.datetime.strptime(sss, '%Y-%m-%d'))
-    ops=[]
-    for i in range(20):
-        a=("第%s个"%i,"第%s个"%(i*2),"第%s个"%(i*3))
-        ops.append(a)
-
-    list2=[('第0个', '第6个', '第10个')]
-    # for l in list1:
-    #     print(l,end="\n")
-    # new=[]
-    # for l2 in list2:
-    #     temp=[item for item in ops if item[1]==l2]
-    #     new.extend(temp)
-    # print(new)
-    # ls=[item for item in ops if item not in new]
-    # # ls=list(set(ops)-set(new))
-    # print(ls)
-    # print(new)
-    #
-    # for l in list1:
-        # print(l,end="\n")
-    # print(list1,end="\n")
-    # print(list2[0][-1])
-    print(os.getcwd())
+    def s2h(self,seconds):
+        '''
+        将秒数转为小时数
+        '''
+        m, s = divmod(seconds, 60)
+        h, m = divmod(m, 60)
+        return ("%02d小时%02d分钟%02d秒" % (h, m, s))

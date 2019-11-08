@@ -22,31 +22,29 @@ class Craw_cnki(BasePlugin):
         self.loadFromConfig()
 
     def loadFromConfig(self):
-        #遍历找到xml配置信息文件'path'
+        '''遍历找到xml配置信息文件path'''
         configfilePath=os.getcwd()+'/'+'plugins/'+self.__class__.__name__+'/'+self.__class__.__name__+'.xml'
         # configfilePath=os.getcwd()+'/'+self.__class__.__name__+'/'+'.xml'
         print(configfilePath)
         self.getxml =Getxml.getXml(configfilePath)
         configDate = self.getxml.getfull()
         self.configPath=configfilePath
-        #加载配置信息
-        #获取爬虫name，爬虫描述、保存文件路径和属性文件路径
+        '''
+        加载配置信息
+        获取爬虫name，爬虫描述、保存文件路径和属性文件路径
+        '''
         self.name=configDate['name']
         self.describe=configDate['describe']
-        #filepath或propath为None时更新，否则不更新
         if self.filepath==None:
             self.filepath = configDate['filepath']
         if self.propath==None:
             self.propath = configDate['propertypath']
     def run(self):
-        # 对知网论文进行多条件爬取
-        # 更新state、text
         self.args["flag"] = True
         self.args["count"] = 0
         self.args["state"] = '正在爬取'
         self.args["text"] = self.text
         self.args["CrawProcess"]=self.CrawProcess
-
         getxml = Getxml.getXml(self.configPath)
         user_input = getxml.getData()
         count = int(getxml.getCount()) * 20
@@ -55,35 +53,14 @@ class Craw_cnki(BasePlugin):
             search.search_reference(user_input, self.args)
         except OSError:
             pass
-        print('－－－－－－－－－－－－－－－－－－－－－－－－－－')
         self.args["flag"] = False
         self.args["count"] = 0
         self.trigger.emit()
-    def start(self):
-        #对知网论文进行多条件爬取
-        #更新state、text
-        self.args["flag"] = True
-        self.args["count"] = 0
-        self.args["state"] = '正在爬取'
-        self.args["text"] =self.text
-        getxml = Getxml.getXml(self.configPath)
-        user_input = getxml.getData()
-        count = int(getxml.getCount())*20
-        search = main.SearchTools(count)
-        try:
-            search.search_reference(user_input,self.args)
-        except OSError:
-            pass
-        print('－－－－－－－－－－－－－－－－－－－－－－－－－－')
-        self.args["flag"] = False
-        self.args["count"] = 0
+
     def stop(self):
         self.args["flag"] = False
         self.trigger.emit()
 
-        #结束爬取
-        #更新state、text
-        pass
     def saveData(self):
         if os.path.exists(self.filepath):
             savepath = self.filepath
@@ -95,9 +72,6 @@ class Craw_cnki(BasePlugin):
         else:
             print("文件目录不存在")
 
-    def func(self):
-        #自定义扩展方法
-        pass
     def getParameters(self):
         self.parameters['name']=self.name
         self.parameters['describe']=self.describe
@@ -107,6 +81,4 @@ class Craw_cnki(BasePlugin):
         self.parameters['filepath']=self.filepath
         self.parameters['propath']=self.propath
         return self.parameters
-# craw_cnki=Craw_cnki()
-# craw_cnki.loadFromConfig()
-# craw_cnki.start()
+

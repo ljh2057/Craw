@@ -36,48 +36,5 @@ def getAllPlugin(filepath):
     #     plgs[plugin]=list(filter(r.match, dir(obj)))#dir(obj)列出obj所有方法，返回list，python3中filter默认返回filter类
     # return plgs
     return plg_ls
-def showInfo(plugin_info):
-    pass
 
-
-if __name__ == '__main__':
-   plugin_dir='/Users/macbookair/Plugin_project/plugins'
-   plgs=getAllPlugin(plugin_dir)
-   print(plgs)
-   newfilepath,newpropath='F:\\newfilepath','E:\\newpropath'
-   plg_info=call_plugin(plgs[0],'getParameters',filepath=newfilepath,propath=newpropath)
-   print(plg_info)
-
-
-   # cnki = Cnki.Craw_cnki('c:\\1','stop','none')
-   # print(cnki.getParameters())
-   # from threading import Thread, Lock
-   # # 创建一个互斥锁
-   # mutex1 = Lock()
-   # mutex2 = Lock()
-   # mutex3 = Lock()
-   # def fun1():
-   #      mutex1.acquire()# 阻塞
-   #      print("线程1 执行")
-   #      mutex2.release()# 释放锁2，让线程2继续执行
-   # def fun2():
-   #      mutex2.acquire()# 阻塞
-   #      print("线程2 执行")
-   #      mutex3.release()# 释放锁3，让线程3继续执行
-   # def fun3():
-   #      mutex3.acquire()# 阻塞
-   #      print("线程3 执行")
-   #      mutex1.release()# 释放锁1，让线程1继续执行
-   # # 创建一个线程对象
-   # t1 = Thread(target=fun1)
-   # t2 = Thread(target=fun2)
-   # t3 = Thread(target=fun3)
-   # mutex2.acquire()
-   # mutex3.acquire()
-   # t1.start()
-   # t2.start()
-   # t3.start()
-   # t1.join()
-   # t2.join()
-   # t3.join()
 

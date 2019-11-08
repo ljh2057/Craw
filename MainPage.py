@@ -99,7 +99,7 @@ class Window(QTabWidget):
         self.tab2=QWidget()
 
         self.addTab(self.tab1,'数据采集')
-        # self.addTab(self.tab2,'数据移植')
+        self.addTab(self.tab2,'数据移植')
         '''加载tab1'''
         self.set_tab1_layout()
         self.set_tab2_layout()
@@ -204,29 +204,30 @@ class Window(QTabWidget):
         return plugins.get(plugin_name[0],None)
     '''启动插件'''
     def work(self):
-        '''修改对应按钮状态'''
-        self.btn3.setEnabled(True)
-        self.btn2.setEnabled(False)
-        '''强制页面刷新'''
-        QApplication.processEvents()
-        # print(self.jobList)
         '''更新当前选中插件列表'''
-        temp=[]
+        temp = []
         for job_name in self.jobList:
             temp.append(self.Plugin_Switch(job_name))
-        self.plugin_job=temp
-        # print(self.plugin_job)
-        QApplication.processEvents()
-        '''job[0]为线程对象,job[1]为对应的行号,通过行号修改爬取状态'''
-        for job in self.plugin_job:
-            try:
-                state = QTableWidgetItem('正在爬取')
-                state.setTextAlignment(Qt.AlignCenter)
-                job[0].start()
-                self.TableWidget.setItem(job[1], 2,state)
-            except:
-                pass
-        QApplication.processEvents()
+        self.plugin_job = temp
+        if len(self.plugin_job):
+
+            '''修改对应按钮状态'''
+            self.btn3.setEnabled(True)
+            self.btn2.setEnabled(False)
+            '''强制页面刷新'''
+            QApplication.processEvents()
+            '''job[0]为线程对象,job[1]为对应的行号,通过行号修改爬取状态'''
+            for job in self.plugin_job:
+                try:
+                    state = QTableWidgetItem('正在爬取')
+                    state.setTextAlignment(Qt.AlignCenter)
+                    job[0].start()
+                    self.TableWidget.setItem(job[1], 2,state)
+                except:
+                    pass
+            QApplication.processEvents()
+        else:
+            QMessageBox.about(self, '提示', '未选择任务')
 
     '''cnki插件线程初始化'''
     def cnki_plugin_init(self):
@@ -487,7 +488,7 @@ class Window(QTabWidget):
         QApplication.processEvents()
         if filename!= "" and filename !=" ":
             getxml = Getxml.getXml(filename)
-            configs = getxml.getDestination2()
+            configs = getxml.getDestination()
             db = SaveData.BlobDataTestor(configs)
             if os.path.exists(configs['path']):
                 if configs['type']=='simple':
@@ -584,7 +585,7 @@ class Window(QTabWidget):
     def verifyConfigFile(self,filename):
         if filename!= "" and filename!=" ":
             getxml = Getxml.getXml(filename)
-            configs = getxml.getDestination2()
+            configs = getxml.getDestination()
             try:
                 self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']), user=configs['username'],passwd=configs['password'], db=configs['servicename'])
             except Exception as e:

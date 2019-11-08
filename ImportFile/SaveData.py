@@ -54,7 +54,7 @@ class BlobDataTestor:
             #     pass
         cursor.close()
         self.conn.commit()
-
+    '''导入txt文本'''
     def upload_txt(self,directory,args):
         f_list=os.listdir(directory)
         f_list_txt=[]
@@ -94,7 +94,7 @@ class BlobDataTestor:
                 # pass
         cursor.close()
         self.conn.commit()
-
+    '''简单导入'''
     def upload_simple(self,directory,args):
         f_list=os.listdir(directory)
         f_list_doc=[]
@@ -132,8 +132,7 @@ class BlobDataTestor:
         cursor.close()
         self.conn.commit()
 
-
-
+    '''从属性文件导入'''
     def upload_pfile(self,filename,args):
         if os.path.splitext(filename)[1]==".xlsx":
             cur_dir=filename[:len(filename)-9]

@@ -1,12 +1,10 @@
-import xlwt,xlrd
+import xlwt
 from bs4 import BeautifulSoup
 import re
 import math,random
 from .GetConfig import config
 import time
 import os
-from xlutils.copy import copy
-from xlrd import open_workbook
 
 HEADER = config.crawl_headers
 
@@ -16,8 +14,6 @@ class PageDetail(object):
         # count用于计数excel行
         self.sheet_name = "CRA" + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
         self.excel = xlwt.Workbook(encoding='utf8')
-        # self.rexcel = open_workbook('data/CAJs/文献属性.xls')
-        # self.excel=copy(self.rexcel)
         self.sheet = self.excel.add_sheet(self.sheet_name, True)
         self.set_style()
         self.sheet.write(0, 0, '标志',self.basic_style)
@@ -29,18 +25,14 @@ class PageDetail(object):
         self.sheet.write(0, 6, '摘要',self.basic_style)
         self.sheet.write(0, 7, '来源',self.basic_style)
         self.sheet.write(0, 8, '发表时间',self.basic_style)
-        # self.sheet.write(0, 8, '数据库',self.basic_style)
-        # if config.crawl_isDownLoadLink=='1':
         self.sheet.write(0, 9, '下载地址',self.basic_style)
         self.sheet.write(0, 10, '后缀',self.basic_style)
         self.sheet.write(0, 11, '源文件位置',self.basic_style)
         self.docid=""
         self.index=0
 
-
         # 生成userKey,服务器不做验证
         self.cnkiUserKey=self.set_new_guid()
-
 
     def get_detail_page(self, session, result_url, page_url,
                         single_refence_list, download_url,docid):
@@ -149,13 +141,6 @@ class PageDetail(object):
         self.create_list()
         for i in range(0, 12):
             self.sheet.write(self.index, i, self.reference_list[i], self.basic_style)
-        # if config.crawl_isDownLoadLink=='1':
-        #     for i in range(0,10):
-        #         self.sheet.write(int(self.reference_list[0]),i,self.reference_list[i],self.basic_style)
-        # else:
-        #     for i in range(0,9):
-        #         self.sheet.write(int(self.reference_list[0]),i,self.reference_list[i],self.basic_style)
-
 
     def set_style(self):
         '''
@@ -165,7 +150,7 @@ class PageDetail(object):
         self.sheet.col(2).width = 256 * 15
         self.sheet.col(3).width = 256 * 20
         self.sheet.col(4).width = 256 * 20
-        self.sheet.col(5).width=256*60
+        self.sheet.col(5).width = 256 * 60
         self.sheet.col(6).width = 256 * 15
         self.sheet.col(9).width = 256 * 15
         self.sheet.row(0).height_mismatch=True
@@ -188,8 +173,6 @@ class PageDetail(object):
         self.basic_style.alignment=al
         self.basic_style.borders=borders
 
-
-
     def set_new_guid(self):
         '''
         生成用户秘钥
@@ -201,7 +184,5 @@ class PageDetail(object):
             if (i == 8) or (i == 12) or (i == 16) or (i == 20):
                 guid += "-"
         return guid
-
-
 # 实例化
 page_detail = PageDetail()

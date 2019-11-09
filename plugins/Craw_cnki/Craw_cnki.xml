@@ -3,7 +3,7 @@
     <Address>
         <Record>
             <CrawId>Craw_cnki</CrawId >
-            <Name>知网爬虫</Name>
+            <Name>知网爬虫2</Name>
             <Describe>知网爬虫描述</Describe>
             <Condition>
                 <Motif>无人驾驶</Motif>
@@ -16,6 +16,6 @@
             </Condition>
         </Record>
     </Address>
-    <FilePath>/Users/macbookair/Plugin_project/plugins/Craw_cnki/craw_data</FilePath>
-    <PropertyPath>/Users/macbookair/Plugin_project/plugins/Craw_cnki/craw_data_property</PropertyPath>
+    <FilePath>/Users/macbookair/Plugin_project/craw_data</FilePath>
+    <PropertyPath>/Users/macbookair/Plugin_project/craw_data_property</PropertyPath>
 </Crawer>

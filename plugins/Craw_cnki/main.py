@@ -120,7 +120,7 @@ class SearchTools(object):
                     # 不满一页的下载一整页
                     if i != 0:
                         page += 1
-                    print("开始下载前%d页所有文件，预计用时%s" % (page, s2h(page * 20 * 5)))
+                    print("开始下载前%d页所有文件，预计用时%s" % (page, self.s2h(page * 20 * 5)))
                     print('－－－－－－－－－－－－－－－－－－－－－－－－－－')
                     return page
 

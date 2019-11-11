@@ -3,10 +3,10 @@
     <Address>
         <Record>
             <CrawId>Craw_cnki</CrawId >
-            <Name>知网爬虫2</Name>
+            <Name>知网爬虫</Name>
             <Describe>知网爬虫描述</Describe>
             <Condition>
-                <Motif>无人驾驶</Motif>
+                <Motif>云原生</Motif>
                 <Keyword></Keyword>
                 <Relation></Relation>
                 <Magazine></Magazine>

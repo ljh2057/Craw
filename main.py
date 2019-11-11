@@ -90,73 +90,19 @@ if __name__ == '__main__':
 
    # cnki = Cnki.Craw_cnki('c:\\1','stop','none')
    # print(cnki.getParameters())
+
+   '''多线程通过线程锁实现按序执行'''
    from threading import Thread, Lock
    thread_list=[i for i in range(nums)]
    locks_list=[i for i in range(nums)]
    job_list=[fun1,fun2,fun3]
-   # job_list.append()
-
-
-
    def initThreadandLock(index, locks_list,thread_list,job_list):
        locks_list[index] = Lock()
        if index:
            locks_list[index].acquire()
        thread_list[index] =Thread(target=job_list[index],args=(index,locks_list))
-
-
-
-
-   # 创建一个互斥锁
-
-   # mutex1 = Lock()
-   # mutex2 = Lock()
-   # mutex3 = Lock()
-   # def fun1():
-   #      mutex1.acquire()# 阻塞
-   #      print("线程1 执行")
-   #      for i in range(100):
-   #          print('线程1%f'%i)
-   #      mutex2.release()# 释放锁2，让线程2继续执行
-   # def fun2():
-   #      mutex2.acquire()# 阻塞
-   #      print("线程2 执行")
-   #      for i in range(100):
-   #          print('线程2%f' % i)
-   #      mutex3.release()# 释放锁3，让线程3继续执行
-   # def fun3():
-   #      mutex3.acquire()# 阻塞
-   #      print("线程3 执行")
-   #      for i in range(100):
-   #          print('线程3%f' % i)
-   #      mutex1.release()# 释放锁1，让线程1继续执行
-
-
-
-   # 创建一个线程对象
-   # t1 = Thread(target=fun1)
-   # t2 = Thread(target=fun2)
-   # t3 = Thread(target=fun3)
-   # mutex1.acquire()
-   # mutex2.acquire()
-   # mutex3.acquire()
-   # t1.start()
-
-   # t2.start()
-   # mutex3.release()
-   # t3.start()
-   # mutex1.release()
-
-   # t1.join()
-   # t2.join()
-   # t3.join()
    for index in range(nums):
        initThreadandLock(index, locks_list, thread_list, job_list)
-   # t1.join()
-   print(locks_list)
-   print(thread_list)
-   print(job_list)
-
    for i in range(nums):
        thread_list[i].start()
    for i in range(nums):

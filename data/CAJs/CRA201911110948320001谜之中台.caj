@@ -1,0 +1,174 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	中国知网-登录
+</title><link href="css/public.css" rel="stylesheet" type="text/css" /><link href="css/style.css" rel="stylesheet" type="text/css" /><link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="script/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="script/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="script/Validate.js"></script>
+	<script type="text/javascript" src="script/gwy.js"></script>
+	<script type="text/javascript" src="script/jquery.placeholder.min.js"></script>
+	<script type="text/javascript">
+		function ReGetImg() {
+			var img = $("#CheckCodeImg");
+			img.attr("src", "checkcode.aspx?t=" + Math.random());
+		}
+
+		function ShowLinkPanel(show) {
+			if (show)
+				$("#BindUser").show();  //dialog({ closeOnEscape: true, modal: true, width: 550, height: 410 });
+			else
+				$("#BindUser").hide();
+		}
+		$(function () { $('input, textarea').placeholder(); });
+	</script>
+	<style type="text/css">
+		.style1 {
+			color: #999999;
+		}
+	</style>
+</head>
+<body>
+	<form method="post" action="?platform=kns&amp;ForceReLogin=1&amp;ReturnURL=http%3a%2f%2fkns.cnki.net%2fkns%2fdownload.aspx%3ffilename%3dHcP12cJJEaqxkTwZ2NZZFZEF2NplWaOJUeZVlctJDeGRDbzFHc2N3cDJDMRRmcq1mYutGTiNmR41ETCVEW6FlY%3d0TP3RWTNlUSlVzT3Q2dxJXYvIlTNFEU1lEMaFWashVO3smYlJlbDZkZahWYKlmaIl0ZwdkVDhlQtpXQwMHdCR%26tablename%3dCCNDTEMP" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="5E7FB4E4" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="AQ/NZKPri8GMTBYTiEUdHVT1J5PYOUcRSA06sAqECHomTJoUh8qF3yFVKvPN16G6VMEuACLn0mcBjVL6FL04n1tfywtBzY0OykuYpMTa+hTGMPCRsWlv3vj5T4cYl5CHnipxIvm3dwYCcLSdx5VM/rD1Pa6DkgLLYvQ6WM0PiT4ICkO+M8s4J8BMS+nB5rnw1fM+eyV9Gln0oVFx47dRibNnBtfmErVuxT9VBVFwVHxCT02CFMt/4227LBxF+2eeAfzaipoG/vv/jKvSSK8ypmyACa2n5zfA3LYhqO1WIdVkVlMY55nLBz4mEIk=" />
+		<div class="top">
+			<a class="left" href="http://www.cnki.net">
+				<img src="images/loginImages/logo.jpg"></a>
+			<p class="right">
+			</p>
+		</div>
+		<div class="main" id="loginMain" >
+			<div class="wrap">
+				<div class="banner left">
+                    <a id="mallLink" target="_blank" class="bglink"></a>
+				</div>
+				<div class="login right">
+					<div class="tit positionR">
+						会员登录 
+						<a id="registerLink" class="positionA rn" href="http://my.cnki.net/Register/CommonRegister.aspx?returnurl=http%3a%2f%2fkns.cnki.net%2fkns%2fdownload.aspx%3ffilename%3dHcP12cJJEaqxkTwZ2NZZFZEF2NplWaOJUeZVlctJDeGRDbzFHc2N3cDJDMRRmcq1mYutGTiNmR41ETCVEW6FlY%3d0TP3RWTNlUSlVzT3Q2dxJXYvIlTNFEU1lEMaFWashVO3smYlJlbDZkZahWYKlmaIl0ZwdkVDhlQtpXQwMHdCR%26tablename%3dCCNDTEMP">立即注册</a>
+					</div>
+
+					<div class="error">
+						<span style="color: Red" id="errorMsg"></span>
+
+					</div>
+					<div class="info name positionR">
+						<label class="left" for="TextBoxUserName"></label>
+						<input name="TextBoxUserName" type="text" maxlength="64" id="TextBoxUserName" tabindex="1" autocomplete="off" class="left" onfocus="this.style.color=&#39;#333&#39;" placeholder="用户名/邮箱/手机号" />
+					</div>
+					<div class="tip1">
+					</div>
+					<div class="info psw positionR">
+						<label class="left" for="TextBoxPwd"></label>
+						<input name="TextBoxPwd" type="password" maxlength="20" id="TextBoxPwd" tabindex="2" class="left" autocomplete="off" autocapitalize="off" placeholder="密码" onkeydown="return Ecp_EnterSubmit(event,this,Button1,true);" />
+					</div>
+					<div class="tip2">
+					</div>
+					
+					<script>
+						//点击变色
+						$(".info").click(function () {
+							$(this).addClass("infoclick")
+							$(this).children("label").addClass("labelclick")
+							$(this).children("input").focus()
+						})
+						$(".info input").focus(function () {
+							$(this).parent(".info").addClass("infoclick")
+							$(this).siblings("label").addClass("labelclick")
+						})
+						$(".info input").blur(function () {
+							$(this).parent(".info").removeClass("infoclick")
+							$(this).siblings("label").removeClass("labelclick")
+						})
+					</script>
+					<div class="handle">
+						<span class="left"><input id="CheckBoxAutoLogin" type="checkbox" name="CheckBoxAutoLogin" /></span>
+						<label class="left" for="CheckBoxAutoLogin">
+							下次自动登录</label>
+						<a class="right" href="http://my.cnki.net/mycnki/mycnkiFandPassword.htm">忘记账号或密码?</a>
+					</div>
+					<div class="tip3">
+					</div>
+					<div class="btn">
+						<a onclick="return SubmitCheck(1,this);" id="Button1" class="btn1 left" href="javascript:__doPostBack(&#39;Button1&#39;,&#39;&#39;)">登&nbsp;&nbsp;录</a>
+						<a onclick="return disableButton2(this);" id="Button2" class="btn2 right" href="javascript:__doPostBack(&#39;Button2&#39;,&#39;&#39;)"><span>IP</span>登&nbsp;&nbsp;录</a>
+					</div>
+					<div class="line">
+					</div>
+					<div class="other">
+						<a id="HyperLinkQQ" class="qq" alt="使用腾讯QQ账户登录" href="http://my.cnki.net/ThirdLogin/ThirdLogin.aspx?to=qq&amp;RedirectUrl=http%3a%2f%2fkns.cnki.net%2fkns%2fdownload.aspx%3ffilename%3dHcP12cJJEaqxkTwZ2NZZFZEF2NplWaOJUeZVlctJDeGRDbzFHc2N3cDJDMRRmcq1mYutGTiNmR41ETCVEW6FlY%3d0TP3RWTNlUSlVzT3Q2dxJXYvIlTNFEU1lEMaFWashVO3smYlJlbDZkZahWYKlmaIl0ZwdkVDhlQtpXQwMHdCR%26tablename%3dCCNDTEMP">QQ账号</a>
+						<a id="HyperLinkWeixin" class="wx" href="http://my.cnki.net/ThirdLogin/ThirdLogin.aspx?to=weixin&amp;RedirectUrl=http%3a%2f%2fkns.cnki.net%2fkns%2fdownload.aspx%3ffilename%3dHcP12cJJEaqxkTwZ2NZZFZEF2NplWaOJUeZVlctJDeGRDbzFHc2N3cDJDMRRmcq1mYutGTiNmR41ETCVEW6FlY%3d0TP3RWTNlUSlVzT3Q2dxJXYvIlTNFEU1lEMaFWashVO3smYlJlbDZkZahWYKlmaIl0ZwdkVDhlQtpXQwMHdCR%26tablename%3dCCNDTEMP">微信账号</a>
+						<a id="HyperLink163" class="wy" href="http://my.cnki.net/ThirdLogin/ThirdLogin.aspx?to=163&amp;RedirectUrl=http%3a%2f%2fkns.cnki.net%2fkns%2fdownload.aspx%3ffilename%3dHcP12cJJEaqxkTwZ2NZZFZEF2NplWaOJUeZVlctJDeGRDbzFHc2N3cDJDMRRmcq1mYutGTiNmR41ETCVEW6FlY%3d0TP3RWTNlUSlVzT3Q2dxJXYvIlTNFEU1lEMaFWashVO3smYlJlbDZkZahWYKlmaIl0ZwdkVDhlQtpXQwMHdCR%26tablename%3dCCNDTEMP">网易账号</a>
+						<a id="HyperLinkSina" class="weibo" href="http://my.cnki.net/ThirdLogin/ThirdLogin.aspx?to=sina&amp;RedirectUrl=http%3a%2f%2fkns.cnki.net%2fkns%2fdownload.aspx%3ffilename%3dHcP12cJJEaqxkTwZ2NZZFZEF2NplWaOJUeZVlctJDeGRDbzFHc2N3cDJDMRRmcq1mYutGTiNmR41ETCVEW6FlY%3d0TP3RWTNlUSlVzT3Q2dxJXYvIlTNFEU1lEMaFWashVO3smYlJlbDZkZahWYKlmaIl0ZwdkVDhlQtpXQwMHdCR%26tablename%3dCCNDTEMP">	新浪微博</a>
+
+						<a id="HyperLinkRenren" href="http://my.cnki.net/ThirdLogin/ThirdLogin.aspx?to=renren&amp;RedirectUrl=http%3a%2f%2fkns.cnki.net%2fkns%2fdownload.aspx%3ffilename%3dHcP12cJJEaqxkTwZ2NZZFZEF2NplWaOJUeZVlctJDeGRDbzFHc2N3cDJDMRRmcq1mYutGTiNmR41ETCVEW6FlY%3d0TP3RWTNlUSlVzT3Q2dxJXYvIlTNFEU1lEMaFWashVO3smYlJlbDZkZahWYKlmaIl0ZwdkVDhlQtpXQwMHdCR%26tablename%3dCCNDTEMP" style="display: none"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="left">
+				<p>
+					服务热线：400-810-9888&nbsp;&nbsp;订卡热线：400-819-9993
+				</p>
+				<p>
+					@2017《中国学术期刊（光盘版）》电子杂志社有限公司
+				</p>
+			</div>
+			<div class="right footerA">
+				<p>
+					京ICP证040431号 <a target="_blank" href="http://piccache.cnki.net/index/images/gb/271.jpg">网络出版服务许可证（总）网出证（京）字第271号</a>
+				</p>
+				<p>
+					京公网安备11010802020460号
+				</p>
+			</div>
+		</div>
+
+		<!--海外-->
+		
+		<!--海外-->
+        <input name="ecpuip" type="hidden" id="ecpuip" />       
+	</form>
+
+    <script>
+        var mallReqUrl = "//bianke.cnki.net/adpromotion/api/AdContentApi/WriteAd";
+		$(function(){		
+		    try
+			{			
+				$.ajax({
+				    url: mallReqUrl,
+                    type: "GET",
+                    dataType: "jsonp", 
+                    success: function (data) {
+                        try {
+							var resdata=data;
+							if (typeof resdata == "string")
+								resdata = JSON.parse(resdata);			
+								
+							if (resdata.state === "success"){
+							    $("#loginMain").css("background-image","url("+ resdata.data[0].img+")");
+							    $("#mallLink").attr("href", resdata.data[0].link);
+							}
+							//console.log(resdata);
+						}
+						catch (e) {
+							console.log(e);
+						}
+                    },
+				 error: function (XMLHttpRequest, textStatus, errorThrown) {
+				       console.log( XMLHttpRequest.status + XMLHttpRequest.statusText + " " + XMLHttpRequest.readyState + " " + textStatus);
+				    }
+                });
+			}
+			catch (e) {
+				console.log(e);
+			}
+		});        
+    </script></body>
+</html>

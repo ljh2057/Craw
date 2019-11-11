@@ -1,6 +1,7 @@
 # from PyQt5.QtWidgets import QMainWindow, QTextEdit,QDesktopWidget, QFileDialog, QApplication,QPushButton,QTableWidget,QAbstractItemView,QComboBox,QHBoxLayout,QWidget,QGroupBox,QVBoxLayout
 import sys
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QMutex
 from plugins.Craw_cnki import Getxml
 from ImportFile import SaveData
 import pymysql
@@ -9,6 +10,9 @@ from plugins.Craw_cnki.Craw_cnki import Craw_cnki
 from plugins.Craw_baidu.Craw_baidu import Craw_baidu
 import os
 import LoadPlugins as lp
+qumt1 = QMutex()
+qumt2 = QMutex()
+# qumt_ls=[qumt1,qumt2]
 class CrawCnkiThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     crawSignal=pyqtSignal(str)
@@ -18,9 +22,13 @@ class CrawCnkiThread(QThread):
         self.craw_cnki = Craw_cnki(filepath=filepath,propath=propath)
     '''启动线程'''
     def run(self):
+        qumt1.lock()
+        qumt2.lock()
         self.craw_cnki.CrawProcess.connect(self.update)
         self.craw_cnki.run()
         self.craw_cnki.saveData()
+        qumt1.unlock()
+        qumt2.unlock()
     '''传递爬虫对象中的进度信息'''
     def update(self,data):
         self.crawSignal.emit(data)
@@ -39,8 +47,12 @@ class CrawBaiduThread(QThread):
         self.craw_baidu = Craw_baidu(filepath=filepath,propath=propath)
     '''启动线程'''
     def run(self):
+        qumt1.lock()
+        qumt2.lock()
         self.craw_baidu.CrawProcess.connect(self.update)
         self.craw_baidu.run()
+        qumt2.unlock()
+        qumt1.unlock()
     '''传递爬虫对象中的进度信息'''
     def update(self,data):
         self.crawSignal.emit(data)

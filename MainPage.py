@@ -12,7 +12,6 @@ import os
 import LoadPlugins as lp
 qumt1 = QMutex()
 qumt2 = QMutex()
-# qumt_ls=[qumt1,qumt2]
 class CrawCnkiThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     crawSignal=pyqtSignal(str)
@@ -62,37 +61,34 @@ class CrawBaiduThread(QThread):
     '''加载爬虫对象属性信息'''
     def loadFromConfig(self):
         return self.craw_baidu.getParameters()
-# class UploadThread(QThread):
-#     '''信号槽获取爬虫对象的爬取进度信息'''
-#     uploadSignal = pyqtSignal(str)
-#
-#     def __init__(self, filepath=None, propath=None):
-#         super().__init__()
-#         '''实例化爬虫对象'''
-#         self.craw_cnki = Craw_cnki(filepath=filepath, propath=propath)
-#
-#     '''启动线程'''
-#
-#     def run(self):
-#         self.craw_cnki.CrawProcess.connect(self.update)
-#         self.craw_cnki.run()
-#         self.craw_cnki.saveData()
-#
-#     '''传递爬虫对象中的进度信息'''
-#
-#     def update(self, data):
-#         self.crawSignal.emit(data)
-#
-#     '''停止线程'''
-#
-#     def stop(self):
-#         self.craw_cnki.stop()
-#
-#     '''加载爬虫对象属性信息'''
-#
-#     def loadFromConfig(self):
-#         # self.craw_cnki.loadFromConfig()
-#         return self.craw_cnki.getParameters()
+class UploadThread(QThread):
+    '''信号槽获取爬虫对象的爬取进度信息'''
+    uploadSignal = pyqtSignal(str)
+    def __init__(self, configs):
+        super().__init__()
+        self.configs=configs
+        self.configs['flag']=True
+        self.up_db = SaveData.BlobDataTestor(self.configs)
+    def run(self):
+        self.up_db.CrawProcess.connect(self.update)
+        if self.configs['type'] == 'simple':
+            self.up_db.upload_simple(self.configs["path"])
+        elif self.configs['type'] == 'pfile':
+            self.up_db.upload_pfile(self.configs["path"])
+        elif self.configs['type'] == 'txt':
+            self.up_db.upload_txt(self.configs["path"])
+        else:
+            QMessageBox.about(self, '提示', '导入方式有误,请检查配置文件')
+        self.stop()
+    '''停止线程'''
+    def stop(self):
+        self.up_db.stop()
+    '''传递进度信息'''
+    def update(self,data):
+        print(data)
+        self.uploadSignal.emit(data)
+
+
 class Window(QTabWidget):
     def __init__(self):
         super().__init__()
@@ -392,6 +388,8 @@ class Window(QTabWidget):
 
     '''数据采集页面end'''
 
+
+
     '''数据移植页面start'''
     def set_tab2_layout(self):
         self.textEdit_tab2 = QTextEdit()
@@ -493,39 +491,17 @@ class Window(QTabWidget):
 
 
     '''启动插件'''
-    def work_tab2(self,filename):
+    def work_tab2(self):
         '''修改对应按钮状态'''
         self.btn_stop.setEnabled(True)
         self.btn_start.setEnabled(False)
         QApplication.processEvents()
-        if filename!= "" and filename !=" ":
-            getxml = Getxml.getXml(filename)
-            configs = getxml.getDestination()
-            db = SaveData.BlobDataTestor(configs)
-            if os.path.exists(configs['path']):
-                if configs['type']=='simple':
-                    db.upload_simple(configs["path"], self.args2)
-                elif configs['type']=='pfile':
-                    filenames = [configs['path'] + '/文献属性.xls',configs['path'] + '/文献属性.xlsx']
-                    if os.path.exists(filenames[0]):
-                        db.upload_pfile(filenames[0],self.args2)
-                    elif os.path.exists(filenames[1]):
-                        db.upload_pfile(filenames[1],self.args2)
-                    else:
-                        QMessageBox.about(self, '提示', '文献属性文件不存在')
-                elif configs['type']=='uptxt':
-                    db.upload_txt(configs["path"], self.args2)
-                else:
-                    QMessageBox.about(self, '提示', '导入方式有误,请检查配置文件')
-                db.closedb()
-                print("导入完毕")
-                self.textEdit_tab2.setText('导入完毕')
-                print('导入完毕')
-            else:
-                QMessageBox.about(self, '提示', '文件目录不存在')
+        up_thread=self.upload_init()
+        if up_thread is not None:
+            up_thread.start()
         else:
-            QMessageBox.about(self, '提示', '请先选择配置文件')
-        QApplication.processEvents()
+            QMessageBox.about(self, '提示', '文件位置不存在**')
+        self.textEdit_tab2.setText('导入完毕')
 
 
     '''停止插件运行'''
@@ -533,19 +509,8 @@ class Window(QTabWidget):
         self.btn_stop.setEnabled(False)
         self.btn_start.setEnabled(True)
         QApplication.processEvents()
-        # print(self.plugin_job)
-        '''依次执行插件任务'''
-        for job in self.plugin_job:
-            try:
-                '''修改爬取状态'''
-                state = QTableWidgetItem('结束爬取')
-                state.setTextAlignment(Qt.AlignCenter)
-                self.TableWidget.setItem(job[1], 2, state)
-                job[0].stop()
-            except:
-                pass
         QApplication.processEvents()
-        self.textEdit.setText('爬取结束')
+        self.textEdit_tab2.setText('结束导入')
 
     '''显示配置文件内容'''
     def showConfigFile_tab2(self,ConfigFilePath):
@@ -577,6 +542,22 @@ class Window(QTabWidget):
         except:
             pass
         self.verifyConfigFile(ConfigFilePath)
+    '''初始化上传线程'''
+    def upload_init(self):
+        filename = self.textEdit_configPath_tab2.text()
+        if filename != "" and filename != " ":
+            getxml = Getxml.getXml(filename)
+            configs = getxml.getDestination()
+            if os.path.exists(configs['path']):
+                self.upload_thread = UploadThread(configs=configs)
+                '''通过信号槽传递,实现实时更新爬取进度'''
+                self.upload_thread.uploadSignal.connect(self.updateTextEdit_tab2)
+                return self.upload_thread
+            else:
+                return None
+        else:
+            QMessageBox.about(self, '提示', '请先选择配置文件')
+        return None
     '''选择文件存储路径'''
     def modifFilepath_tab2(self):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
@@ -588,6 +569,10 @@ class Window(QTabWidget):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
         self.le_propath_tab2.setText(path)
         self.proPath=path
+
+    '''更新页面显示进度'''
+    def updateTextEdit_tab2(self,info):
+        self.textEdit_tab2.setText(info)
 
     '''选择插件目录'''
     def SelectConfigFile(self):

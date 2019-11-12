@@ -64,11 +64,11 @@ class Craw_baidu(BasePlugin):
         print(self.parameters)
         return self.parameters
 
-if __name__ == '__main__':
-    cb = Craw_baidu()
-    cb.getParameters()
-    t = threading.Thread(target=cb.run)
-    t.start()  # 开始爬取
-    time.sleep(20)
-    cb.stop()  # 停止爬取
-    t.join()
+# if __name__ == '__main__':
+#     cb = Craw_baidu()
+#     cb.getParameters()
+#     t = threading.Thread(target=cb.run)
+#     t.start()  # 开始爬取
+#     time.sleep(20)
+#     cb.stop()  # 停止爬取
+#     t.join()

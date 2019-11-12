@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Importer>
-    <Path>/Users/macbookair/Plugin_project/plugins/Craw_cnki/craw_data</Path>
-    <Type>pfile</Type>
+    <Path>/Users/macbookair/Plugin_project/craw_datas</Path>
+    <Type>simple</Type>
     <Database>
-        <IP>localhost</IP>
+        <IP>10.196.83.56</IP>
         <Port>3306</Port>
         <serviceName>cnki</serviceName>
         <userName>root</userName>

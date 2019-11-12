@@ -89,22 +89,26 @@ if __name__ == '__main__':
 
 
    # cnki = Cnki.Craw_cnki('c:\\1','stop','none')
-   # print(cnki.getParameters())
-
-   '''多线程通过线程锁实现按序执行'''
-   from threading import Thread, Lock
-   thread_list=[i for i in range(nums)]
-   locks_list=[i for i in range(nums)]
-   job_list=[fun1,fun2,fun3]
-   def initThreadandLock(index, locks_list,thread_list,job_list):
-       locks_list[index] = Lock()
-       if index:
-           locks_list[index].acquire()
-       thread_list[index] =Thread(target=job_list[index],args=(index,locks_list))
-   for index in range(nums):
-       initThreadandLock(index, locks_list, thread_list, job_list)
-   for i in range(nums):
-       thread_list[i].start()
-   for i in range(nums):
-       thread_list[i].join()
+   # # print(cnki.getParameters())
+   #
+   # '''多线程通过线程锁实现按序执行'''
+   # from threading import Thread, Lock
+   # thread_list=[i for i in range(nums)]
+   # locks_list=[i for i in range(nums)]
+   # job_list=[fun1,fun2,fun3]
+   # def initThreadandLock(index, locks_list,thread_list,job_list):
+   #     locks_list[index] = Lock()
+   #     if index:
+   #         locks_list[index].acquire()
+   #     thread_list[index] =Thread(target=job_list[index],args=(index,locks_list))
+   # for index in range(nums):
+   #     initThreadandLock(index, locks_list, thread_list, job_list)
+   # for i in range(nums):
+   #     thread_list[i].start()
+   # for i in range(nums):
+   #     thread_list[i].join()
+   import time
+   ut=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+   print(ut)
+   # print(type(time.localtime(time.time())))
 

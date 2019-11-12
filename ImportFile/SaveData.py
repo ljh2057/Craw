@@ -4,10 +4,14 @@ import xlwt
 import os
 import time
 import shutil
-from tkinter import *
+from PyQt5.QtCore import pyqtSignal,QThread
 
-class BlobDataTestor:
+
+class BlobDataTestor(QThread):
+    trigger = pyqtSignal()
+    CrawProcess=pyqtSignal(str)
     def __init__(self,configs):
+        super(BlobDataTestor, self).__init__()
         self.configs=configs
         self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']),user=configs['username'], passwd=configs['password'], db=configs['servicename'])
 
@@ -26,6 +30,9 @@ class BlobDataTestor:
             cursor.execute("Drop Table sss")
         except:
             pass
+    def stop(self):
+        self.configs['flag'] = False
+        self.trigger.emit()
 
     def getDataFrom(self,filename):
         book = xlrd.open_workbook(filename)
@@ -55,7 +62,7 @@ class BlobDataTestor:
         cursor.close()
         self.conn.commit()
     '''导入txt文本'''
-    def upload_txt(self,directory,args):
+    def upload_txt(self,directory):
         f_list=os.listdir(directory)
         f_list_txt=[]
         ops = []
@@ -75,13 +82,9 @@ class BlobDataTestor:
         cursor = self.conn.cursor()
 
         for n in range(0, len(ops)):
+            self.CrawProcess.emit(str("正在导入%s\n" % (ops[n][2])))
             try:
-                args['show_progress2'].delete(0.0, END)
-            except OSError:
-                pass
-            args['show_progress2'].insert(INSERT, "正在导入%s\n" % (ops[n][1]))
-            try:
-                if args['flag']==True:
+                if self.configs['flag']==True:
                     print(ops[n:n + 1])
                     cursor.executemany(
                         'update tb_download set txt=%s where title=%s ',
@@ -95,11 +98,12 @@ class BlobDataTestor:
         cursor.close()
         self.conn.commit()
     '''简单导入'''
-    def upload_simple(self,directory,args):
+    def upload_simple(self,directory):
         f_list=os.listdir(directory)
         f_list_doc=[]
         ops = []
         tag = "UP" + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+        ut = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
         for i,f in enumerate(f_list):
             if os.path.splitext(f)[1] in {'.caj','.pdf','.txt','.doc','.docx'}:
@@ -107,21 +111,17 @@ class BlobDataTestor:
         for f in f_list_doc:
             b = open(directory+"/"+f[20:], "rb").read()
             origin = pymysql.Binary(b)
-            values =(f[:15],f[:20],os.path.splitext(f)[0],os.path.splitext(f)[1],origin)
+            values =(f[:15],f[:20],ut,os.path.splitext(f)[0],os.path.splitext(f)[1],origin)
             ops.append(values)
         cursor = self.conn.cursor()
         cursor.execute("insert into corpus_sign(CRID)values('%s')"%tag)
 
         for n in range(0, len(ops)):
+            self.CrawProcess.emit(str("正在导入%s\n" % (ops[n][3])))
             try:
-                args['show_progress2'].delete(0.0, END)
-            except OSError:
-                pass
-            args['show_progress2'].insert(INSERT, "正在导入%s\n" % (ops[n][2]))
-            try:
-                if args['flag']==True:
+                if self.configs['flag']==True:
                     cursor.executemany(
-                        'insert into tb_download(CRID,DOCID,TITLE,SUFFIX,ORIGIN)values (%s, %s, %s, %s, %s)',
+                        'insert into corpus(CRID,DOCID,UT,TITLE,SUFFIX,ORIGIN)values (%s,%s, %s, %s, %s, %s)',
                         ops[n:n + 1])
                 else:
                     exit()
@@ -133,7 +133,7 @@ class BlobDataTestor:
         self.conn.commit()
 
     '''从属性文件导入'''
-    def upload_pfile(self,filename,args):
+    def upload_pfile(self,filename):
         if os.path.splitext(filename)[1]==".xlsx":
             cur_dir=filename[:len(filename)-9]
         else:
@@ -200,15 +200,12 @@ class BlobDataTestor:
         cursor = self.conn.cursor()
         if len(save_file)>0:
             try:
-                cursor.execute("insert into corpus_sign(CRID)values('%s')"%save_file[0][0])
+                if self.configs['flag']==True:
+                    cursor.execute("insert into corpus_sign(CRID)values('%s')"%save_file[0][0])
             except Exception as e:
                 print(e)
         for n in range(0, len(save_file)):
-            try:
-                args['show_progress2'].delete(0.0, END)
-            except OSError:
-                pass
-            args['show_progress2'].insert(INSERT, "正在导入%s\n"%(save_file[n][2]))
+            self.CrawProcess.emit(str("正在导入%s\n" % (save_file[n][2])))
             try:
                 cursor.executemany(
                     'insert into tb_download (CRID,DOCID,TITLE,AUTHOR,DEPART,KEYWORD,ABSTRACT,JOURNAL,PT,URL,SUFFIX,ORIGIN)values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s)',
@@ -242,4 +239,4 @@ class BlobDataTestor:
                 i+=1
             f_x.save(file_left_path)
             if flag:
-                self.upload_simple(temp_file,args)
+                self.upload_simple(temp_file)

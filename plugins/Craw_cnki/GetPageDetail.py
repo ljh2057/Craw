@@ -27,7 +27,7 @@ class PageDetail(object):
         self.sheet.write(0, 8, '发表时间',self.basic_style)
         self.sheet.write(0, 9, '下载地址',self.basic_style)
         self.sheet.write(0, 10, '后缀',self.basic_style)
-        self.sheet.write(0, 11, '源文件位置',self.basic_style)
+        # self.sheet.write(0, 11, '源文件位置',self.basic_style)
         self.docid=""
         self.index=0
 
@@ -129,8 +129,8 @@ class PageDetail(object):
         # if config.crawl_isDownLoadLink=='1':
         self.reference_list.append(self.download_url)
         self.reference_list.append("caj")
-        filename=os.getcwd()+'/data/CAJs/%s.caj'%(self.docid+self.single_refence_list[1])
-        self.reference_list.append(filename)
+        # filename=os.getcwd()+'/data/CAJs/%s.caj'%(self.docid+self.single_refence_list[1])
+        # self.reference_list.append(filename)
         print(self.reference_list)
 
 
@@ -139,7 +139,7 @@ class PageDetail(object):
         将获得的数据写入到excel
         '''
         self.create_list()
-        for i in range(0, 12):
+        for i in range(0, 11):
             self.sheet.write(self.index, i, self.reference_list[i], self.basic_style)
 
     def set_style(self):

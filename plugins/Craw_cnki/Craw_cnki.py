@@ -62,10 +62,17 @@ class Craw_cnki(BasePlugin):
     def stop(self):
         self.args["flag"] = False
         self.trigger.emit()
-
+    '''保存数据，判断Craw_cnki_ori是否存在当前路径，不存在时创建'''
     def saveData(self):
         if os.path.exists(self.filepath):
-            savepath = self.filepath
+            if self.filepath.find('Craw_cnki_ori') > 0:
+                savepath = self.filepath
+            else:
+                if 'Craw_cnki_ori' in os.listdir(self.filepath):
+                    savepath=self.filepath+'Craw_cnki_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_cnki_ori'
+                else:
+                    os.makedirs(self.filepath+'Craw_cnki_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_cnki_ori')
+                    savepath=self.filepath+'Craw_cnki_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_cnki_ori'
             count = self.getxml.getCount()
             search = main.SearchTools(count)
             search.move_file('data/CAJs',savepath)

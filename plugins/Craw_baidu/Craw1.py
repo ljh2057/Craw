@@ -32,7 +32,7 @@ class Baidu(object):
             self.filepath = getxml.rxi.getfilepath()
 
         # 设置Excel表头
-        head = ['题名', '作者', '标志', '序号', '内容', '下载地址', '源文件位置']
+        head = ['题名', '作者', '标志', '序号', '内容', '下载地址']
         for h in range(len(head)):
             self.sheet.write(0, h, head[h])  # 把表头写到Excel里面去
 
@@ -122,7 +122,7 @@ class Baidu(object):
         self.sheet.write(self.num, 3, self.DOCID)
         self.sheet.write(self.num, 4, self.content_list)
         self.sheet.write(self.num, 5, self.newsurl)
-        self.sheet.write(self.num, 6, self.txtpath)
+        # self.sheet.write(self.num, 6, self.txtpath)
 # 	# 追加写入 参考：https://blog.csdn.net/lA6Nf/article/details/79352112?utm_source=blogxgwz6
 # 	rb = xlrd.open_workbook(self.propertypath, formatting_info=True)
 # 	rn = rb.sheets()[0].nrows

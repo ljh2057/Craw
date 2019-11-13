@@ -15,6 +15,8 @@ qumt2 = QMutex()
 class CrawCnkiThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     crawSignal=pyqtSignal(str)
+    '''该信号作为插件运行结束标志'''
+    crawSignal_f=pyqtSignal()
     def __init__(self,filepath=None,propath=None):
         super().__init__()
         '''实例化爬虫对象'''
@@ -26,11 +28,13 @@ class CrawCnkiThread(QThread):
         self.craw_cnki.CrawProcess.connect(self.update)
         self.craw_cnki.run()
         self.craw_cnki.saveData()
+        self.crawSignal_f.emit()
         qumt1.unlock()
         qumt2.unlock()
     '''传递爬虫对象中的进度信息'''
     def update(self,data):
         self.crawSignal.emit(data)
+
     '''停止线程'''
     def stop(self):
         self.craw_cnki.stop()
@@ -40,6 +44,9 @@ class CrawCnkiThread(QThread):
 class CrawBaiduThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     crawSignal=pyqtSignal(str)
+    '''该信号作为插件运行结束标志'''
+    crawSignal_f=pyqtSignal()
+
     def __init__(self,filepath=None,propath=None):
         super().__init__()
         '''实例化爬虫对象'''
@@ -50,6 +57,9 @@ class CrawBaiduThread(QThread):
         qumt2.lock()
         self.craw_baidu.CrawProcess.connect(self.update)
         self.craw_baidu.run()
+        # while self.craw_baidu.isRunning():
+        #     if self.craw_baidu.isFinished():
+        self.crawSignal_f.emit()
         qumt2.unlock()
         qumt1.unlock()
     '''传递爬虫对象中的进度信息'''
@@ -231,6 +241,7 @@ class Window(QTabWidget):
                 try:
                     state = QTableWidgetItem('正在爬取')
                     state.setTextAlignment(Qt.AlignCenter)
+                    job[0].crawSignal_f.connect(lambda :self.getState(job[1]))
                     job[0].start()
                     self.TableWidget.setItem(job[1], 2,state)
                 except:
@@ -256,6 +267,13 @@ class Window(QTabWidget):
     '''更新页面显示进度'''
     def updateTextEdit(self,info):
         self.textEdit.setText(info)
+
+    '''插件运行结束后更新页面爬取状态'''
+    def getState(self,index):
+        state = QTableWidgetItem('爬取完成')
+        state.setTextAlignment(Qt.AlignCenter)
+        self.TableWidget.setItem(index, 2, state)
+
 
     '''停止插件运行'''
     def stop(self):

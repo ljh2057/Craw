@@ -244,7 +244,27 @@ class BlobDataTestor(QThread):
     #         f_x.save(file_left_path)
     #         if flag:
     #             self.upload_simple(temp_file)
-    def upload_pfile(self,f_all_dict):
+    def upload_pfile(self,cur_dir):
+
+        '''
+           构建字典存储爬虫插件对应的属性文件、原文文件夹、txt文本文件夹信息
+           键为插件名,值为属性文件位置、原文文件文件夹位置ori、txt文本文件夹位置txt组成的列表
+           当ori或txt文件夹不存在时,使用None占位
+           '''
+        f_all_dict = {}
+        for f in os.listdir(cur_dir):
+            if f.find('文献属性.xls') > 0 or f.find('文献属性.xlsx') > 0:
+                filepro = cur_dir + f if cur_dir[-1] == '/' else cur_dir + '/' + f
+                filepath = cur_dir + f[:f.find('文献属性')] + '_ori/' if cur_dir[-1] == '/' else cur_dir + '/' + f[:f.find(
+                    '文献属性')] + '_ori/'
+                filetxt = cur_dir + f[:f.find('文献属性')] + '_txt/' if cur_dir[-1] == '/' else cur_dir + '/' + f[:f.find(
+                    '文献属性')] + '_txt/'
+                f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filepro) if os.path.exists(
+                    filepro) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
+                f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filepath) if os.path.exists(
+                    filepath) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
+                f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filetxt) if os.path.exists(
+                    filetxt) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
 
         for f_key in f_all_dict.keys():
             if f_all_dict[f_key][0] is not None:
@@ -317,6 +337,7 @@ class BlobDataTestor(QThread):
                                 break
                         except Exception as e:
                             print(e)
+                    self.CrawProcess.emit("导入完成")
                     cursor.close()
                     self.conn.commit()
 
@@ -359,21 +380,21 @@ if __name__ == '__main__':
     getxml = Getxml.getXml('/Users/macbookair/Plugin_project/ImportFile/importer.xml')
     configs = getxml.getDestination()
     bt=BlobDataTestor(configs)
-    cur_dir='/Users/macbookair/Plugin_project/craw_datas'
+    # cur_dir='/Users/macbookair/Plugin_project/craw_datas'
     '''
     构建字典存储爬虫插件对应的属性文件、原文文件夹、txt文本文件夹信息
     键为插件名,值为属性文件位置、原文文件文件夹位置ori、txt文本文件夹位置txt组成的列表
     当ori或txt文件夹不存在时,使用None占位
     '''
-    f_all_dict={}
-    for f in os.listdir(cur_dir):
-        if  f.find('文献属性.xls')>0 or f.find('文献属性.xlsx')>0:
-            filepro=cur_dir+f if cur_dir[-1]=='/' else cur_dir+'/'+f
-            filepath=cur_dir+f[:f.find('文献属性')]+'_ori/' if cur_dir[-1]=='/' else cur_dir+'/'+f[:f.find('文献属性')]+'_ori/'
-            filetxt=cur_dir+f[:f.find('文献属性')]+'_txt/' if cur_dir[-1]=='/' else cur_dir+'/'+f[:f.find('文献属性')]+'_txt/'
-            f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filepro) if os.path.exists(filepro) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
-            f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filepath) if os.path.exists(filepath) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
-            f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filetxt) if os.path.exists(filetxt) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
+    # f_all_dict={}
+    # for f in os.listdir(cur_dir):
+    #     if  f.find('文献属性.xls')>0 or f.find('文献属性.xlsx')>0:
+    #         filepro=cur_dir+f if cur_dir[-1]=='/' else cur_dir+'/'+f
+    #         filepath=cur_dir+f[:f.find('文献属性')]+'_ori/' if cur_dir[-1]=='/' else cur_dir+'/'+f[:f.find('文献属性')]+'_ori/'
+    #         filetxt=cur_dir+f[:f.find('文献属性')]+'_txt/' if cur_dir[-1]=='/' else cur_dir+'/'+f[:f.find('文献属性')]+'_txt/'
+    #         f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filepro) if os.path.exists(filepro) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
+    #         f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filepath) if os.path.exists(filepath) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
+    #         f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filetxt) if os.path.exists(filetxt) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
 
-    print(f_all_dict)
-    bt.upload_pfile(f_all_dict)
+    # print(f_all_dict)
+    bt.upload_pfile(configs['path'])

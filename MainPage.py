@@ -71,12 +71,14 @@ class UploadThread(QThread):
         self.up_db = SaveData.BlobDataTestor(self.configs)
     def run(self):
         self.up_db.CrawProcess.connect(self.update)
-        if self.configs['type'] == 'simple':
-            self.up_db.upload_simple(self.configs["path"])
-        elif self.configs['type'] == 'pfile':
-            self.up_db.upload_pfile(self.configs["path"])
-        elif self.configs['type'] == 'txt':
-            self.up_db.upload_txt(self.configs["path"])
+        if self.configs['type']=='pfile':
+            self.up_db.upload_pfile(self.configs['path'])
+        # if self.configs['type'] == 'simple':
+        #     self.up_db.upload_simple(self.configs["path"])
+        # elif self.configs['type'] == 'pfile':
+        #     self.up_db.upload_pfile(self.configs["path"])
+        # elif self.configs['type'] == 'txt':
+        #     self.up_db.upload_txt(self.configs["path"])
         else:
             QMessageBox.about(self, '提示', '导入方式有误,请检查配置文件')
         self.stop()
@@ -151,15 +153,15 @@ class Window(QTabWidget):
         self.main_horizontal_layout.addWidget(self.btn2)
         self.main_horizontal_layout.addWidget(self.btn3)
 
-        self.lb_filepath=QLabel('文件位置',self)
+        self.lb_filepath=QLabel('保存位置',self)
         self.le_filepath=QLineEdit()
         self.btn_filepath = QPushButton('选择', self)
         self.btn_filepath.clicked.connect(self.modifFilepath)
 
-        self.lb_propath=QLabel('属性位置',self)
-        self.le_propath=QLineEdit(self)
-        self.btn_propath = QPushButton('选择', self)
-        self.btn_propath.clicked.connect(self.modifPropath)
+        # self.lb_propath=QLabel('属性位置',self)
+        # self.le_propath=QLineEdit(self)
+        # self.btn_propath = QPushButton('选择', self)
+        # self.btn_propath.clicked.connect(self.modifPropath)
 
         self.main_horizontal_2_layout = QVBoxLayout()
 
@@ -168,14 +170,14 @@ class Window(QTabWidget):
         self.filepath_horizontal_layout.addWidget(self.lb_filepath)
         self.filepath_horizontal_layout.addWidget(self.le_filepath)
         self.filepath_horizontal_layout.addWidget(self.btn_filepath)
-        '''属性文件位置布局'''
-        self.propath_horizontal_layout = QHBoxLayout()
-        self.propath_horizontal_layout.addWidget(self.lb_propath)
-        self.propath_horizontal_layout.addWidget(self.le_propath)
-        self.propath_horizontal_layout.addWidget(self.btn_propath)
+        # '''属性文件位置布局'''
+        # self.propath_horizontal_layout = QHBoxLayout()
+        # self.propath_horizontal_layout.addWidget(self.lb_propath)
+        # self.propath_horizontal_layout.addWidget(self.le_propath)
+        # self.propath_horizontal_layout.addWidget(self.btn_propath)
 
         self.main_horizontal_2_layout.addLayout(self.filepath_horizontal_layout)
-        self.main_horizontal_2_layout.addLayout(self.propath_horizontal_layout)
+        # self.main_horizontal_2_layout.addLayout(self.propath_horizontal_layout)
         self.main_horizontal_2_layout.setSpacing(6)
 
         self.main_vertical_layout.addLayout(self.main_horizontal_1_layout)
@@ -310,13 +312,14 @@ class Window(QTabWidget):
         path = QFileDialog.getExistingDirectory(self, 'choose file')
         self.le_filepath.setText(path)
         self.filePath=path
+        self.proPath=path
         # self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
 
-    '''修改默认属性文件存储路径'''
-    def modifPropath(self):
-        path = QFileDialog.getExistingDirectory(self, 'choose file')
-        self.le_propath.setText(path)
-        self.proPath=path
+    # '''修改默认属性文件存储路径'''
+    # def modifPropath(self):
+    #     path = QFileDialog.getExistingDirectory(self, 'choose file')
+    #     self.le_propath.setText(path)
+    #     self.proPath=path
         # self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
 
     '''选择插件目录'''
@@ -392,9 +395,7 @@ class Window(QTabWidget):
 
     '''数据移植页面start'''
     def set_tab2_layout(self):
-        self.textEdit_tab2 = QTextEdit()
         self.horizontalLayout_tab2 = QHBoxLayout(self.tab2)
-
         self.horizontalGroupBox_tab2 = QGroupBox("数据自动移植")
         self.horizontalLayout_tab2.addWidget(self.horizontalGroupBox_tab2)
 
@@ -407,22 +408,23 @@ class Window(QTabWidget):
         self.btn_stop = QPushButton('结束导入', self)
         self.btn_stop.clicked.connect(self.stop_tab2)
         self.btn_stop.setEnabled(False)
+        '''导入类型布局'''
+        # self.tab2_horizontal_RadioButton_layout = QHBoxLayout()
+        # self.simple_rb=QRadioButton('简单导入')
+        # self.pfile_rb=QRadioButton('从属性文件导入')
+        # self.txt_rb=QRadioButton('导入txt文本')
+        # self.tab2_horizontal_RadioButton_layout.addWidget(self.simple_rb)
+        # self.tab2_horizontal_RadioButton_layout.addWidget(self.pfile_rb)
+        # self.tab2_horizontal_RadioButton_layout.addWidget(self.txt_rb)
 
-        self.tab2_horizontal_RadioButton_layout = QHBoxLayout()
-        self.simple_rb=QRadioButton('简单导入')
-        self.pfile_rb=QRadioButton('从属性文件导入')
-        self.txt_rb=QRadioButton('导入txt文本')
-        self.tab2_horizontal_RadioButton_layout.addWidget(self.simple_rb)
-        self.tab2_horizontal_RadioButton_layout.addWidget(self.pfile_rb)
-        self.tab2_horizontal_RadioButton_layout.addWidget(self.txt_rb)
 
-
-
+        '''开始、结束按钮布局'''
         self.tab2_horizontal_layout = QHBoxLayout()
+        '''主页面布局，垂直布局'''
         self.tab2_vertical_layout = QVBoxLayout()
         self.horizontalGroupBox_tab2.setLayout(self.tab2_vertical_layout)
-        self.tab2_vertical_layout.addStretch(1)
-
+        # self.tab2_vertical_layout.addStretch(1)
+        '''水平布局，选择、编辑配置文件组件'''
         self.main_horizontal_tab2_layout = QHBoxLayout()
         self.textEdit_configPath_tab2 = QLineEdit(self)
 
@@ -437,55 +439,56 @@ class Window(QTabWidget):
         self.tab2_horizontal_layout.addWidget(self.btn_start)
         self.tab2_horizontal_layout.addWidget(self.btn_stop)
 
-        self.lb_filepath_tab2=QLabel('文件位置',self)
-        self.le_filepath_tab2=QLineEdit()
-        self.btn_filepath_tab2 = QPushButton('选择', self)
-        self.btn_filepath_tab2.clicked.connect(self.modifFilepath_tab2)
+        # self.lb_filepath_tab2=QLabel('文件位置',self)
+        # self.le_filepath_tab2=QLineEdit()
+        # self.btn_filepath_tab2 = QPushButton('选择', self)
+        # self.btn_filepath_tab2.clicked.connect(self.modifFilepath_tab2)
 
-        self.lb_propath_tab2=QLabel('属性位置',self)
-        self.le_propath_tab2=QLineEdit(self)
-        self.btn_propath_tab2 = QPushButton('选择', self)
-        self.btn_propath_tab2.clicked.connect(self.modifPropath_tab2)
+        # self.lb_propath_tab2=QLabel('属性位置',self)
+        # self.le_propath_tab2=QLineEdit(self)
+        # self.btn_propath_tab2 = QPushButton('选择', self)
+        # self.btn_propath_tab2.clicked.connect(self.modifPropath_tab2)
+        #
+        # self.main_horizontal_tab2_2_layout = QVBoxLayout()
+        #
+        # '''文件位置布局'''
+        # self.filepath_horizontal_tab2_layout = QHBoxLayout()
+        # self.filepath_horizontal_tab2_layout.addWidget(self.lb_filepath_tab2)
+        # self.filepath_horizontal_tab2_layout.addWidget(self.le_filepath_tab2)
+        # self.filepath_horizontal_tab2_layout.addWidget(self.btn_filepath_tab2)
+        # '''属性文件位置布局'''
+        # self.propath_horizontal_tab2_layout = QHBoxLayout()
+        # self.propath_horizontal_tab2_layout.addWidget(self.lb_propath_tab2)
+        # self.propath_horizontal_tab2_layout.addWidget(self.le_propath_tab2)
+        # self.propath_horizontal_tab2_layout.addWidget(self.btn_propath_tab2)
 
-        self.main_horizontal_tab2_2_layout = QVBoxLayout()
-
-        '''文件位置布局'''
-        self.filepath_horizontal_tab2_layout = QHBoxLayout()
-        self.filepath_horizontal_tab2_layout.addWidget(self.lb_filepath_tab2)
-        self.filepath_horizontal_tab2_layout.addWidget(self.le_filepath_tab2)
-        self.filepath_horizontal_tab2_layout.addWidget(self.btn_filepath_tab2)
-        '''属性文件位置布局'''
-        self.propath_horizontal_tab2_layout = QHBoxLayout()
-        self.propath_horizontal_tab2_layout.addWidget(self.lb_propath_tab2)
-        self.propath_horizontal_tab2_layout.addWidget(self.le_propath_tab2)
-        self.propath_horizontal_tab2_layout.addWidget(self.btn_propath_tab2)
-
-        self.main_horizontal_tab2_2_layout.addLayout(self.filepath_horizontal_tab2_layout)
-        self.main_horizontal_tab2_2_layout.addLayout(self.propath_horizontal_tab2_layout)
-        self.main_horizontal_tab2_2_layout.setSpacing(6)
+        # self.main_horizontal_tab2_2_layout.addLayout(self.filepath_horizontal_tab2_layout)
+        # self.main_horizontal_tab2_2_layout.addLayout(self.propath_horizontal_tab2_layout)
+        # self.main_horizontal_tab2_2_layout.setSpacing(6)
 
         self.tab2_vertical_layout.addLayout(self.main_horizontal_tab2_layout)
 
         self.tab2_vertical_layout.addLayout(self.tab2_horizontal_layout)
 
-        self.label_1 = QLabel(self)
-        self.label_1.setText('导入方式')
-        self.label_1.setAlignment(Qt.AlignLeft)
-        self.tab2_vertical_layout.addWidget(self.label_1)
+        # self.label_1 = QLabel(self)
+        # self.label_1.setText('导入方式')
+        # self.label_1.setAlignment(Qt.AlignLeft)
+        # self.tab2_vertical_layout.addWidget(self.label_1)
 
-        self.tab2_vertical_layout.addLayout(self.tab2_horizontal_RadioButton_layout)
+        # self.tab2_vertical_layout.addLayout(self.tab2_horizontal_RadioButton_layout)
 
 
-        self.label_2 = QLabel(self)
-        self.label_2.setText('路径')
-        self.label_2.setAlignment(Qt.AlignLeft)
-        self.tab2_vertical_layout.addWidget(self.label_2)
-        self.tab2_vertical_layout.addLayout(self.main_horizontal_tab2_2_layout)
+        # self.label_2 = QLabel(self)
+        # self.label_2.setText('路径')
+        # self.label_2.setAlignment(Qt.AlignLeft)
+        # self.tab2_vertical_layout.addWidget(self.label_2)
+        # self.tab2_vertical_layout.addLayout(self.main_horizontal_tab2_2_layout)
 
         self.label_3 = QLabel(self)
         self.label_3.setText('导入进度')
         self.label_3.setAlignment(Qt.AlignLeft)
         self.tab2_vertical_layout.addWidget(self.label_3)
+        self.textEdit_tab2 = QTextEdit()
         self.tab2_vertical_layout.addWidget(self.textEdit_tab2)
 
 
@@ -558,17 +561,17 @@ class Window(QTabWidget):
         else:
             QMessageBox.about(self, '提示', '请先选择配置文件')
         return None
-    '''选择文件存储路径'''
-    def modifFilepath_tab2(self):
-        path = QFileDialog.getExistingDirectory(self, 'choose file')
-        self.le_filepath_tab2.setText(path)
-        self.filePath=path
-
-    '''选择属性文件存储路径'''
-    def modifPropath_tab2(self):
-        path = QFileDialog.getExistingDirectory(self, 'choose file')
-        self.le_propath_tab2.setText(path)
-        self.proPath=path
+    # '''选择文件存储路径'''
+    # def modifFilepath_tab2(self):
+    #     path = QFileDialog.getExistingDirectory(self, 'choose file')
+    #     self.le_filepath_tab2.setText(path)
+    #     self.filePath=path
+    #
+    # '''选择属性文件存储路径'''
+    # def modifPropath_tab2(self):
+    #     path = QFileDialog.getExistingDirectory(self, 'choose file')
+    #     self.le_propath_tab2.setText(path)
+    #     self.proPath=path
 
     '''更新页面显示进度'''
     def updateTextEdit_tab2(self,info):
@@ -590,12 +593,14 @@ class Window(QTabWidget):
                 print(e)
             try:
                 if self.conn.open:
-                    if configs['type'] == 'simple':
-                        self.simple_rb.click()
-                    elif configs['type'] == 'pfile':
-                        self.pfile_rb.click()
-                    elif configs['type'] == 'uptxt':
-                        self.txt_rb.click()
+                    if configs['type']=='pfile':
+                        pass
+                    # if configs['type'] == 'simple':
+                    #     self.simple_rb.click()
+                    # elif configs['type'] == 'pfile':
+                    #     self.pfile_rb.click()
+                    # elif configs['type'] == 'uptxt':
+                    #     self.txt_rb.click()
                     else:
                         QMessageBox.about(self, '提示', '导入方式有误,请检查配置文件')
                 QApplication.processEvents()

@@ -60,7 +60,7 @@ class getXml:
         Publishdate_tos = dom.getElementsByTagName('Publishdate_to')
         DownloadCounts = dom.getElementsByTagName('DownloadCounts')
         FilePath = dom.getElementsByTagName('FilePath')
-        PropertyPath = dom.getElementsByTagName('PropertyPath')
+        # PropertyPath = dom.getElementsByTagName('PropertyPath')
 
         Conditions['name']=" " if self.isNone(name[0].firstChild) else name[0].firstChild.data
         Conditions['describe']=" " if self.isNone(Describe[0].firstChild) else Describe[0].firstChild.data
@@ -72,7 +72,7 @@ class getXml:
         Conditions['to']=" " if self.isNone(Publishdate_tos[0].firstChild) else Publishdate_tos[0].firstChild.data
         Conditions['count']=" " if self.isNone(DownloadCounts[0].firstChild) else DownloadCounts[0].firstChild.data
         Conditions['filepath']=" " if self.isNone(FilePath[0].firstChild) else FilePath[0].firstChild.data
-        Conditions['propertypath']=" " if self.isNone(PropertyPath[0].firstChild) else PropertyPath[0].firstChild.data
+        # Conditions['propertypath']=" " if self.isNone(PropertyPath[0].firstChild) else PropertyPath[0].firstChild.data
         return Conditions
     def getData(self):
         '''解析知网爬虫配置文件中爬取条件'''

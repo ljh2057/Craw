@@ -38,7 +38,9 @@ class Craw_cnki(BasePlugin):
         if self.filepath==None:
             self.filepath = configDate['filepath']
         if self.propath==None:
-            self.propath = configDate['propertypath']
+            self.propath = configDate['filepath']
+        # if self.propath==None:
+        #     self.propath = configDate['propertypath']
     def run(self):
         self.args["flag"] = True
         self.args["count"] = 0
@@ -67,7 +69,7 @@ class Craw_cnki(BasePlugin):
             count = self.getxml.getCount()
             search = main.SearchTools(count)
             search.move_file('data/CAJs',savepath)
-            shutil.copy2(savepath+'/文献属性.xls',self.propath)
+            # shutil.copy2(savepath+'/文献属性.xls',self.propath)
             print("文件已存到%s目录下"%savepath)
         else:
             print("文件目录不存在")

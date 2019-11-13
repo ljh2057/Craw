@@ -34,7 +34,8 @@ class Craw_baidu(BasePlugin):
         if self.filepath == None:
             self.filepath = configDate['filepath']
         if self.propath == None:
-            self.propath = configDate['propertypath']
+            # self.propath = configDate['propertypath']
+            self.propath = configDate['filepath']
     def run(self):
         urls=[]
         urls = self.bd.geturls()
@@ -46,7 +47,9 @@ class Craw_baidu(BasePlugin):
                 self.CrawProcess.emit(str("正在爬取第" + str(self.bd.num) + "篇：" + self.bd.title))
             else:
                 break
+
         self.bd.workbook.save(self.propath+'/Craw_baidu文献属性.xls')
+        self.CrawProcess.emit('爬取完成')
         self.args['flag']=False
 
     def stop(self):

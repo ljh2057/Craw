@@ -188,8 +188,7 @@ class SearchTools(object):
                             logging.error("无下载链接")
                     # time.sleep(0.5)
                 else:
-                    # args['show_progress'].insert(INSERT,"结束爬取\n")
-                    # args['text']="结束爬取"
+                    args["CrawProcess"].emit('爬取结束')
                     print("结束爬取，退出")
                     break
                     # exit()
@@ -247,7 +246,6 @@ class SearchTools(object):
                     urllib.request.urlretrieve(self.download_url, os.path.join('data/CAJs/', filename))
             except Exception as e:
                 logging.error('下载出错')
-
             time.sleep(config.crawl_stepWaitTime)
     '''移动文件到指定路径'''
     def move_file(self,src_dir, target_dir):

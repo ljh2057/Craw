@@ -71,7 +71,7 @@ class PageDetail(object):
         page_url = 'http://kns.cnki.net' + page_url
         get_res=self.session.get(page_url,headers=HEADER)
         self.pars_page(get_res.text)
-        self.excel.save('data/CAJs/文献属性.xls')
+        self.excel.save('data/CAJs/Craw_cnki文献属性.xls')
 
 
     def pars_page(self,detail_page):

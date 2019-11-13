@@ -36,12 +36,12 @@ class read_xml_info:
         # print(fp)
         return fp
 
-    def getpropertypath(self):
-        # dom = parse(self.file)
-        PropertyPath_list = self.dom.getElementsByTagName("PropertyPath")
-        pp = PropertyPath_list[0].firstChild.data
-        # print(fp)
-        return pp
+    # def getpropertypath(self):
+    #     # dom = parse(self.file)
+    #     PropertyPath_list = self.dom.getElementsByTagName("PropertyPath")
+    #     pp = PropertyPath_list[0].firstChild.data
+    #     # print(fp)
+    #     return pp
 
     def getfull(self):
         # dom = parse(self.file)
@@ -56,7 +56,7 @@ class read_xml_info:
         Publishdate_tos = self.dom.getElementsByTagName('Publishdate_to')
         DownloadCounts = self.dom.getElementsByTagName('DownloadCounts')
         FilePath = self.dom.getElementsByTagName('FilePath')
-        PropertyPath = self.dom.getElementsByTagName('PropertyPath')
+        # PropertyPath = self.dom.getElementsByTagName('PropertyPath')
 
         Conditions['name']=" " if self.isNone(name[0].firstChild) else name[0].firstChild.data
         Conditions['describe']=" " if self.isNone(Describe[0].firstChild) else Describe[0].firstChild.data
@@ -68,7 +68,7 @@ class read_xml_info:
         Conditions['to']=" " if self.isNone(Publishdate_tos[0].firstChild) else Publishdate_tos[0].firstChild.data
         Conditions['count']=" " if self.isNone(DownloadCounts[0].firstChild) else DownloadCounts[0].firstChild.data
         Conditions['filepath']=" " if self.isNone(FilePath[0].firstChild) else FilePath[0].firstChild.data
-        Conditions['propertypath']=" " if self.isNone(PropertyPath[0].firstChild) else PropertyPath[0].firstChild.data
+        # Conditions['propertypath']=" " if self.isNone(PropertyPath[0].firstChild) else PropertyPath[0].firstChild.data
         return Conditions
 
 # 实例化

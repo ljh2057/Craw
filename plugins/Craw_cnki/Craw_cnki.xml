@@ -16,6 +16,6 @@
             </Condition>
         </Record>
     </Address>
-    <FilePath>/Users/macbookair/Plugin_project/plugins/Craw_cnki/craw_data</FilePath>
+    <FilePath>/Users/macbookair/Plugin_project/craw_datas</FilePath>
 <!--    <PropertyPath>/Users/macbookair/Plugin_project/plugins/Craw_cnki/craw_data_property</PropertyPath>-->
 </Crawer>

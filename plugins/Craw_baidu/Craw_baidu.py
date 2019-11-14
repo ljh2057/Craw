@@ -4,6 +4,8 @@ from plugins.Craw_baidu import getxml
 import time
 from PyQt5.QtCore import pyqtSignal
 import threading
+import os
+import shutil
 
 class Craw_baidu(BasePlugin):
     trigger = pyqtSignal()
@@ -36,6 +38,15 @@ class Craw_baidu(BasePlugin):
         if self.propath == None:
             # self.propath = configDate['propertypath']
             self.propath = configDate['filepath']
+        if os.path.exists(self.filepath):
+            if self.filepath.find('Craw_baidu_ori') > 0:
+                pass
+            else:
+                if 'Craw_baidu_ori' in os.listdir(self.filepath):
+                    self.filepath=self.filepath+'Craw_baidu_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_baidu_ori'
+                else:
+                    os.makedirs(self.filepath+'Craw_baidu_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_baidu_ori')
+                    self.filepath=self.filepath+'Craw_baidu_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_baidu_ori'
     def run(self):
         urls=[]
         urls = self.bd.geturls()
@@ -48,6 +59,7 @@ class Craw_baidu(BasePlugin):
             else:
                 break
 
+        self.propath = os.path.abspath(os.path.join(self.filepath, ".."))
         self.bd.workbook.save(self.propath+'/Craw_baidu文献属性.xls')
         self.CrawProcess.emit('爬取完成')
         self.args['flag']=False

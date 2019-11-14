@@ -75,8 +75,12 @@ class Craw_cnki(BasePlugin):
                     savepath=self.filepath+'Craw_cnki_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_cnki_ori'
             count = self.getxml.getCount()
             search = main.SearchTools(count)
+            propath=os.path.abspath(os.path.join(savepath, ".."))
+            # print(propath+'/Craw_cnki文献属性.xls')
+            if os.path.exists(propath+'/Craw_cnki文献属性.xls'):
+                os.remove(propath+'/Craw_cnki文献属性.xls')
+            shutil.move('data/CAJs/Craw_cnki文献属性.xls',propath)
             search.move_file('data/CAJs',savepath)
-            # shutil.copy2(savepath+'/文献属性.xls',self.propath)
             print("文件已存到%s目录下"%savepath)
         else:
             print("文件目录不存在")

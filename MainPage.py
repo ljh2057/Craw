@@ -57,8 +57,6 @@ class CrawBaiduThread(QThread):
         qumt2.lock()
         self.craw_baidu.CrawProcess.connect(self.update)
         self.craw_baidu.run()
-        # while self.craw_baidu.isRunning():
-        #     if self.craw_baidu.isFinished():
         self.crawSignal_f.emit()
         qumt2.unlock()
         qumt1.unlock()
@@ -273,6 +271,8 @@ class Window(QTabWidget):
         state = QTableWidgetItem('爬取完成')
         state.setTextAlignment(Qt.AlignCenter)
         self.TableWidget.setItem(index, 2, state)
+        self.btn3.setEnabled(False)
+        self.btn2.setEnabled(True)
 
 
     '''停止插件运行'''
@@ -453,7 +453,6 @@ class Window(QTabWidget):
         self.main_horizontal_tab2_layout.addWidget(self.textEdit_configPath_tab2)
         self.main_horizontal_tab2_layout.addWidget(btn_edit)
 
-
         self.tab2_horizontal_layout.addWidget(self.btn_start)
         self.tab2_horizontal_layout.addWidget(self.btn_stop)
 
@@ -485,7 +484,6 @@ class Window(QTabWidget):
         # self.main_horizontal_tab2_2_layout.setSpacing(6)
 
         self.tab2_vertical_layout.addLayout(self.main_horizontal_tab2_layout)
-
         self.tab2_vertical_layout.addLayout(self.tab2_horizontal_layout)
 
         # self.label_1 = QLabel(self)
@@ -563,6 +561,7 @@ class Window(QTabWidget):
         except:
             pass
         self.verifyConfigFile(ConfigFilePath)
+
     '''初始化上传线程'''
     def upload_init(self):
         filename = self.textEdit_configPath_tab2.text()
@@ -600,6 +599,8 @@ class Window(QTabWidget):
         filename,filetype=QFileDialog.getOpenFileName(self,'choose file','','Text Files(importer.xml)')
         self.textEdit_configPath_tab2.setText(filename)
         self.verifyConfigFile(filename)
+
+    '''验证配置文件，检查配置文件中数据库的连接'''
     def verifyConfigFile(self,filename):
         if filename!= "" and filename!=" ":
             getxml = Getxml.getXml(filename)

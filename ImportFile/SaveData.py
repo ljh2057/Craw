@@ -32,6 +32,11 @@ class BlobDataTestor(QThread):
             cursor.execute("Drop Table sss")
         except:
             pass
+    def run(self):
+        self.upload_pfile(self.configs['path'])
+        self.trigger.emit()
+
+
     def stop(self):
         self.configs['flag'] = False
         self.trigger.emit()

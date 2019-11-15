@@ -54,7 +54,6 @@ class Craw_baidu(BasePlugin):
             if (int(self.bd.num) < int(getxml.rxi.getcount())) and self.args['flag']:
                 self.bd.getdetail(url)
                 print("正在爬取第" + str(self.bd.num) + "篇：" + self.bd.title)
-
                 self.CrawProcess.emit(str("正在爬取第" + str(self.bd.num) + "篇：" + self.bd.title))
             else:
                 break

@@ -154,10 +154,10 @@ class SearchTools(object):
                 for string in td_info.stripped_strings:
                     td_text += string
                 tr_text += td_text + ' '
-                with open(
-                        'data/ReferenceList.txt', 'a',
-                        encoding='utf-8') as file:
-                    file.write(td_text + ' ')
+                # with open(
+                #         'data/ReferenceList.txt', 'a',
+                #         encoding='utf-8') as file:
+                #     file.write(td_text + ' ')
                 # 寻找下载链接
                 dl_url = td_info.find('a', attrs={'class': 'briefDl_D'})
                 # 寻找详情链接
@@ -182,8 +182,8 @@ class SearchTools(object):
                             page_detail.get_detail_page(self.session, self.get_result_url,
                                                         detail_url, single_refence_list,
                                                         self.download_url,self.docid)
-                            with open('data/ReferenceList.txt', 'a', encoding='utf-8') as file:
-                                file.write('\n')
+                            # with open('data/ReferenceList.txt', 'a', encoding='utf-8') as file:
+                            #     file.write('\n')
                         else:
                             logging.error("无下载链接")
                     # time.sleep(0.5)
@@ -235,8 +235,8 @@ class SearchTools(object):
             '''检查文件命名，防止网站资源有特殊字符本地无法保存'''
             file_pattern_compile = re.compile(r'[\\/:\*\?"<>\|]')
             name = re.sub(file_pattern_compile, '', name)
-            with open('data/Links.txt', 'a', encoding='utf-8') as file:
-                file.write(self.download_url + '\n')
+            # with open('data/Links.txt', 'a', encoding='utf-8') as file:
+            #     file.write(self.download_url + '\n')
             # if config.crawl_isdownload ==1:
             if not os.path.isdir('data/CAJs'):
                 os.mkdir(r'data/CAJs')

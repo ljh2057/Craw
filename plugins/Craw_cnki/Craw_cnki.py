@@ -25,7 +25,7 @@ class Craw_cnki(BasePlugin):
         '''遍历找到xml配置信息文件path'''
         configfilePath=os.getcwd()+'/'+'plugins/'+self.__class__.__name__+'/'+self.__class__.__name__+'.xml'
         # configfilePath=os.getcwd()+'/'+self.__class__.__name__+'/'+'.xml'
-        print(configfilePath)
+        # print(configfilePath)
         self.getxml =Getxml.getXml(configfilePath)
         configDate = self.getxml.getfull()
         self.configPath=configfilePath

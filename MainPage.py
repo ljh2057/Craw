@@ -72,6 +72,8 @@ class CrawBaiduThread(QThread):
 class UploadThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     uploadSignal = pyqtSignal(str)
+    uploadSignal_f=pyqtSignal()
+
     def __init__(self, configs):
         super().__init__()
         self.configs=configs
@@ -80,7 +82,9 @@ class UploadThread(QThread):
     def run(self):
         self.up_db.CrawProcess.connect(self.update)
         if self.configs['type']=='pfile':
-            self.up_db.upload_pfile(self.configs['path'])
+            # self.up_db.upload_pfile(self.configs['path'])
+            self.up_db.run()
+            self.uploadSignal_f.emit()
         # if self.configs['type'] == 'simple':
         #     self.up_db.upload_simple(self.configs["path"])
         # elif self.configs['type'] == 'pfile':
@@ -228,7 +232,6 @@ class Window(QTabWidget):
             temp.append(self.Plugin_Switch(job_name))
         self.plugin_job = temp
         if len(self.plugin_job):
-
             '''修改对应按钮状态'''
             self.btn3.setEnabled(True)
             self.btn2.setEnabled(False)
@@ -268,12 +271,13 @@ class Window(QTabWidget):
 
     '''插件运行结束后更新页面爬取状态'''
     def getState(self,index):
+        print(index)
         state = QTableWidgetItem('爬取完成')
         state.setTextAlignment(Qt.AlignCenter)
         self.TableWidget.setItem(index, 2, state)
         self.btn3.setEnabled(False)
         self.btn2.setEnabled(True)
-
+        QApplication.processEvents()
 
     '''停止插件运行'''
     def stop(self):
@@ -367,7 +371,6 @@ class Window(QTabWidget):
                         name.setTextAlignment(Qt.AlignCenter)
                         describe = QTableWidgetItem(plg_info['describe'])
                         describe.setTextAlignment(Qt.AlignCenter)
-
                         '''在CheckBox外添加一层layout，使其居中'''
                         h = QHBoxLayout()
                         self.names['cb_'+str(index)]=QCheckBox('', self)
@@ -408,6 +411,7 @@ class Window(QTabWidget):
         print(self.jobList)
 
     '''数据采集页面end'''
+
 
 
 
@@ -517,17 +521,16 @@ class Window(QTabWidget):
         QApplication.processEvents()
         up_thread=self.upload_init()
         if up_thread is not None:
+            up_thread.uploadSignal_f.connect(self.updateState)
             up_thread.start()
         else:
             QMessageBox.about(self, '提示', '文件位置不存在**')
         self.textEdit_tab2.setText('导入完毕')
 
-
     '''停止插件运行'''
     def stop_tab2(self):
         self.btn_stop.setEnabled(False)
         self.btn_start.setEnabled(True)
-        QApplication.processEvents()
         QApplication.processEvents()
         self.textEdit_tab2.setText('结束导入')
 
@@ -550,6 +553,12 @@ class Window(QTabWidget):
         dialog.setWindowTitle('修改配置文件')
         dialog.setWindowModality(Qt.ApplicationModal)
         dialog.exec_()
+
+    '''导入结束后更新页面按钮'''
+    def updateState(self):
+        self.btn_stop.setEnabled(False)
+        self.btn_start.setEnabled(True)
+        QApplication.processEvents()
 
     '''保存修改的配置文件,ConfigFilePath为文件路径,content为修改后的内容'''
     def saveConfigFile_tab2(self,ConfigFilePath,content):

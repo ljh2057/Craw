@@ -9,7 +9,7 @@ import shutil
 
 class Craw_baidu(BasePlugin):
     trigger = pyqtSignal()
-    CrawProcess=pyqtSignal(str)
+    CrawProcess = pyqtSignal(str)
     def __init__(self, state=None, text=None, args={}, filepath=None, propath=None):
         super().__init__(state)
         self.text=text

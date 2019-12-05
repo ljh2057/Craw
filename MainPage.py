@@ -8,6 +8,7 @@ import pymysql
 from PyQt5.QtCore import QThread,pyqtSignal,Qt
 from plugins.Craw_cnki.Craw_cnki import Craw_cnki
 from plugins.Craw_baidu.Craw_baidu import Craw_baidu
+from plugins.Craw_souhu.Craw_souhu import Craw_souhu
 import os
 import LoadPlugins as lp
 qumt1 = QMutex()
@@ -69,6 +70,34 @@ class CrawBaiduThread(QThread):
     '''加载爬虫对象属性信息'''
     def loadFromConfig(self):
         return self.craw_baidu.getParameters()
+class CrawSouhuThread(QThread):
+    '''信号槽获取爬虫对象的爬取进度信息'''
+    crawSignal=pyqtSignal(str)
+    '''该信号作为插件运行结束标志'''
+    crawSignal_f=pyqtSignal()
+
+    def __init__(self,filepath=None,propath=None):
+        super().__init__()
+        '''实例化爬虫对象'''
+        self.craw_souhu = Craw_souhu(filepath=filepath,propath=propath)
+    '''启动线程'''
+    def run(self):
+        qumt1.lock()
+        qumt2.lock()
+        self.craw_souhu.CrawProcess.connect(self.update)
+        self.craw_souhu.run()
+        self.crawSignal_f.emit()
+        qumt2.unlock()
+        qumt1.unlock()
+    '''传递爬虫对象中的进度信息'''
+    def update(self,data):
+        self.crawSignal.emit(data)
+    '''停止线程'''
+    def stop(self):
+        self.craw_souhu.stop()
+    '''加载爬虫对象属性信息'''
+    def loadFromConfig(self):
+        return self.craw_souhu.getParameters()
 class UploadThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     uploadSignal = pyqtSignal(str)
@@ -133,6 +162,14 @@ class Window(QTabWidget):
 
         '''设置表格'''
         self.TableWidget = QTableWidget(6, 6)
+        '''隐藏序号'''
+        self.TableWidget.verticalHeader().setVisible(False)
+        '''设置表头样式,白色背景显示出边框'''
+        stylesheet = "QHeaderView::section{Background-color:white}"
+        self.setStyleSheet(stylesheet)
+        '''设置行距'''
+        for index in range(self.TableWidget.rowCount()):
+            self.TableWidget.setRowHeight(index,32)
         self.TableWidget.setHorizontalHeaderLabels(['序号','选中', '状态', '名称', '描述','配置文件修改'])
         self.TableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.TableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -221,7 +258,8 @@ class Window(QTabWidget):
     def Plugin_Switch(self,plugin_name):
         plugins={
             'Craw_cnki':[self.cnki_plugin_init(),plugin_name[1]],
-            'Craw_baidu':[self.baidu_plugin_init(),plugin_name[1]]
+            'Craw_baidu':[self.baidu_plugin_init(),plugin_name[1]],
+            'Craw_souhu':[self.souhu_plugin_init(),plugin_name[1]]
         }
         return plugins.get(plugin_name[0],None)
     '''启动插件'''
@@ -265,6 +303,13 @@ class Window(QTabWidget):
         self.craw_baidu_thread.crawSignal.connect(self.updateTextEdit)
         return self.craw_baidu_thread
 
+    '''souhu插件线程初始化'''
+    def souhu_plugin_init(self):
+        self.craw_souhu_thread = CrawSouhuThread(filepath=self.filePath, propath=self.proPath)
+        '''通过信号槽传递,实现实时更新爬取进度'''
+        self.craw_souhu_thread.crawSignal.connect(self.updateTextEdit)
+        return self.craw_souhu_thread
+
     '''更新页面显示进度'''
     def updateTextEdit(self,info):
         self.textEdit.setText(info)
@@ -300,6 +345,7 @@ class Window(QTabWidget):
 
     '''显示配置文件内容'''
     def showConfigFile(self,ConfigFilePath):
+        print(ConfigFilePath)
         dialog=QDialog()
         dialog.resize(600, 400)
         config_layout = QHBoxLayout(dialog)
@@ -307,7 +353,7 @@ class Window(QTabWidget):
         configEdit=QTextEdit()
         btn_save=QPushButton('保存')
         try:
-            str_xml = open(ConfigFilePath, 'r').read()
+            str_xml = open(ConfigFilePath, 'r',encoding='UTF-8').read()
             configEdit.setText(str_xml)
         except:
             pass
@@ -322,7 +368,7 @@ class Window(QTabWidget):
     def saveConfigFile(self,ConfigFilePath,content):
         try:
             '''将修改后的配置文件内容保存'''
-            with open(ConfigFilePath,'w') as f:
+            with open(ConfigFilePath,'w',encoding='UTF-8') as f:
                 f.write(content)
                 QMessageBox.about(self,'提示','修改成功')
         except:
@@ -346,7 +392,8 @@ class Window(QTabWidget):
 
     '''选择插件目录'''
     def showDialog(self):
-        self.filename=QFileDialog.getExistingDirectory(self,'choose file')
+        # self.filename=QFileDialog.getExistingDirectory(self,'choose file')
+        self.filename = "D:/QQfiles/Craw/plugins"
         self.textEdit_configPath.setText(self.filename)
         self.initTable()
 

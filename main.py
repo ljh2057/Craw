@@ -111,4 +111,7 @@ if __name__ == '__main__':
    ut=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
    print(ut)
    # print(type(time.localtime(time.time())))
+   # str_xml = open('D:\QQfiles\Craw/plugins/Craw_baidu/Craw_baidu.xml', 'r').read()
+   str_xml = open('D:\QQfiles\Craw\plugins\Craw_baidu\Craw_baidu.xml','r', encoding='UTF-8').read()
+   print(str_xml)
 

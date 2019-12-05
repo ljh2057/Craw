@@ -16,6 +16,5 @@
             </Condition>
         </Record>
     </Address>
-    <FilePath>/Users/macbookair/Plugin_project/craw_datas</FilePath>
-<!--    <PropertyPath>/Users/macbookair/Plugin_project/craw_datas_property</PropertyPath>-->
+    <FilePath>D:\QQfiles\Craw\plugins\Craw_souhu\news</FilePath>
 </Crawer>

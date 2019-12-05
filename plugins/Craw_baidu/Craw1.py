@@ -18,9 +18,7 @@ class Baidu(object):
 	# path = getxml.rxi.getpropertypath()
 	# propertypath = path + '/baidujs.xls'
 
-
-
-	def __init__(self, filepath = None):
+	def __init__(self, filepath=None):
 		# 初始网页
 		self.start_url = 'https://news.baidu.com/mil'
 		self.t = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))

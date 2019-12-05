@@ -228,6 +228,7 @@ class SearchTools(object):
             self.info='节点1_正在下载: ' + single_refence_list[1] + '.caj'
 
             args["CrawProcess"].emit(str(self.pg+"\n"+self.info))
+            print(type(args["CrawProcess"]))
 
 
             name = single_refence_list[1]

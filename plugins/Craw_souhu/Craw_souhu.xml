@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Crawer>
+    <Address>
+        <Record>
+            <CrawId>Craw_sohu</CrawId >
+            <Name>搜狐</Name>
+            <Describe>搜狐军事爬虫</Describe>
+            <Condition>
+                <Motif></Motif>
+                <Keyword></Keyword>
+                <Relation></Relation>
+                <Magazine></Magazine>
+                <Publishdate_from></Publishdate_from>
+                <Publishdate_to></Publishdate_to>
+                <DownloadCounts>50</DownloadCounts>
+            </Condition>
+        </Record>
+    </Address>
+    <FilePath>D:\QQfiles\Craw\plugins\Craw_souhu\news</FilePath>
+</Crawer>

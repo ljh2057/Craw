@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f8a2fd47-5eea-4b3f-be93-4a8f280a2d51" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/untitled.iml" beforeDir="false" />
@@ -578,7 +579,7 @@
       <workItem from="1575338242453" duration="6098000" />
       <workItem from="1575368181717" duration="1220000" />
       <workItem from="1575460571327" duration="4276000" />
-      <workItem from="1575523984017" duration="5641000" />
+      <workItem from="1575523984017" duration="8374000" />
     </task>
     <servers />
   </component>

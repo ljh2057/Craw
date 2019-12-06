@@ -6,12 +6,10 @@ import re
 import lxml.html
 import os
 from lxml import etree
-from random import randint
 from datetime import datetime
 from plugins.Craw_souhu import getxml
 import time
 import pandas as pd
-import openpyxl
 
 class Souhu(object):
     # 当前时间
@@ -129,7 +127,7 @@ class Souhu(object):
                 if i < top:
                     rt = datetime.fromtimestamp(r['publicTime'] // 1000)
                     # time
-                    rt_str = datetime.strftime(rt, '%Y-%m-%d %H:%M')
+                    rt_str = datetime.strftime(rt, '%Y-%m-%d')
                     # url
                     r_url = 'http://www.sohu.com/a/' + str(r['id']) + '_' + str(r['authorId'])
                     # DOCID
@@ -181,31 +179,41 @@ class Souhu(object):
         # print(news_df)
         # news_df.to_csv(path, index=False, encoding='gb18030')
         # #to_excel
+        news_df=news_df.loc[:,"CRID":"url"]
+        news_df.columns=['标志','序号','题名','发表时间','下载地址']
+        news_df['作者']=""
+        news_df['单位']=""
+        news_df['关键字']=""
+        news_df['摘要']=""
+        news_df['来源']=""
+        news_df['后缀']=""
+        order=['标志','序号','题名','作者','单位','关键字','摘要','来源','发表时间','下载地址','后缀']
+        news_df=news_df[order]
         news_df.to_excel(path, index=False, na_rep=None)
-        wb = openpyxl.load_workbook(path)
-        ws = wb.worksheets[0]
-        ws.insert_cols(4, 5)
-        for index, row in enumerate(ws.rows):
-            if index == 0:
-                row[0].value = '标志'
-                row[1].value = '序号'
-                row[2].value = '题名'
-                row[3].value = '作者'
-                row[4].value = '单位'
-                row[5].value = '关键字'
-                row[6].value = '摘要'
-                row[7].value = '来源'
-                row[8].value = '发表时间'
-                row[9].value = '下载地址'
-                row[10].value = '后缀'
-            else:
-                row[3].value = None
-                row[4].value = None
-                row[5].value = None
-                row[6].value = None
-                row[7].value = None
-                row[10].value = None
-        wb.save(path)
+        # wb = openpyxl.load_workbook(path)
+        # ws = wb.worksheets[0]
+        # ws.insert_cols(4, 5)
+        # for index, row in enumerate(ws.rows):
+        #     if index == 0:
+        #         row[0].value = '标志'
+        #         row[1].value = '序号'
+        #         row[2].value = '题名'
+        #         row[3].value = '作者'
+        #         row[4].value = '单位'
+        #         row[5].value = '关键字'
+        #         row[6].value = '摘要'
+        #         row[7].value = '来源'
+        #         row[8].value = '发表时间'
+        #         row[9].value = '下载地址'
+        #         row[10].value = '后缀'
+        #     else:
+        #         row[3].value = None
+        #         row[4].value = None
+        #         row[5].value = None
+        #         row[6].value = None
+        #         row[7].value = None
+        #         row[10].value = None
+        # wb.save(path)
         # # print("filepath......" + os.path.join(path, 'sohu_latest_news.csv'))
         # path = path.replace('\\', '/')
         # print(path)

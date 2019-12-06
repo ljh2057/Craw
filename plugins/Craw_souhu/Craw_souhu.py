@@ -92,7 +92,7 @@ class Craw_souhu(BasePlugin):
         sohu_news_df = self.sh.get_latest_news('sohu', path=news_path, top=t, show_content=True)
         # self.sh.save_to_txt(sohu_news_df, news_path, top=t)
         # print(news_path)
-        fp = os.path.join(news_path, 'sohu_latest_news.xlsx')
+        fp = os.path.join(news_path, 'Craw_souhu文献属性.xlsx')
         self.sh.save_news(sohu_news_df, fp)
         # wb = openpyxl.load_workbook(fp)
         # ws = wb.worksheets[0]

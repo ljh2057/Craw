@@ -3,6 +3,12 @@ import importlib
 from keyword import iskeyword
 import threading, queue,time
 
+from xlwt import Font
+
+from plugins.Craw_souhu import news_crawler
+import pandas as pd
+import openpyxl
+
 def call_plugin(p_name,method,state=None,text=None,filepath=None,propath=None):
     #package='plugins.'+p_name 根据路径引入对应的插件模块
     obj = importlib.import_module('.' + p_name, package='plugins.'+p_name)
@@ -107,11 +113,38 @@ if __name__ == '__main__':
    #     thread_list[i].start()
    # for i in range(nums):
    #     thread_list[i].join()
-   import time
-   ut=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-   print(ut)
-   # print(type(time.localtime(time.time())))
-   # str_xml = open('D:\QQfiles\Craw/plugins/Craw_baidu/Craw_baidu.xml', 'r').read()
-   str_xml = open('D:\QQfiles\Craw\plugins\Craw_baidu\Craw_baidu.xml','r', encoding='UTF-8').read()
-   print(str_xml)
+
+   # import time
+   # ut=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+   # print(ut)
+   # # print(type(time.localtime(time.time())))
+   # # str_xml = open('D:\QQfiles\Craw/plugins/Craw_baidu/Craw_baidu.xml', 'r').read()
+   # str_xml = open('D:\QQfiles\Craw\plugins\Craw_baidu\Craw_baidu.xml','r', encoding='UTF-8').read()
+   # print(str_xml)
+   data = {'BoolCol': [1, 2, 3, 3, 4],
+           'attr': [22, 33, 22, 44, 66],
+           'BoolC': [1, 2, 3, 3, 4],
+           'att': [22, 33, 22, 44, 66],
+           'Bool': [1, 2, 3, 3, 4]
+           }
+   df = pd.DataFrame(data)
+   print(df)
+   df.to_excel(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx', na_rep=None, index=False)
+   wb = openpyxl.load_workbook(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx')
+   ws = wb.worksheets[0]
+   # a1 = ws['A1']
+   # ft = Font(colour_index = 0x7FFF, bold = False)
+   # a1.font = ft
+   ws.insert_cols(2, 2)
+   for index, row in enumerate(ws.rows):
+       if index == 0:
+           row[1].value = '1'
+           row[2].value = '2'
+           row[3].value = 'ggggg'
+       else:
+           row[1].value = None
+           row[2].value = None
+   wb.save(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx')
+
+
 

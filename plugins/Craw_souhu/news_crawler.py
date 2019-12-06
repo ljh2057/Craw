@@ -11,6 +11,7 @@ from datetime import datetime
 from plugins.Craw_souhu import getxml
 import time
 import pandas as pd
+import openpyxl
 
 class Souhu(object):
     # 当前时间
@@ -146,9 +147,10 @@ class Souhu(object):
                             row.append(self.latest_content('sohu', r_url))
                             # 写入TXT
                             txtname = row[1] + row[2]
-                            tn = txtname.replace('"', '')
-                            tn = tn.replace(':', '')
-                            tn = tn.replace('?', '')
+                            tn = re.sub(r'[\/:*?"<>|]', '-', txtname)
+                            # tn = txtname.replace('"', '')
+                            # tn = tn.replace(':', '')
+                            # tn = tn.replace('?', '')
                             txtpath = str(path).replace('\\', '/') + "/" + tn + ".txt"
                             writetxt = open(txtpath, "w")
                             writetxt.write(row[5].encode("gbk", 'ignore').decode("gbk", "ignore"))
@@ -175,17 +177,42 @@ class Souhu(object):
 
     def save_news(self, news_df, path):
         """保存新闻"""
-        # print(news_df['title'][0])
+        # print(type(news_df))
+        # print(news_df)
         # news_df.to_csv(path, index=False, encoding='gb18030')
-        #to_excel
-        # news_df.to_excel(path, index=False, encoding='gb18030')
-        # print("filepath......" + os.path.join(path, 'sohu_latest_news.csv'))
-        path = path.replace('\\', '/')
-        print(path)
-        df = pd.read_csv(path, encoding='gb18030')
-        df = df.astype(str)
-        df.insert(2, 'hhhhhhh', '')
-        # news_df.to_csv(path, index=False)
+        # #to_excel
+        news_df.to_excel(path, index=False, na_rep=None)
+        wb = openpyxl.load_workbook(path)
+        ws = wb.worksheets[0]
+        ws.insert_cols(4, 5)
+        for index, row in enumerate(ws.rows):
+            if index == 0:
+                row[0].value = '标志'
+                row[1].value = '序号'
+                row[2].value = '题名'
+                row[3].value = '作者'
+                row[4].value = '单位'
+                row[5].value = '关键字'
+                row[6].value = '摘要'
+                row[7].value = '来源'
+                row[8].value = '发表时间'
+                row[9].value = '下载地址'
+                row[10].value = '后缀'
+            else:
+                row[3].value = None
+                row[4].value = None
+                row[5].value = None
+                row[6].value = None
+                row[7].value = None
+                row[10].value = None
+        wb.save(path)
+        # # print("filepath......" + os.path.join(path, 'sohu_latest_news.csv'))
+        # path = path.replace('\\', '/')
+        # print(path)
+        # df = pd.read_csv(path, encoding='gb18030')
+        # df = df.astype(str)
+        # df.insert(2, 'hhhhhhh', '')
+        # # news_df.to_csv(path, index=False)
 
     def replace_line_terminator(self, x):
         """替换行终止符"""

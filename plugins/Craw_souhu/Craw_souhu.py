@@ -2,6 +2,7 @@
 from plugins.BasePlugin.BasePlugin import BasePlugin
 import os
 import pandas as pd
+import openpyxl
 from datetime import datetime
 from plugins.Craw_souhu import news_crawler
 from plugins.Craw_souhu import preprocessing
@@ -91,7 +92,11 @@ class Craw_souhu(BasePlugin):
         sohu_news_df = self.sh.get_latest_news('sohu', path=news_path, top=t, show_content=True)
         # self.sh.save_to_txt(sohu_news_df, news_path, top=t)
         # print(news_path)
-        self.sh.save_news(sohu_news_df, os.path.join(news_path, 'sohu_latest_news.csv'))
+        fp = os.path.join(news_path, 'sohu_latest_news.xlsx')
+        self.sh.save_news(sohu_news_df, fp)
+        # wb = openpyxl.load_workbook(fp)
+        # ws = wb.worksheets[0]
+
         self.CrawProcess.emit('爬取完成')
         # fp = os.path.join(news_path, 'sohu_latest_news.csv')
         # print("filepath......" + fp)

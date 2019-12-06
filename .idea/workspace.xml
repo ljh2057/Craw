@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f8a2fd47-5eea-4b3f-be93-4a8f280a2d51" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu文献属性.xls" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_baidu文献属性.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/untitled.iml" beforeDir="false" />
@@ -361,6 +363,80 @@
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/lib/python3.7/site-packages/setuptools-40.8.0-py3.7.egg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/lib/python3.7/site-packages/setuptools.pth" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/pyvenv.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042009420001北约秘书长与特朗普共进早餐，称“一如既往由美国买单.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042009420001北约秘书长与特朗普共进早餐，称“一如既往由美国买单” - 副本.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042048100001华春莹：“9·11”事件殷鉴不远 美方不要好了伤疤忘了痛.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042048100002二战结束德国武器堆积如山，盟军采取两项措施，其中一项害苦非洲.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042048100003外交部回应将如何反制美涉疆法案：该付出的代价终究会来.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380001华春莹：“9·11”事件殷鉴不远 美方不要好了伤疤忘了痛.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380002二战结束德国武器堆积如山，盟军采取两项措施，其中一项害苦非洲.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380003领导人也八卦英媒曝光：特鲁多、约翰逊、马克龙私下“调侃”特朗普.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380004北约秘书长与特朗普共进早餐，称“一如既往由美国买单”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380004外交部回应将如何反制美涉疆法案：该付出的代价终究会来.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380005外交部：“中国用美国的钱发展”的论调太可笑 站不住脚.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380005德国驱逐两名俄罗斯外交人员 俄回应：这很不友好.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380006中国强大是用了美国的钱？外交部：太可笑了.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380006外交部回应将如何反制美涉疆法案：该付出的代价终究会来.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380007中国强大是用了美国的钱？外交部：太可笑了.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380008德国驱逐两名俄罗斯外交人员 俄回应：这很不友好.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380009 美众议院发布弹劾特朗普调查报告：证据不胜枚举  .txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380010美众议院公布300页弹劾调查报告：特朗普滥权，还不如尼克松.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380011你想要一些棒棒的IS战士吗？我可以给你.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380012再次十二连发！《新闻联播》对美众议院开火！.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380013俄罗斯彼尔姆突发枪击案 致1人死亡2人受伤.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380014一名日本医生在阿富汗遇袭身亡.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380015特朗普弹劾调查进入新阶段，众议院是否发起弹劾本月或见分晓.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380016日本关东北部发生4.7级地震 震源深度10千米.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380017特朗普挑战国会税表传票受挫 联邦巡回法庭维持原判.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380018王毅：当前世界和平稳定的最大威胁是单边主义和霸凌行径.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380019日本医生在阿富汗遭枪击死亡，塔利班否认袭击.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380020阿富汗袭击事件致多人死亡 包括一名日本医生.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380021白宫斥总统弹劾报告无的放矢 特朗普自称没做错任何事.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380022伊核协议僵局持续 鲁哈尼：美一撤制裁即可谈判.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380023美国在世贸组织玩饥饿游戏，里应外合想把WTO搞残？.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380024约翰逊与特朗普私下一对一会面，特朗普说不会干涉英国大选.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380025外媒：WTO裁定欧盟未遵守停止补贴空客令.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380026美国奥克兰前华裔警探被控受贿 华人表示惋惜.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380027特朗普自曝曾要求安倍增加驻日美军防务费 日方这样回应.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380028日本知名医生乘坐车辆在阿富汗遇袭致5死，医生暂无生命危险.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380029伊朗称美未能禁绝其石油出口：“极限施压”已经失败.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380030英国担心美方插手国民医保政策 特朗普回应：白给我都不要.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380031文在寅老部下受贿被捕 韩国检方搜查青瓦台带走相关资料.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380032莫大讽刺！美参院炮制“涉疆法案”在911当天通过.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380033外媒曝光：他们私下“调侃”特朗普.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380034还是见面了 英媒称约翰逊和特朗普秘密举行会谈.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380035美司法部将发布通俄门“自证”报告 部长：还没完.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380036波音遭“小伙伴”抛弃 美联航宣布订购50架空客飞机.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380037大英帝国核力量在世界上有多大底气？为何沦为“五常之耻”？.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380038美明年拟实行出入境新规：所有旅客人脸识别，包括美国公民.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380039只因在演讲中夸奥巴马，他就被炒了.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380040泰国陆军接收首批中国VN-1步战车.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380041北约峰会联合声明曝光，首次正式提及中国“挑战”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380042弹劾报告300页！特朗普被指滥用职权、妨碍调查！.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380043美国再次拒签俄罗斯代表团，俄驻美使馆发文谴责.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380044克里米亚，现代冲突的典型!俄罗斯最成功的战略.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380045兜售二手航母，卖国防部大楼，这支号称世界五强的军队怕是要废了.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380046倒计时一周！WTO重要机构即将瘫痪，163国阻止无效，美是祸首.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380047伊朗逮捕300名涉嫌参与骚乱人员 向美国索赔1300亿.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380048特朗普再度访英 是“脱欧粉”不会插足英国医保.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380049北约成立70周年峰会伦敦举行，普京：华约早没了，北约却还在不断扩张.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912042055380050美联航宣布订购50架空客飞机 替代老式波音飞机.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520001“大台”现形？被外交部点名制裁的美国一NGO总裁被曝到港煽暴.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520002“女版奥巴马”退选美国总统，拜登：“当然”会考虑让她做我的副总统.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520003美国官员：抗衡伊朗，特朗普政府正考虑向中东增兵1.4万.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520004因在特朗普听证会上提这个名字 美国教授成了众矢之的.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520005“第一女婿”加入中美贸易谈判.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520006英首相否认背后八卦美总统 记者会上避谈特朗普.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520007外媒：美军在叙利亚发射秘密武器 连车带人一起切碎.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520008美国再向中东调兵1.4万？内塔尼亚胡：让伊朗变天的机会来了.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520009美反潜机飞临半岛 朝官宣：若美方动武朝方将“以牙还牙”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520010特朗普终于见上了约翰逊，可是为何不曝合照？.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520011日媒：伊朗总统鲁哈尼拟于20日前后访问日本.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520012不惧美国“威胁”，约翰逊坚持征收数字税.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912051524520013美国珍珠港枪击案嫌犯为一名海员，在击伤3人后自杀身亡.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/sohu_latest_news.csv" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/news/sohu_latest_news.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -417,7 +493,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.MainPage">
+  <component name="RunManager" selected="Python.main">
     <configuration name="MainPage" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -530,8 +606,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.MainPage" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.MainPage" />
         <item itemvalue="Python.a (1)" />
         <item itemvalue="Python.craw_souhu" />
         <item itemvalue="Python.a" />
@@ -579,7 +655,8 @@
       <workItem from="1575338242453" duration="6098000" />
       <workItem from="1575368181717" duration="1220000" />
       <workItem from="1575460571327" duration="4276000" />
-      <workItem from="1575523984017" duration="8374000" />
+      <workItem from="1575523984017" duration="14520000" />
+      <workItem from="1575598060239" duration="4815000" />
     </task>
     <servers />
   </component>
@@ -694,7 +771,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>132</line>
+          <line>133</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -751,9 +828,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Craw$main.coverage" NAME="main Coverage Results" MODIFIED="1575463637185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$main.coverage" NAME="main Coverage Results" MODIFIED="1575602801724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$main.coverage" NAME="main Coverage Results" MODIFIED="1571802022833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Craw$MainPage.coverage" NAME="MainPage Coverage Results" MODIFIED="1575531410182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$MainPage.coverage" NAME="MainPage Coverage Results" MODIFIED="1575601913829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Craw$a.coverage" NAME="a Coverage Results" MODIFIED="1574321408957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
     <SUITE FILE_PATH="coverage/untitled$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1571834406472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Plugin_project" />
     <SUITE FILE_PATH="coverage/Craw$a__1_.coverage" NAME="a (1) Coverage Results" MODIFIED="1575341929602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />

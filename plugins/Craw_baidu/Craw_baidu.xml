@@ -12,9 +12,9 @@
                 <Magazine></Magazine>
                 <Publishdate_from></Publishdate_from>
                 <Publishdate_to></Publishdate_to>
-                <DownloadCounts>14</DownloadCounts>
+                <DownloadCounts>4</DownloadCounts>
             </Condition>
         </Record>
     </Address>
-    <FilePath>D:\QQfiles\Craw\plugins\Craw_souhu\news</FilePath>
+    <FilePath>D:\QQfiles\Craw\craw_datas</FilePath>
 </Crawer>

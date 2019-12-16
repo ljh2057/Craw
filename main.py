@@ -121,30 +121,36 @@ if __name__ == '__main__':
    # # str_xml = open('D:\QQfiles\Craw/plugins/Craw_baidu/Craw_baidu.xml', 'r').read()
    # str_xml = open('D:\QQfiles\Craw\plugins\Craw_baidu\Craw_baidu.xml','r', encoding='UTF-8').read()
    # print(str_xml)
-   data = {'BoolCol': [1, 2, 3, 3, 4],
-           'attr': [22, 33, 22, 44, 66],
-           'BoolC': [1, 2, 3, 3, 4],
-           'att': [22, 33, 22, 44, 66],
-           'Bool': [1, 2, 3, 3, 4]
-           }
-   df = pd.DataFrame(data)
-   print(df)
-   df.to_excel(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx', na_rep=None, index=False)
-   wb = openpyxl.load_workbook(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx')
-   ws = wb.worksheets[0]
-   # a1 = ws['A1']
-   # ft = Font(colour_index = 0x7FFF, bold = False)
-   # a1.font = ft
-   ws.insert_cols(2, 2)
-   for index, row in enumerate(ws.rows):
-       if index == 0:
-           row[1].value = '1'
-           row[2].value = '2'
-           row[3].value = 'ggggg'
-       else:
-           row[1].value = None
-           row[2].value = None
-   wb.save(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx')
 
 
+
+   # data = {'BoolCol': [1, 2, 3, 3, 4],
+   #         'attr': [22, 33, 22, 44, 66],
+   #         'BoolC': [1, 2, 3, 3, 4],
+   #         'att': [22, 33, 22, 44, 66],
+   #         'Bool': [1, 2, 3, 3, 4]
+   #         }
+   # df = pd.DataFrame(data)
+   # print(df)
+   # df.to_excel(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx', na_rep=None, index=False)
+   # wb = openpyxl.load_workbook(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx')
+   # ws = wb.worksheets[0]
+   # # a1 = ws['A1']
+   # # ft = Font(colour_index = 0x7FFF, bold = False)
+   # # a1.font = ft
+   # ws.insert_cols(2, 2)
+   # for index, row in enumerate(ws.rows):
+   #     if index == 0:
+   #         row[1].value = '1'
+   #         row[2].value = '2'
+   #         row[3].value = 'ggggg'
+   #     else:
+   #         row[1].value = None
+   #         row[2].value = None
+   # wb.save(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx')
+
+   fp = os.path.split('D:\QQfiles\Craw\craw_datas/Craw_souhu_ori')
+   print(fp[0])
+   fp = os.path.join(fp[0], 'Craw_souhu文献属性.xlsx')
+   print(fp)
 

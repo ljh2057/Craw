@@ -1,5 +1,5 @@
 #coding=utf-8
-import  xml.dom.minidom
+import xml.dom.minidom
 class getXml:
     def __init__(self,file):
         self.file=file

@@ -4,10 +4,47 @@
     <list default="true" id="f8a2fd47-5eea-4b3f-be93-4a8f280a2d51" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550001绵阳武警退伍老兵光荣返乡，书写人生新篇章.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550002这就叫国力！拿400架战机炸一个火车站：三千枚炸弹呼啸1分钟覆盖.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550003通讯：“中国维和部队扫雷质量超出预期”——记联黎部队高官视察中国维和官兵扫雷.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550004四国派出航母逼近南海，我国4艘军舰强势出击，苏35战机“立功”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550005拥有真正航母？美媒曝光新消息，出云级或装弹射器搭载E2D预警机.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550006解放军某部这群战神的帅气操作，火了.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA20191202214055000712架苏30SM开始交付，俄盟友有人提出质疑声音：我们更想要F16！.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550008嘘……偷偷告诉你，我是大学生也是准军人.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550009美军近海作战的一把“利剑”，M80短剑执行任务也更加快.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550010伊朗最新一款战机上线，中东国家紧张起来.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550011再赴太平洋执行测控任务，远望3号船迎来年度收官之战.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550012被歼20晃慌 越南也要发展五代机.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550013导弹万能思想差点毁了苏联海军？这位元帅用忽悠力挽狂澜拯救海军.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550014最快战机时速达25马赫！防空系统都拦不住，至少领先20年.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570001绵阳武警退伍老兵光荣返乡，书写人生新篇章.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570002这就叫国力！拿400架战机炸一个火车站：三千枚炸弹呼啸1分钟覆盖.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570003通讯：“中国维和部队扫雷质量超出预期”——记联黎部队高官视察中国维和官兵扫雷.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570004四国派出航母逼近南海，我国4艘军舰强势出击，苏35战机“立功”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570005拥有真正航母？美媒曝光新消息，出云级或装弹射器搭载E2D预警机.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570006解放军某部这群战神的帅气操作，火了.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA20191203101257000712架苏30SM开始交付，俄盟友有人提出质疑声音：我们更想要F16！.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570008嘘……偷偷告诉你，我是大学生也是准军人.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570009美军近海作战的一把“利剑”，M80短剑执行任务也更加快.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570010伊朗最新一款战机上线，中东国家紧张起来.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570011再赴太平洋执行测控任务，远望3号船迎来年度收官之战.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570012被歼20晃慌 越南也要发展五代机.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570013导弹万能思想差点毁了苏联海军？这位元帅用忽悠力挽狂澜拯救海军.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570014最快战机时速达25马赫！防空系统都拦不住，至少领先20年.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu文献属性.xls" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_baidu文献属性.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_cnki文献属性.xls" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_cnki文献属性.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CAJs/CRA201912031104470001基于深度学习的脑片图像区域划分方法.caj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CAJs/CRA201912031104470002人工智能技术在电网调控中的应用研究网络首发.caj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CAJs/Craw_cnki文献属性.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/untitled.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/Craw1.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/Craw1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/ImportFile/SaveData.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/ImportFile/importer.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/LoadPlugins.py" beforeDir="false" />
@@ -15,6 +52,7 @@
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/craw_datas/Craw_baidu文献属性.xls" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/craw_datas/Craw_cnki文献属性.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/getxml.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/getxml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/plugins/BasePlugin/BasePlugin.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/plugins/BasePlugin/__init__.py" beforeDir="false" />
@@ -362,50 +400,42 @@
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/lib/python3.7/site-packages/setuptools-40.8.0-py3.7.egg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/lib/python3.7/site-packages/setuptools.pth" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/pyvenv.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_cnki/Craw_cnki.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_cnki/Craw_cnki.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_cnki/Getxml.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_cnki/Getxml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370001环球时报-中美关系正处在前所未有的十字路口,要警惕美-新冷战-.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370002法国爆发跨部门大罢工：80多万人示威 交通大瘫痪.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370003欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370004在北约峰会上特朗普鼓吹禁用华为，却被现实打了脸！.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370005从德国、丹麦再到俄罗斯，美驻外大使为何越来越骄横？.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370006澳总理接受采访谈及中国，又拿“重置世界秩序”说事.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370007吓人！俄罗斯猫科专家培育出一窝“人脸”猫.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370008美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370009美国会众议院通过决议反对俄罗斯重返G7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061031370010王毅时隔5年半正式访韩，专家：对两国关系回正轨有很大促进.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240001环球时报-中美关系正处在前所未有的十字路口,要警惕美-新冷战-.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240002法国爆发跨部门大罢工：80多万人示威 交通大瘫痪.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240003欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240004朴槿惠“老对手”将任新法务部长官，韩媒：助总统与检方斗争.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240005从德国、丹麦再到俄罗斯，美驻外大使为何越来越骄横？.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240006美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240007王毅时隔5年半正式访韩，专家：对两国关系回正轨有很大促进.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240008你恨总统吗？美众议长佩洛西：我不恨任何人，别惹我.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240009澳总理接受采访谈及中国，又拿“重置世界秩序”说事.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240010美国会众议院通过决议反对俄罗斯重返G7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061109240011吓人！俄罗斯猫科专家培育出一窝“人脸”猫.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580001环球时报-中美关系正处在前所未有的十字路口,要警惕美-新冷战-.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580002法国爆发跨部门大罢工：80多万人示威 交通大瘫痪.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580003欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580004朴槿惠“老对手”将任新法务部长官，韩媒：助总统与检方斗争.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580005从德国、丹麦再到俄罗斯，美驻外大使为何越来越骄横？.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580006美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580007王毅时隔5年半正式访韩，专家：对两国关系回正轨有很大促进.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580008你恨总统吗？美众议长佩洛西：我不恨任何人，别惹我.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061111580009澳总理接受采访谈及中国，又拿“重置世界秩序”说事.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_baidu_ori/CRA201912051537010001印度边防装备不赖：有大疆无人机 还能“偷听”对方哨所的谈话.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_baidu_ori/CRA201912051537010002全球最大军事组织咄咄逼人，普京表示担忧，已经扩张到29个成员国.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_baidu_ori/CRA201912051537010003伊朗可射出20000枚导弹饱和攻击，美军21个中东基地没有金钟罩.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_baidu_ori/CRA201912051537010004俄罗斯再现“王炸”，普京与特朗普算盘四起！.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_baidu_ori/CRA201912051537010005大国必须抢占第五空间！谁能占得先机 谁就能打赢未来战争.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_baidu_ori/CRA201912051537010006现代“血滴子”？美军新导弹弹头带6片折叠刀，将目标大卸八块.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_baidu_ori/CRA201912051537010007特种兵在野外吃什么？其菜单“丰富多彩”，最后一项实在受不了！.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_baidu_ori/CRA201912051537010008美国新型导弹试射，俄方伊斯坎德尔部署，两国争锋相对好戏不断.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/sohu_latest_new.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/sohu_latest_news.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/sohu_latest_news.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/sohu_latest_news.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/getxml.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/getxml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070001欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070002驻日美军拿“保护费”建豪宅泳池 日媒质疑-出事故我们都不能进.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070003美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070004美国称伊朗政府镇压抗议者致千人死亡，宣布制裁伊朗两监狱.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070005你恨总统吗？美众议长佩洛西：我不恨任何人，别惹我.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070006特朗普又把他叫到白宫“聊了一下”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070007日媒：伊朗总统鲁哈尼拟访日本，美国或对日施压.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070008美国国民警卫队一架直升机坠毁，机上3人死亡.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070009美国佛州发生警匪追击枪战 致4人死亡包括2名无辜者.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070010图斯克卸任欧洲理事会主席：英国脱欧是欧盟历史上“最惊人的错误之一”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160001欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160002驻日美军拿“保护费”建豪宅泳池 日媒质疑-出事故我们都不能进.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160003美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160004美国称伊朗政府镇压抗议者致千人死亡，宣布制裁伊朗两监狱.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160005你恨总统吗？美众议长佩洛西：我不恨任何人，别惹我.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160006特朗普又把他叫到白宫“聊了一下”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160007日媒：伊朗总统鲁哈尼拟访日本，美国或对日施压.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160008美国国民警卫队一架直升机坠毁，机上3人死亡.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160009美国佛州发生警匪追击枪战 致4人死亡包括2名无辜者.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160010图斯克卸任欧洲理事会主席：英国脱欧是欧盟历史上“最惊人的错误之一”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150001欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150002驻日美军拿“保护费”建豪宅泳池 日媒质疑-出事故我们都不能进.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150003美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150004美国称伊朗政府镇压抗议者致千人死亡，宣布制裁伊朗两监狱.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150005你恨总统吗？美众议长佩洛西：我不恨任何人，别惹我.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150006特朗普又把他叫到白宫“聊了一下”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150007日媒：伊朗总统鲁哈尼拟访日本，美国或对日施压.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150008美国国民警卫队一架直升机坠毁，机上3人死亡.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150009美国佛州发生警匪追击枪战 致4人死亡包括2名无辜者.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150010图斯克卸任欧洲理事会主席：英国脱欧是欧盟历史上“最惊人的错误之一”.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_souhu文献属性.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -436,7 +466,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -480,7 +510,7 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MainPage.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
@@ -574,6 +604,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.a" />
+      <item itemvalue="Python.a (1)" />
+      <item itemvalue="Python.craw_souhu" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.MainPage" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.MainPage" />
@@ -627,7 +664,15 @@
       <workItem from="1575460571327" duration="4276000" />
       <workItem from="1575523984017" duration="14520000" />
       <workItem from="1575598060239" duration="5158000" />
-      <workItem from="1575603401355" duration="3172000" />
+      <workItem from="1575603401355" duration="3780000" />
+      <workItem from="1575879361883" duration="218000" />
+      <workItem from="1575879613166" duration="1300000" />
+      <workItem from="1575881039354" duration="10371000" />
+      <workItem from="1575942168154" duration="2000" />
+      <workItem from="1575942373327" duration="9000" />
+      <workItem from="1575942502431" duration="6690000" />
+      <workItem from="1576034501601" duration="638000" />
+      <workItem from="1576501237789" duration="1465000" />
     </task>
     <servers />
   </component>
@@ -742,116 +787,211 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>584</line>
+          <line>592</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>585</line>
+          <line>593</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>587</line>
+          <line>595</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>586</line>
+          <line>594</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>589</line>
+          <line>597</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>591</line>
+          <line>599</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>590</line>
+          <line>598</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>592</line>
+          <line>600</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>593</line>
+          <line>601</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>500</line>
+          <line>508</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>181</line>
+          <line>184</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>183</line>
+          <line>186</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>182</line>
+          <line>185</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>184</line>
+          <line>187</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>185</line>
+          <line>188</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>186</line>
+          <line>189</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>187</line>
+          <line>190</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>188</line>
+          <line>191</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>190</line>
+          <line>193</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>191</line>
+          <line>198</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
-          <line>189</line>
+          <line>192</line>
           <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>417</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>418</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>416</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>415</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>420</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>421</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>422</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>423</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>424</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>426</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>425</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>427</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>429</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>430</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>431</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>433</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>434</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>435</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MainPage.py</url>
+          <line>445</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Craw$main.coverage" NAME="main Coverage Results" MODIFIED="1575602801724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$main.coverage" NAME="main Coverage Results" MODIFIED="1575948299114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$main.coverage" NAME="main Coverage Results" MODIFIED="1571802022833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Craw$MainPage.coverage" NAME="MainPage Coverage Results" MODIFIED="1575606369211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$MainPage.coverage" NAME="MainPage Coverage Results" MODIFIED="1576502501233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Craw$a.coverage" NAME="a Coverage Results" MODIFIED="1574321408957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
     <SUITE FILE_PATH="coverage/untitled$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1571834406472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Plugin_project" />
     <SUITE FILE_PATH="coverage/Craw$a__1_.coverage" NAME="a (1) Coverage Results" MODIFIED="1575341929602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />

@@ -38,8 +38,11 @@ class Souhu(object):
         self.flag = True
         self.args = args
         self.filepath = filepath
+        self.configfilePath = os.getcwd() + '/' + 'plugins/' + 'Craw_souhu' + '/' + 'Craw_souhu' + '.xml'
+        self.xml = getxml.read_xml_info(self.configfilePath)
+        # self.xml = getxml.read_xml_info()
         if self.filepath is None:
-            self.filepath = getxml.rxi.getfilepath()
+            self.filepath = self.xml.getfilepath()
         # self.sohu_template_url = 'http://v2.sohu.com/public-api/feed?scene=CHANNEL&sceneId=10&page=1&size={}'
         # self.nets = ['sohu']
         # self.template_urls = {
@@ -189,7 +192,11 @@ class Souhu(object):
         news_df['后缀']=""
         order=['标志','序号','题名','作者','单位','关键字','摘要','来源','发表时间','下载地址','后缀']
         news_df=news_df[order]
-        news_df.to_excel(path, index=False, na_rep=None)
+        fp = os.path.split(self.filepath)
+        # print(fp[0])
+        fp = os.path.join(fp[0], 'Craw_souhu文献属性.xlsx')
+        # print(fp)
+        news_df.to_excel(fp, index=False, na_rep=None)
         # wb = openpyxl.load_workbook(path)
         # ws = wb.worksheets[0]
         # ws.insert_cols(4, 5)

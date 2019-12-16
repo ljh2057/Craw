@@ -36,8 +36,11 @@ class Craw_souhu(BasePlugin):
     def loadFromConfig(self):
         #遍历找到xml配置信息文件'path'
         #获取爬虫name，爬虫描述、保存文件路径和属性文件路径
-        configDate = getxml.rxi.getfull()
-        self.configPath=getxml.rxi.pathos
+
+        configfilePath=os.getcwd() + '/' + 'plugins/' + self.__class__.__name__ + '/' + self.__class__.__name__ + '.xml'
+        self.xml = getxml.read_xml_info(configfilePath)
+        configDate = self.xml.getfull()
+        self.configPath = configfilePath
         self.name = configDate['name']
         self.describe = configDate['describe']
         if self.filepath == None:
@@ -79,12 +82,12 @@ class Craw_souhu(BasePlugin):
     """
     def run(self):
 
-        t = getxml.rxi.getcount()
+        t = self.xml.getcount()
         t = int(t)
         # project_path = os.path.dirname(os.path.realpath(__file__))  # 获取项目路径
         # print("project_path......." + project_path)
         # news_path = os.path.join(project_path, 'news')  # 新闻数据存放目录路径
-        news_path = getxml.rxi.getfilepath()
+        news_path = self.filepath
         # print("news_path......." + news_path)
         if not os.path.exists(news_path):  # 创建news文件夹
             os.mkdir(news_path)
@@ -123,7 +126,7 @@ class Craw_souhu(BasePlugin):
         self.parameters['text'] = self.text
         self.parameters['filepath'] = self.filepath
         self.parameters['propath'] = self.propath
-        print(self.parameters)
+        # print(self.parameters)
         return self.parameters
 
 # if __name__ == '__main__':

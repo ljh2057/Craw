@@ -13,6 +13,7 @@ import os
 import LoadPlugins as lp
 qumt1 = QMutex()
 qumt2 = QMutex()
+qumt3 = QMutex()
 class CrawCnkiThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     crawSignal=pyqtSignal(str)
@@ -26,14 +27,16 @@ class CrawCnkiThread(QThread):
     def run(self):
         qumt1.lock()
         qumt2.lock()
+        qumt3.lock()
         self.craw_cnki.CrawProcess.connect(self.update)
         self.craw_cnki.run()
         self.craw_cnki.saveData()
         self.crawSignal_f.emit()
-        qumt1.unlock()
+        qumt3.unlock()
         qumt2.unlock()
+        qumt1.unlock()
     '''传递爬虫对象中的进度信息'''
-    def update(self,data):
+    def update(self, data):
         self.crawSignal.emit(data)
 
     '''停止线程'''
@@ -56,9 +59,11 @@ class CrawBaiduThread(QThread):
     def run(self):
         qumt1.lock()
         qumt2.lock()
+        qumt3.lock()
         self.craw_baidu.CrawProcess.connect(self.update)
         self.craw_baidu.run()
         self.crawSignal_f.emit()
+        qumt3.unlock()
         qumt2.unlock()
         qumt1.unlock()
     '''传递爬虫对象中的进度信息'''
@@ -84,9 +89,11 @@ class CrawSouhuThread(QThread):
     def run(self):
         qumt1.lock()
         qumt2.lock()
+        qumt3.lock()
         self.craw_souhu.CrawProcess.connect(self.update)
         self.craw_souhu.run()
         self.crawSignal_f.emit()
+        qumt3.unlock()
         qumt2.unlock()
         qumt1.unlock()
     '''传递爬虫对象中的进度信息'''
@@ -373,6 +380,7 @@ class Window(QTabWidget):
                 QMessageBox.about(self,'提示','修改成功')
         except:
             pass
+        print(123)
         self.initTable()
 
     '''修改默认文件存储路径'''
@@ -392,8 +400,8 @@ class Window(QTabWidget):
 
     '''选择插件目录'''
     def showDialog(self):
-        self.filename=QFileDialog.getExistingDirectory(self,'choose file')
-        # self.filename = "D:/QQfiles/Craw/plugins"
+        # self.filename=QFileDialog.getExistingDirectory(self,'choose file')
+        self.filename = "D:/QQfiles/Craw/plugins"
         self.textEdit_configPath.setText(self.filename)
         self.initTable()
 
@@ -691,3 +699,4 @@ if __name__ == '__main__':
     win = Window()
     win.show()
     sys.exit(app.exec_())
+    os.system("pause")

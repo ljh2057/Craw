@@ -3,12 +3,13 @@ import os
 
 
 class read_xml_info:
-    def __init__(self):
+    def __init__(self, file):
         # self.pathos=os.getcwd()+'/plugins/Craw_souhu/Craw_souhu.xml'
-        self.pathos = os.getcwd().replace('\\', '/') + '/plugins/Craw_souhu/Craw_souhu.xml'
+        self.file = file
+        # self.pathos = os.getcwd().replace('\\', '/') + '/plugins/Craw_souhu/Craw_souhu.xml'
         # self.pathos = os.getcwd().replace('\\', '/') + "/Craw_baidu.xml"
         # 读取配置文件路径
-        self.dom = parse(self.pathos)
+        self.dom = parse(self.file)
         # self.dom = parse(r'E:\Pythonworkspace\bdjs_crawl2\crawler.xml')
         # 获取文件元素对象
         self.content = self.dom.documentElement
@@ -76,6 +77,6 @@ class read_xml_info:
 # 实例化
 # pathos = os.getcwd()
 # print(pathos)
-rxi = read_xml_info()
+# rxi = read_xml_info()
 # rxi.getcount()
 # rxi.getfilepath()

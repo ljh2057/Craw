@@ -1,11 +1,8 @@
 from plugins.BasePlugin.BasePlugin import BasePlugin
 from plugins.Craw_baidu import Craw1
 from plugins.Craw_baidu import getxml
-import time
 from PyQt5.QtCore import pyqtSignal
-import threading
 import os
-import shutil
 
 class Craw_baidu(BasePlugin):
     trigger = pyqtSignal()
@@ -23,14 +20,17 @@ class Craw_baidu(BasePlugin):
         self.args['flag']=True
         self.p_keys = ['name', 'describe', 'configPath', 'text', 'filepath', 'propath']
         self.parameters = {}.fromkeys(self.p_keys)
-        self.loadFromConfig()
+        # self.loadFromConfig()
         self.bd = Craw1.Baidu(filepath=self.filepath)
 
     def loadFromConfig(self):
         #遍历找到xml配置信息文件'path'
         #获取爬虫name，爬虫描述、保存文件路径和属性文件路径
-        configDate = getxml.rxi.getfull()
-        self.configPath=getxml.rxi.pathos
+        configfilePath = os.getcwd() + '/' + 'plugins/' + self.__class__.__name__ + '/' + self.__class__.__name__ + '.xml'
+        self.getxml = getxml.read_xml_info(configfilePath)
+        configDate = self.getxml.getfull()
+        # self.configPath=getxml.rxi.pathos
+        self.configPath = configfilePath
         self.name = configDate['name']
         self.describe = configDate['describe']
         if self.filepath == None:
@@ -51,7 +51,7 @@ class Craw_baidu(BasePlugin):
         urls=[]
         urls = self.bd.geturls()
         for url in urls:
-            if (int(self.bd.num) < int(getxml.rxi.getcount())) and self.args['flag']:
+            if (int(self.bd.num) < int(self.getxml.getcount())) and self.args['flag']:
                 self.bd.getdetail(url)
                 print("正在爬取第" + str(self.bd.num) + "篇：" + self.bd.title)
                 self.CrawProcess.emit(str("正在爬取第" + str(self.bd.num) + "篇：" + self.bd.title))
@@ -75,7 +75,7 @@ class Craw_baidu(BasePlugin):
         self.parameters['text'] = self.text
         self.parameters['filepath'] = self.filepath
         self.parameters['propath'] = self.propath
-        print(self.parameters)
+        # print(self.parameters)
         return self.parameters
 
 # if __name__ == '__main__':

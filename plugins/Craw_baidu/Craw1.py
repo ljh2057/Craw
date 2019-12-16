@@ -4,8 +4,7 @@ from plugins.Craw_baidu import getxml
 from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
-import xlwt, xlrd
-from xlutils.copy import copy
+import xlwt
 import os
 
 
@@ -26,8 +25,10 @@ class Baidu(object):
 		self.CRID = 'CRA' + self.t
 		self.num = 0
 		self.filepath = filepath
+		self.configfilePath = os.getcwd() + '/' + 'plugins/' + 'Craw_baidu' + '/' + 'Craw_baidu' + '.xml'
+		self.xml = getxml.read_xml_info(self.configfilePath)
 		if self.filepath is None:
-			self.filepath = getxml.rxi.getfilepath()
+			self.filepath = self.xml.getfilepath()
 		# 定义保存Excel的位置
 		self.workbook = xlwt.Workbook()
 		self.sheet = self.workbook.add_sheet('百度军事')

@@ -4,7 +4,7 @@
         <Record>
             <CrawId>Craw_baidu</CrawId >
             <Name>百度军事爬虫</Name>
-            <Describe>百度军事爬虫描述</Describe>
+            <Describe>百度军事爬虫</Describe>
             <Condition>
                 <Motif></Motif>
                 <Keyword></Keyword>
@@ -12,7 +12,7 @@
                 <Magazine></Magazine>
                 <Publishdate_from></Publishdate_from>
                 <Publishdate_to></Publishdate_to>
-                <DownloadCounts>4</DownloadCounts>
+                <DownloadCounts>10</DownloadCounts>
             </Condition>
         </Record>
     </Address>

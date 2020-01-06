@@ -72,6 +72,7 @@ class Baidu(object):
 
 	# 获取页面具体信息
 	def getdetail(self, news_url):
+		print(news_url)
 		response = requests.get(news_url)
 		html = response.text
 		bf = BeautifulSoup(html, 'html.parser')
@@ -85,20 +86,27 @@ class Baidu(object):
 		try:
 			self.title = bf.select("#detail-page > div.title_border > div > div.article-title > h2")[0].get_text()
 		except:
+			# self.title = 'hhh'
 			pass
 		# print("title:"+self.title)
 
 		# 发布者
-		self.poster = bf.select(
-			"#detail-page > div.title_border > div > div.article-desc.clearfix > div.author-txt > p")[0].get_text()
-		# print("poster:"+self.poster)
+		try:
+			self.poster = bf.select(
+				"#detail-page > div.title_border > div > div.article-desc.clearfix > div.author-txt > p")[0].get_text()
+			# print("poster:"+self.poster)
+		except:
+			self.poster = 'hhhhhh'
+			pass
 
 		# 时间
-		self.time1 = bf.select(
-			"#detail-page > div.title_border > div > div.article-desc.clearfix > div.author-txt > div > span.date")[0].\
-			get_text()
-		self.time = str(time.localtime().tm_year)+'-'+self.time1.strip("发布时间：")
-
+		try:
+			self.time1 = bf.select(
+				"#detail-page > div.title_border > div > div.article-desc.clearfix > div.author-txt > div > span.date")[0].\
+				get_text()
+			self.time = str(time.localtime().tm_year)+'-'+self.time1.strip("发布时间：")
+		except:
+			pass
 
 		# 内容
 		self.content_list = []

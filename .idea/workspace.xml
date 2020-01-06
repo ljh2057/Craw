@@ -3,48 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f8a2fd47-5eea-4b3f-be93-4a8f280a2d51" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainPage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550001绵阳武警退伍老兵光荣返乡，书写人生新篇章.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550002这就叫国力！拿400架战机炸一个火车站：三千枚炸弹呼啸1分钟覆盖.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550003通讯：“中国维和部队扫雷质量超出预期”——记联黎部队高官视察中国维和官兵扫雷.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550004四国派出航母逼近南海，我国4艘军舰强势出击，苏35战机“立功”.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550005拥有真正航母？美媒曝光新消息，出云级或装弹射器搭载E2D预警机.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550006解放军某部这群战神的帅气操作，火了.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA20191202214055000712架苏30SM开始交付，俄盟友有人提出质疑声音：我们更想要F16！.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550008嘘……偷偷告诉你，我是大学生也是准军人.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550009美军近海作战的一把“利剑”，M80短剑执行任务也更加快.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550010伊朗最新一款战机上线，中东国家紧张起来.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550011再赴太平洋执行测控任务，远望3号船迎来年度收官之战.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550012被歼20晃慌 越南也要发展五代机.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550013导弹万能思想差点毁了苏联海军？这位元帅用忽悠力挽狂澜拯救海军.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912022140550014最快战机时速达25马赫！防空系统都拦不住，至少领先20年.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570001绵阳武警退伍老兵光荣返乡，书写人生新篇章.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570002这就叫国力！拿400架战机炸一个火车站：三千枚炸弹呼啸1分钟覆盖.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570003通讯：“中国维和部队扫雷质量超出预期”——记联黎部队高官视察中国维和官兵扫雷.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570004四国派出航母逼近南海，我国4艘军舰强势出击，苏35战机“立功”.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570005拥有真正航母？美媒曝光新消息，出云级或装弹射器搭载E2D预警机.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570006解放军某部这群战神的帅气操作，火了.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA20191203101257000712架苏30SM开始交付，俄盟友有人提出质疑声音：我们更想要F16！.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570008嘘……偷偷告诉你，我是大学生也是准军人.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570009美军近海作战的一把“利剑”，M80短剑执行任务也更加快.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570010伊朗最新一款战机上线，中东国家紧张起来.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570011再赴太平洋执行测控任务，远望3号船迎来年度收官之战.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570012被歼20晃慌 越南也要发展五代机.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570013导弹万能思想差点毁了苏联海军？这位元帅用忽悠力挽狂澜拯救海军.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu_ori/CRA201912031012570014最快战机时速达25马赫！防空系统都拦不住，至少领先20年.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu文献属性.xls" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_baidu文献属性.xls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/craw_datas/Craw_cnki文献属性.xls" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_cnki文献属性.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/CAJs/CRA201912031104470001基于深度学习的脑片图像区域划分方法.caj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/CAJs/CRA201912031104470002人工智能技术在电网调控中的应用研究网络首发.caj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/CAJs/Craw_cnki文献属性.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_souhu文献属性.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_souhu文献属性.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/untitled.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/Craw1.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/Craw1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/ImportFile/SaveData.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/ImportFile/importer.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/LoadPlugins.py" beforeDir="false" />
@@ -52,7 +17,6 @@
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/craw_datas/Craw_baidu文献属性.xls" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/craw_datas/Craw_cnki文献属性.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/getxml.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/getxml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/main.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/plugins/BasePlugin/BasePlugin.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/plugins/BasePlugin/__init__.py" beforeDir="false" />
@@ -401,42 +365,7 @@
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/lib/python3.7/site-packages/setuptools.pth" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/pyvenv.cfg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_cnki/Craw_cnki.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_cnki/Craw_cnki.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_cnki/Getxml.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_cnki/Getxml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/getxml.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/getxml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070001欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070002驻日美军拿“保护费”建豪宅泳池 日媒质疑-出事故我们都不能进.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070003美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070004美国称伊朗政府镇压抗议者致千人死亡，宣布制裁伊朗两监狱.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070005你恨总统吗？美众议长佩洛西：我不恨任何人，别惹我.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070006特朗普又把他叫到白宫“聊了一下”.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070007日媒：伊朗总统鲁哈尼拟访日本，美国或对日施压.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070008美国国民警卫队一架直升机坠毁，机上3人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070009美国佛州发生警匪追击枪战 致4人死亡包括2名无辜者.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061223070010图斯克卸任欧洲理事会主席：英国脱欧是欧盟历史上“最惊人的错误之一”.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160001欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160002驻日美军拿“保护费”建豪宅泳池 日媒质疑-出事故我们都不能进.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160003美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160004美国称伊朗政府镇压抗议者致千人死亡，宣布制裁伊朗两监狱.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160005你恨总统吗？美众议长佩洛西：我不恨任何人，别惹我.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160006特朗普又把他叫到白宫“聊了一下”.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160007日媒：伊朗总统鲁哈尼拟访日本，美国或对日施压.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160008美国国民警卫队一架直升机坠毁，机上3人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160009美国佛州发生警匪追击枪战 致4人死亡包括2名无辜者.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061225160010图斯克卸任欧洲理事会主席：英国脱欧是欧盟历史上“最惊人的错误之一”.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150001欧洲理事会前主席在特朗普背后做这一动作 网友炸锅.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150002驻日美军拿“保护费”建豪宅泳池 日媒质疑-出事故我们都不能进.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150003美国公路上演1小时警匪飞车大战：枪声大作，多人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150004美国称伊朗政府镇压抗议者致千人死亡，宣布制裁伊朗两监狱.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150005你恨总统吗？美众议长佩洛西：我不恨任何人，别惹我.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150006特朗普又把他叫到白宫“聊了一下”.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150007日媒：伊朗总统鲁哈尼拟访日本，美国或对日施压.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150008美国国民警卫队一架直升机坠毁，机上3人死亡.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150009美国佛州发生警匪追击枪战 致4人死亡包括2名无辜者.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/CRA201912061226150010图斯克卸任欧洲理事会主席：英国脱欧是欧盟历史上“最惊人的错误之一”.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news/Craw_souhu文献属性.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_cnki/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_cnki/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -494,6 +423,28 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.MainPage">
+    <configuration name="Craw1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="untitled" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plugins/Craw_baidu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plugins/Craw_baidu/Craw1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="MainPage" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -538,50 +489,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="a" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="untitled" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plugins/Craw_souhu" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plugins/Craw_souhu/a.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="craw_souhu" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="untitled" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plugins/Craw_souhu" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\QQfiles\Craw\plugins\Craw_souhu\Craw_souhu.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -604,20 +511,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="news_crawler" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="untitled" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plugins/Craw_souhu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.a" />
       <item itemvalue="Python.a (1)" />
-      <item itemvalue="Python.craw_souhu" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.MainPage" />
+      <item itemvalue="Python.news_crawler" />
+      <item itemvalue="Python.Craw1" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.MainPage" />
+        <item itemvalue="Python.Craw1" />
+        <item itemvalue="Python.news_crawler" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.a (1)" />
-        <item itemvalue="Python.craw_souhu" />
-        <item itemvalue="Python.a" />
       </list>
     </recent_temporary>
   </component>
@@ -672,7 +601,13 @@
       <workItem from="1575942373327" duration="9000" />
       <workItem from="1575942502431" duration="6690000" />
       <workItem from="1576034501601" duration="638000" />
-      <workItem from="1576501237789" duration="1465000" />
+      <workItem from="1576501237789" duration="1689000" />
+      <workItem from="1576558244755" duration="2262000" />
+      <workItem from="1577369032871" duration="175000" />
+      <workItem from="1577369264089" duration="1557000" />
+      <workItem from="1577371038332" duration="99000" />
+      <workItem from="1577427238117" duration="1117000" />
+      <workItem from="1577430886581" duration="8487000" />
     </task>
     <servers />
   </component>
@@ -990,8 +925,10 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Craw$main.coverage" NAME="main Coverage Results" MODIFIED="1575948299114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$Craw1.coverage" NAME="Craw1 Coverage Results" MODIFIED="1577446024986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_baidu" />
     <SUITE FILE_PATH="coverage/untitled$main.coverage" NAME="main Coverage Results" MODIFIED="1571802022833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Craw$MainPage.coverage" NAME="MainPage Coverage Results" MODIFIED="1576502501233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$MainPage.coverage" NAME="MainPage Coverage Results" MODIFIED="1577454016814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$news_crawler.coverage" NAME="news_crawler Coverage Results" MODIFIED="1577436335162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
     <SUITE FILE_PATH="coverage/Craw$a.coverage" NAME="a Coverage Results" MODIFIED="1574321408957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
     <SUITE FILE_PATH="coverage/untitled$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1571834406472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Plugin_project" />
     <SUITE FILE_PATH="coverage/Craw$a__1_.coverage" NAME="a (1) Coverage Results" MODIFIED="1575341929602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />

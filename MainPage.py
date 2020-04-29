@@ -400,8 +400,8 @@ class Window(QTabWidget):
 
     '''选择插件目录'''
     def showDialog(self):
-        # self.filename=QFileDialog.getExistingDirectory(self,'choose file')
-        self.filename = "D:/QQfiles/Craw/plugins"
+        self.filename=QFileDialog.getExistingDirectory(self,'choose file')
+        # self.filename = "D:/QQfiles/Craw/plugins"
         self.textEdit_configPath.setText(self.filename)
         self.initTable()
 

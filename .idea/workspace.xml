@@ -3,13 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="f8a2fd47-5eea-4b3f-be93-4a8f280a2d51" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_baidu文献属性.xls" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_baidu文献属性.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_cnki文献属性.xls" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_cnki文献属性.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_souhu文献属性.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/craw_datas/Craw_souhu文献属性.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImportFile/SaveData.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImportFile/SaveData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImportFile/importer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ImportFile/importer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainPage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_cnki文献属性.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/craw_datas/Craw_souhu文献属性.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/untitled.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_baidu/Craw_baidu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/ImportFile/SaveData.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/ImportFile/importer.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/LoadPlugins.py" beforeDir="false" />
@@ -364,14 +367,78 @@
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/lib/python3.7/site-packages/setuptools-40.8.0-py3.7.egg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/lib/python3.7/site-packages/setuptools.pth" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/Craw_baidu/venv/pyvenv.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_cnki/Craw_cnki.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_cnki/Craw_cnki.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/Craw_cnki/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_cnki/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MainPage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
+              <folding>
+                <element signature="e#190#200#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ImportFile/SaveData.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="162" column="57" lean-forward="true" selection-start-line="162" selection-start-column="57" selection-end-line="162" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/codecs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="321" selection-start-line="321" selection-end-line="321" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plugins/Craw_cnki/GetConfig.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plugins/Craw_baidu/getxml.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plugins/Craw_cnki/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ImportFile/importer.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -380,6 +447,49 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>D:/</find>
+      <find>`</find>
+      <find>pymysql</find>
+      <find>CRID</find>
+      <find>SaveData</find>
+      <find>SUFFIX</find>
+      <find>tb_download</find>
+      <find>pt</find>
+      <find>,origin</find>
+      <find>txt</find>
+      <find>corpus</find>
+      <find>UT</find>
+      <find>,UT</find>
+      <find>,depart</find>
+      <find>CRA</find>
+      <find>&quot;CRA&quot;</find>
+      <find>CRA_DT</find>
+      <find>sheet.cell(r, 0).value</find>
+      <find>uuid</find>
+      <find>time.strftime</find>
+      <find>'%Y-%m-%d'</find>
+      <find>'%Y%m%d%H%M%S'</find>
+      <find>&quot;UP&quot;</find>
+      <find>ops</find>
+      <find>insert into corpus_sign</find>
+      <find>DOCID</find>
+      <find>id</find>
+      <find>file[</find>
+      <find>print</find>
+      <find>insert into</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>,PUB_DT</replace>
+      <replace>,CONTENT_ORI</replace>
+      <replace>DOCUMENTS</replace>
+      <replace>,UPLD_DT</replace>
+      <replace>,AURDEPT</replace>
+      <replace>,KYWRD</replace>
+      <replace>CRA_DT</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -387,8 +497,64 @@
     <setting file="file://$PROJECT_DIR$/plugins/Craw_souhu/getxml.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/plugins/Craw_souhu/Craw_souhu.py" root0="SKIP_INSPECTION" />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/MainPage.py" />
+        <option value="$PROJECT_DIR$/ImportFile/importer.xml" />
+        <option value="$PROJECT_DIR$/ImportFile/SaveData.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1920" />
+    <option name="y" value="-34" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
+  </component>
   <component name="ProjectId" id="1TloTSMQkX8ndqhTfgaTPw9FJ9r" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Craw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Craw" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Craw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Craw" type="462c0819:PsiDirectoryNode" />
+              <item name="ImportFile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Craw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Craw" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Craw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Craw" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="Craw_baidu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Craw" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Craw" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+              <item name="Craw_cnki" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -467,7 +633,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="a (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="SaveData" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -475,12 +641,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ImportFile" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/a.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ImportFile/SaveData.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -534,19 +700,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.a (1)" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.MainPage" />
       <item itemvalue="Python.news_crawler" />
       <item itemvalue="Python.Craw1" />
+      <item itemvalue="Python.SaveData" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.MainPage" />
+        <item itemvalue="Python.SaveData" />
         <item itemvalue="Python.Craw1" />
         <item itemvalue="Python.news_crawler" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.a (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -608,8 +774,42 @@
       <workItem from="1577371038332" duration="99000" />
       <workItem from="1577427238117" duration="1117000" />
       <workItem from="1577430886581" duration="8487000" />
+      <workItem from="1585149879547" duration="338000" />
+      <workItem from="1585370378865" duration="454000" />
+      <workItem from="1585443071492" duration="1695000" />
+      <workItem from="1588052574377" duration="11546000" />
     </task>
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="14033000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1920" y="-34" width="1920" height="1057" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11661342" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23937824" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32953367" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -620,8 +820,28 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
           </value>
         </entry>
       </map>
@@ -721,56 +941,6 @@
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>592</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>593</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>595</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>594</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>597</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>599</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>598</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>600</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>601</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>508</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
           <line>184</line>
           <option name="timeStamp" value="39" />
@@ -824,26 +994,6 @@
           <url>file://$PROJECT_DIR$/plugins/Craw_souhu/news_crawler.py</url>
           <line>192</line>
           <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>417</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>418</line>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>416</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/MainPage.py</url>
-          <line>415</line>
-          <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/MainPage.py</url>
@@ -920,18 +1070,128 @@
           <line>445</line>
           <option name="timeStamp" value="70" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>49</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>52</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>185</line>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>186</line>
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>191</line>
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>192</line>
+          <option name="timeStamp" value="176" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>197</line>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>198</line>
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ImportFile/SaveData.py</url>
+          <line>196</line>
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Craw$main.coverage" NAME="main Coverage Results" MODIFIED="1575948299114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$a__1_.coverage" NAME="a (1) Coverage Results" MODIFIED="1575341929602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Craw$MainPage.coverage" NAME="MainPage Coverage Results" MODIFIED="1588139353543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$a.coverage" NAME="a Coverage Results" MODIFIED="1574321408957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
+    <SUITE FILE_PATH="coverage/Craw$craw_souhu.coverage" NAME="craw_souhu Coverage Results" MODIFIED="1575255609228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
+    <SUITE FILE_PATH="coverage/untitled$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1571834406472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Plugin_project" />
     <SUITE FILE_PATH="coverage/Craw$Craw1.coverage" NAME="Craw1 Coverage Results" MODIFIED="1577446024986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_baidu" />
     <SUITE FILE_PATH="coverage/untitled$main.coverage" NAME="main Coverage Results" MODIFIED="1571802022833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Craw$MainPage.coverage" NAME="MainPage Coverage Results" MODIFIED="1577454016814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Craw$SaveData.coverage" NAME="SaveData Coverage Results" MODIFIED="1588132320502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ImportFile" />
     <SUITE FILE_PATH="coverage/Craw$news_crawler.coverage" NAME="news_crawler Coverage Results" MODIFIED="1577436335162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
-    <SUITE FILE_PATH="coverage/Craw$a.coverage" NAME="a Coverage Results" MODIFIED="1574321408957" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
-    <SUITE FILE_PATH="coverage/untitled$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1571834406472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Plugin_project" />
-    <SUITE FILE_PATH="coverage/Craw$a__1_.coverage" NAME="a (1) Coverage Results" MODIFIED="1575341929602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/Craw$craw_souhu.coverage" NAME="craw_souhu Coverage Results" MODIFIED="1575255609228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/Craw_souhu" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/plugins/Craw_cnki/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/Craw_cnki/SaveData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="167" column="49" selection-start-line="167" selection-start-column="49" selection-end-line="167" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/Craw_cnki/GetConfig.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/Craw_baidu/getxml.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImportFile/importer.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="321" selection-start-line="321" selection-end-line="321" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MainPage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+          <folding>
+            <element signature="e#190#200#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImportFile/SaveData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="162" column="57" lean-forward="true" selection-start-line="162" selection-start-column="57" selection-end-line="162" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

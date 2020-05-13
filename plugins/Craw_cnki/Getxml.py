@@ -25,7 +25,8 @@ class getXml:
         serviceName = dom.getElementsByTagName('serviceName')
         userName = dom.getElementsByTagName('userName')
         passWord = dom.getElementsByTagName('password')
-        Path = dom.getElementsByTagName('Path')
+        Path = dom.getElementsByTagName('FilePath')
+        # Path = dom.getElementsByTagName('Path')
         Type=dom.getElementsByTagName('Type')
         configs = {}
         if self.isNone(Path[0].firstChild):

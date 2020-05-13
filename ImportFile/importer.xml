@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Importer>
-    <Path>/Users/macbookair/Desktop/ljh/研一下/oth/cnki_craw/Craw/craw_datas</Path>
+    <FilePath>/Users/macbookair/Desktop/ljh/研一下/oth/cnki_craw/Craw/craw_datas</FilePath>
     <Type>pfile</Type>
     <Database>
         <IP>localhost</IP>

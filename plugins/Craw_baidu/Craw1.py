@@ -1,9 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from plugins.Craw_baidu import getxml
-from selenium import webdriver
 import time
-from selenium.webdriver.chrome.options import Options
 import xlwt
 import os
 
@@ -19,7 +17,7 @@ class Baidu(object):
 
 	def __init__(self, filepath=None):
 		# 初始网页
-		self.start_url = 'https://news.baidu.com/mil'
+		self.start_url = 'https://news.baidu.com/widget?id=InternationalMil&channel=mil'
 		self.t = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
 		# 构建CRID
 		self.CRID = 'CRA' + self.t
@@ -40,35 +38,14 @@ class Baidu(object):
 
 	# 获取每条新闻的url
 	def geturls(self):
-		chrome_options = Options()
-		chrome_options.add_argument('--headless')  # 使用无头谷歌浏览器模式
-		chrome_options.add_argument('--disable-gpu')
-		chrome_options.add_argument('--no-sandbox')
-		browser = webdriver.Chrome(chrome_options=chrome_options)
-		browser.get(self.start_url)
-		# 设置滚动条距离顶部的位置，设置为 10000， 超过10000就是最底部
-		js = 'var action=document.documentElement.scrollTop=10000'
-		# 回到顶部
-		js1 = 'var action=document.documentElement.scrollTop=0'
-		# 滚起来！
-		browser.execute_script(js)  # 执行脚本
-		time.sleep(1)
-		browser.execute_script(js)
-		time.sleep(1)
-		browser.execute_script(js1)
-		time.sleep(1)
-		browser.execute_script(js)
-		time.sleep(1)
-		html = browser.page_source
-		browser.quit()
-		# 使用BeautifulSoup模块对页面文件进行解析
+		html = requests.get(self.start_url).text
 		soup = BeautifulSoup(html, 'html.parser')
 		url_list = []
-		for item in soup.select('#col_guojijq > div > div > ul > li > a'):
-			url = item.get('href')
-			url_list.append(url)
-			# print(url)
+		for i in soup.find_all('a'):
+			ul = i.get('href')
+			url_list.append(ul)
 		return url_list
+
 
 	# 获取页面具体信息
 	def getdetail(self, news_url):

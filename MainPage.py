@@ -156,8 +156,8 @@ class Window(QTabWidget):
         self.tab1=QWidget()
         self.tab2=QWidget()
 
-        self.addTab(self.tab1,'数据采集')
-        self.addTab(self.tab2,'数据移植')
+        self.addTab(self.tab1,'数据自动采集')
+        self.addTab(self.tab2,'数据移植、集成与更新')
         '''加载tab1'''
         self.set_tab1_layout()
         self.set_tab2_layout()
@@ -183,11 +183,12 @@ class Window(QTabWidget):
         '''第一列随内容改变列宽'''
         self.TableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
 
-        self.horizontalGroupBox = QGroupBox("数据自动采集")
+        self.horizontalGroupBox = QGroupBox("")
         self.horizontalLayout.addWidget(self.horizontalGroupBox)
 
-        btn = QPushButton('加载爬虫', self)
-        btn.clicked.connect(self.showDialog)
+        # btn = QPushButton('加载爬虫', self)
+        # btn.clicked.connect(self.showDialog)
+        # self.showDialog()
 
         self.btn2 = QPushButton('开始爬取', self)
         self.btn2.clicked.connect(self.work)
@@ -202,9 +203,9 @@ class Window(QTabWidget):
         self.main_vertical_layout.addStretch(1)
 
         self.main_horizontal_1_layout = QHBoxLayout()
-        self.textEdit_configPath = QLineEdit(self)
-        self.main_horizontal_1_layout.addWidget(btn)
-        self.main_horizontal_1_layout.addWidget(self.textEdit_configPath)
+        # self.textEdit_configPath = QLineEdit(self)
+        # self.main_horizontal_1_layout.addWidget(btn)
+        # self.main_horizontal_1_layout.addWidget(self.textEdit_configPath)
 
         self.main_horizontal_layout.addWidget(self.btn2)
         self.main_horizontal_layout.addWidget(self.btn3)
@@ -260,6 +261,7 @@ class Window(QTabWidget):
 
         self.main_vertical_layout.addWidget(self.textEdit)
 
+        self.initTable()
 
     '''根据插件名，加载对应的插件线程'''
     def Plugin_Switch(self,plugin_name):
@@ -402,10 +404,10 @@ class Window(QTabWidget):
         self.filename = os.getcwd()+"/plugins"
         self.textEdit_configPath.setText(self.filename)
         self.initTable()
-        QApplication.processEvents()
 
     '''表格内容刷新'''
     def initTable(self):
+        self.filename = os.getcwd()+"/plugins"
         if self.filename != " " and self.filename !="":
             plgs = lp.getAllPlugin(self.filename)
             if len(plgs):

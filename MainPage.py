@@ -183,7 +183,7 @@ class Window(QTabWidget):
         '''第一列随内容改变列宽'''
         self.TableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
 
-        self.horizontalGroupBox = QGroupBox("")
+        self.horizontalGroupBox = QGroupBox()
         self.horizontalLayout.addWidget(self.horizontalGroupBox)
 
         # btn = QPushButton('加载爬虫', self)
@@ -247,10 +247,10 @@ class Window(QTabWidget):
 
         self.main_vertical_layout.addWidget(self.TableWidget)
 
-        self.label_2 = QLabel(self)
-        self.label_2.setText('路径')
-        self.label_2.setAlignment(Qt.AlignLeft)
-        self.main_vertical_layout.addWidget(self.label_2)
+        # self.label_2 = QLabel(self)
+        # self.label_2.setText('路径')
+        # self.label_2.setAlignment(Qt.AlignLeft)
+        # self.main_vertical_layout.addWidget(self.label_2)
 
         self.main_vertical_layout.addLayout(self.main_horizontal_2_layout)
 
@@ -474,11 +474,11 @@ class Window(QTabWidget):
     '''数据移植页面start'''
     def set_tab2_layout(self):
         self.horizontalLayout_tab2 = QHBoxLayout(self.tab2)
-        self.horizontalGroupBox_tab2 = QGroupBox("数据自动移植")
+        self.horizontalGroupBox_tab2 = QGroupBox()
         self.horizontalLayout_tab2.addWidget(self.horizontalGroupBox_tab2)
 
-        btn_tab2 = QPushButton('选择配置文件', self)
-        btn_tab2.clicked.connect(self.SelectConfigFile)
+        # btn_tab2 = QPushButton('选择配置文件', self)
+        # btn_tab2.clicked.connect(self.SelectConfigFile)
 
         self.btn_start = QPushButton('开始导入', self)
         self.btn_start.clicked.connect(self.work_tab2)
@@ -504,13 +504,15 @@ class Window(QTabWidget):
         # self.tab2_vertical_layout.addStretch(1)
         '''水平布局，选择、编辑配置文件组件'''
         self.main_horizontal_tab2_layout = QHBoxLayout()
-        self.textEdit_configPath_tab2 = QLineEdit(self)
+        # self.textEdit_configPath_tab2 = QLineEdit(self)
+        self.filename2 = os.getcwd()+"/importer.xml"
 
-        btn_edit = QPushButton('修改', self)
-        btn_edit.clicked.connect(lambda: self.showConfigFile_tab2(self.textEdit_configPath_tab2.text()))
 
-        self.main_horizontal_tab2_layout.addWidget(btn_tab2)
-        self.main_horizontal_tab2_layout.addWidget(self.textEdit_configPath_tab2)
+        btn_edit = QPushButton('修改配置文件', self)
+        btn_edit.clicked.connect(lambda: self.showConfigFile_tab2(self.filename2))
+
+        # self.main_horizontal_tab2_layout.addWidget(btn_tab2)
+        # self.main_horizontal_tab2_layout.addWidget(self.textEdit_configPath_tab2)
         self.main_horizontal_tab2_layout.addWidget(btn_edit)
 
         self.tab2_horizontal_layout.addWidget(self.btn_start)
@@ -566,7 +568,7 @@ class Window(QTabWidget):
         self.tab2_vertical_layout.addWidget(self.label_3)
         self.textEdit_tab2 = QTextEdit()
         self.tab2_vertical_layout.addWidget(self.textEdit_tab2)
-
+        self.SelectConfigFile()
 
 
     '''启动插件'''
@@ -629,7 +631,7 @@ class Window(QTabWidget):
 
     '''初始化上传线程'''
     def upload_init(self):
-        filename = self.textEdit_configPath_tab2.text()
+        filename = self.filename2
         if filename != "" and filename != " ":
             getxml = Getxml.getXml(filename)
             configs = getxml.getDestination()
@@ -661,9 +663,9 @@ class Window(QTabWidget):
 
     '''选择插件目录'''
     def SelectConfigFile(self):
-        filename,filetype=QFileDialog.getOpenFileName(self,'choose file','','Text Files(importer.xml)')
-        self.textEdit_configPath_tab2.setText(filename)
-        self.verifyConfigFile(filename)
+        # filename,filetype=QFileDialog.getOpenFileName(self,'choose file','','Text Files(importer.xml)')
+        # self.textEdit_configPath_tab2.setText(filename)
+        self.verifyConfigFile(self.filename2)
 
     '''验证配置文件，检查配置文件中数据库的连接'''
     def verifyConfigFile(self,filename):

@@ -244,7 +244,10 @@ class SearchTools(object):
             filename=self.docid+name+".caj"
             try:
                 if not os.path.isfile(os.path.join("data/CAJs/", filename)):
-                    urllib.request.urlretrieve(self.download_url, os.path.join('data/CAJs/', filename))
+                    refence_file = self.session.get(self.download_url)
+                    with open('data/CAJs/' + filename , 'wb') as file:
+                        file.write(refence_file.content)
+                    # urllib.requxest.urlretrieve(self.download_url, os.path.join('data/CAJs/', filename))
             except Exception as e:
                 logging.error('下载出错')
             time.sleep(config.crawl_stepWaitTime)

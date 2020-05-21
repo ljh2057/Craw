@@ -186,7 +186,7 @@ class Window(QTabWidget):
         self.horizontalGroupBox = QGroupBox("数据自动采集")
         self.horizontalLayout.addWidget(self.horizontalGroupBox)
 
-        btn = QPushButton('选择目录', self)
+        btn = QPushButton('加载爬虫', self)
         btn.clicked.connect(self.showDialog)
 
         self.btn2 = QPushButton('开始爬取', self)
@@ -380,7 +380,6 @@ class Window(QTabWidget):
                 QMessageBox.about(self,'提示','修改成功')
         except:
             pass
-        print(123)
         self.initTable()
 
     '''修改默认文件存储路径'''
@@ -400,10 +399,10 @@ class Window(QTabWidget):
 
     '''选择插件目录'''
     def showDialog(self):
-        self.filename=QFileDialog.getExistingDirectory(self,'choose file')
-        # self.filename = "D:/QQfiles/Craw/plugins"
+        self.filename = os.getcwd()+"/plugins"
         self.textEdit_configPath.setText(self.filename)
         self.initTable()
+        QApplication.processEvents()
 
     '''表格内容刷新'''
     def initTable(self):

@@ -151,7 +151,7 @@ class Window(QTabWidget):
         self.jobList = []
         self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
         self.setWindowTitle("基于科技文献资料的数据抓取、识别及分析技术开发及应用")
-        self.resize(800, 600)
+        self.resize(800, 550)
 
         self.tab1=QWidget()
         self.tab2=QWidget()
@@ -480,10 +480,10 @@ class Window(QTabWidget):
         # btn_tab2 = QPushButton('选择配置文件', self)
         # btn_tab2.clicked.connect(self.SelectConfigFile)
 
-        self.btn_start = QPushButton('开始导入', self)
+        self.btn_start = QPushButton('开始批量更新', self)
         self.btn_start.clicked.connect(self.work_tab2)
 
-        self.btn_stop = QPushButton('结束导入', self)
+        self.btn_stop = QPushButton('结束批量更新', self)
         self.btn_stop.clicked.connect(self.stop_tab2)
         self.btn_stop.setEnabled(False)
         '''导入类型布局'''
@@ -513,8 +513,9 @@ class Window(QTabWidget):
 
         # self.main_horizontal_tab2_layout.addWidget(btn_tab2)
         # self.main_horizontal_tab2_layout.addWidget(self.textEdit_configPath_tab2)
-        self.main_horizontal_tab2_layout.addWidget(btn_edit)
+        # self.main_horizontal_tab2_layout.addWidget(btn_edit)
 
+        self.tab2_horizontal_layout.addWidget(btn_edit)
         self.tab2_horizontal_layout.addWidget(self.btn_start)
         self.tab2_horizontal_layout.addWidget(self.btn_stop)
 

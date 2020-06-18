@@ -53,8 +53,8 @@ class Craw_cnki(BasePlugin):
         search = main.SearchTools(count)
         try:
             search.search_reference(user_input, self.args)
-        except OSError:
-            pass
+        except Exception as e:
+            print(e)
         self.args["flag"] = False
         self.args["count"] = 0
         self.trigger.emit()
@@ -77,11 +77,16 @@ class Craw_cnki(BasePlugin):
             search = main.SearchTools(count)
             propath=os.path.abspath(os.path.join(savepath, ".."))
             # print(propath+'/Craw_cnki文献属性.xls')
+            print(propath)
             if os.path.exists(propath+'/Craw_cnki文献属性.xls'):
                 os.remove(propath+'/Craw_cnki文献属性.xls')
-            shutil.move('data/CAJs/Craw_cnki文献属性.xls',propath)
-            search.move_file('data/CAJs',savepath)
-            print("文件已存到%s目录下"%savepath)
+            # if os.path.exists(propath+'/data'):
+            try:
+                shutil.move('data/CAJs/Craw_cnki文献属性.xls',propath)
+                search.move_file('data/CAJs',savepath)
+                print("文件已存到%s目录下"%savepath)
+            except:
+                pass
         else:
             print("文件目录不存在")
 

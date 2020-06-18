@@ -32,7 +32,7 @@ class GetConfig(object):
 
     @LazyProperty
     def crawl_iscrackcode(self):
-        return 1
+        return 0
 
         # return self.conf.get('crawl', 'isCrackCode')
 
@@ -40,14 +40,10 @@ class GetConfig(object):
     @LazyProperty
     def crawl_headers(self):
         headers = {
-            'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
-            'Host':
-            'kns.cnki.net',
-            'Connection':
-            'keep-alive',
-            'Cache-Control':
-            'max-age=0',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.3',
+            'Host': 'kdoc.cnki.net',
+            'Connection': 'keep-alive',
+            'Cache-Control': 'max-age=0',
         }
         return headers
 

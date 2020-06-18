@@ -1,13 +1,6 @@
 import os
 import importlib
 from keyword import iskeyword
-import threading, queue,time
-
-from xlwt import Font
-
-from plugins.Craw_souhu import news_crawler
-import pandas as pd
-import openpyxl
 
 def call_plugin(p_name,method,state=None,text=None,filepath=None,propath=None):
     #package='plugins.'+p_name 根据路径引入对应的插件模块
@@ -42,115 +35,78 @@ def getAllPlugin(filepath):
     #     plgs[plugin]=list(filter(r.match, dir(obj)))#dir(obj)列出obj所有方法，返回list，python3中filter默认返回filter类
     # return plgs
     return plg_ls
-def showInfo(plugin_info):
-    pass
-nums=3
 
-def fun1(index,locks_list):
-   # mutex1.acquire()
-   locks_list[index].acquire()
-   print("线程1 执行")
-   for i in range(100):
-       print('线程1%f' % i)
-   # mutex2.release()
-   if index+1==nums:
-       locks_list[0].release()
-   else:
-       locks_list[index+1].release()
-
-
-def fun2(index,locks_list):
-   # mutex2.acquire()
-   locks_list[index].acquire()
-
-   print("线程2 执行")
-   for i in range(100):
-       print('线程2%f' % i)
-   # mutex3.release()  # 释放锁3，让线程3继续执行
-   if index+1==nums:
-       locks_list[0].release()
-   else:
-       locks_list[index+1].release()
-
-
-def fun3(index,locks_list):
-   # mutex3.acquire()  # 阻塞
-   locks_list[index].acquire()
-
-   print("线程3 执行")
-   for i in range(100):
-       print('线程3%f' % i)
-   if index + 1 == nums:
-       locks_list[0].release()
-   else:
-       locks_list[index + 1].release()
-
-if __name__ == '__main__':
-   # plugin_dir='/Users/macbookair/Plugin_project/plugins'
-   # plgs=getAllPlugin(plugin_dir)
-   # print(plgs)
-   # newfilepath,newpropath='F:\\newfilepath','E:\\newpropath'
-   # plg_info=call_plugin(plgs[0],'getParameters',filepath=newfilepath,propath=newpropath)
-   # print(plg_info)
-
-
-   # cnki = Cnki.Craw_cnki('c:\\1','stop','none')
-   # # print(cnki.getParameters())
-   #
-   # '''多线程通过线程锁实现按序执行'''
-   # from threading import Thread, Lock
-   # thread_list=[i for i in range(nums)]
-   # locks_list=[i for i in range(nums)]
-   # job_list=[fun1,fun2,fun3]
-   # def initThreadandLock(index, locks_list,thread_list,job_list):
-   #     locks_list[index] = Lock()
-   #     if index:
-   #         locks_list[index].acquire()
-   #     thread_list[index] =Thread(target=job_list[index],args=(index,locks_list))
-   # for index in range(nums):
-   #     initThreadandLock(index, locks_list, thread_list, job_list)
-   # for i in range(nums):
-   #     thread_list[i].start()
-   # for i in range(nums):
-   #     thread_list[i].join()
-
-   # import time
-   # ut=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-   # print(ut)
-   # # print(type(time.localtime(time.time())))
-   # # str_xml = open('D:\QQfiles\Craw/plugins/Craw_baidu/Craw_baidu.xml', 'r').read()
-   # str_xml = open('D:\QQfiles\Craw\plugins\Craw_baidu\Craw_baidu.xml','r', encoding='UTF-8').read()
-   # print(str_xml)
+#
+# import requests
+# from bs4 import BeautifulSoup
+# from PIL import Image
+# url = "http://kdoc.cnki.net/kdoc/download.aspx"
+# headers={
+#     "Content-Type": "application/x-www-form-urlencoded",
+#     "Upgrade-Insecure-Requests": "1",
+#     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.3',
+#     'Host': 'kdoc.cnki.net',
+#     'Connection': 'keep-alive',
+#     'Cache-Control': 'max-age=0',
+# }
+#
+# refence_file = requests.get(url, headers=headers)
+# querystring = {"filename":"WOaxkYhNUZCFUOCVXVxZ3QLlnZmhTZXdmVwImTEZTSylDWvNnZ2l0NHtkNZ5kSHVXOrcncW5kYZhmQ=0TWStSWIVja0YHawpnVrJVaGB1Z4cFcltyZFt2V54kd1sCesZGWnZlNzNmdygnU4lkWY9ENT5mNDJ","tablename":"CJFDAUTO"}
+#
+#
+# # soup = BeautifulSoup(refence_file, 'lxml')
+# htmls = refence_file.text
+# soup = BeautifulSoup(htmls, 'lxml')
+# print(soup.find_all(('img')))
+# while(len(soup.find_all(text="安全验证"))>0):
+#     validCodeSubSrc = soup.find_all('img')[0]['src']
+#
+#     img_url = 'http://kns.cnki.net' + validCodeSubSrc
+#     image_res = requests.get(img_url, headers=headers)
+#     with open('data/crack_code.jpeg', 'wb') as file:
+#         file.write(image_res.content)
+#     image = Image.open('data/crack_code.jpeg')
+#     image.show()
+#     code = input('出现验证码，请手动输入：')
+#     payload = "vcode="+code
+#     response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+#
+#     # res = requests.post(url, headers=headers, data={"vcode":code})
+#     # print(response.text)
+#     htmls = response.text
+#
+#
+#     soup = BeautifulSoup(htmls, 'lxml')
+# print(htmls)
+#
 
 
 
-   # data = {'BoolCol': [1, 2, 3, 3, 4],
-   #         'attr': [22, 33, 22, 44, 66],
-   #         'BoolC': [1, 2, 3, 3, 4],
-   #         'att': [22, 33, 22, 44, 66],
-   #         'Bool': [1, 2, 3, 3, 4]
-   #         }
-   # df = pd.DataFrame(data)
-   # print(df)
-   # df.to_excel(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx', na_rep=None, index=False)
-   # wb = openpyxl.load_workbook(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx')
-   # ws = wb.worksheets[0]
-   # # a1 = ws['A1']
-   # # ft = Font(colour_index = 0x7FFF, bold = False)
-   # # a1.font = ft
-   # ws.insert_cols(2, 2)
-   # for index, row in enumerate(ws.rows):
-   #     if index == 0:
-   #         row[1].value = '1'
-   #         row[2].value = '2'
-   #         row[3].value = 'ggggg'
-   #     else:
-   #         row[1].value = None
-   #         row[2].value = None
-   # wb.save(r'D:\QQfiles\Craw\plugins\Craw_souhu\news\sohu_latest_new.xlsx')
+from PIL import Image
 
-   fp = os.path.split('D:\QQfiles\Craw\craw_datas/Craw_souhu_ori')
-   print(fp[0])
-   fp = os.path.join(fp[0], 'Craw_souhu文献属性.xlsx')
-   print(fp)
+import requests
+
+# img_url="http://kns.cnki.net/kdoc/request/ValidateCode.ashx"
+# image_res = requests.get(img_url)
+# with open('data/crack_code.jpeg', 'wb') as file:
+#     file.write(image_res.content)
+# image = Image.open('data/crack_code.jpeg')
+# image.show()
+# code = input('出现验证码，请手动输入：')
+url = "http://kdoc.cnki.net/kdoc/download.aspx?filename=rgVbrRmRNhWQmd1NZRnTvdzdyZ3RVdHRItmS1sUczR3U0llMN12RvMkeaVkaJlFNFVEZwcXY5FmTndXYzEzQvljZ2IEcvNjaXRXcxZEexUldKpGUQ9WNkRVOuFTWslnYo5EZIV3TUdmVwEHRjdmW4o2cwsiMvJ2T&tablename=CAPJLAST&dflag=pdfdown"
+# payload = 'vcode='+code
+headers = {
+  'Referer': 'http://kdoc.cnki.net/kdoc/download.aspx?filename=VbrRmRNhWQmd1NZRnTvdzdyZ3RVdHRItmS1sUczR3U0llMN12RvMkeaVkaJlFNFVEZwcXY5FmTndXY=0zaOBzdCRWOTlHa6NnYO1WcolWSzEEZtdXcpF1Qn5ENWJneqZ3cUdmVwEHRjdmW4o2cwsiMvJ2Trg&tablename=CJFDAUTO',
+    'Cookie':'LID=WEEvREcwSlJHSldRa1FhcTdnTnhYQ21Nd01oWm93MjJUR3ZDZEFmYkliMD0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
+
+}
+s = requests.Session()
+
+# headers.setdefault("Cookie",cookie)
+response=s.get(url, headers=headers)
+print(response.text)
+with open('data/CAJs/test.pdf', 'wb') as file:
+    file.write(response.content)
+
+
 

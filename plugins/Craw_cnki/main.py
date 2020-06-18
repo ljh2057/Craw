@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import urllib
+import json
 import requests
 import re
 import time, os, shutil, logging
@@ -11,6 +12,9 @@ from urllib.parse import quote
 # 引入beautifulsoup
 from bs4 import BeautifulSoup
 import shutil
+from requests.cookies import RequestsCookieJar
+from urllib.parse import quote_plus, urlencode
+
 
 HEADER = config.crawl_headers
 # 获取cookie
@@ -20,7 +24,7 @@ SEARCH_HANDLE_URL = 'http://kns.cnki.net/kns/request/SearchHandler.ashx'
 # 发送get请求获得文献资源
 GET_PAGE_URL = 'http://kns.cnki.net/kns/brief/brief.aspx?pagename='
 # 下载的基础链接
-DOWNLOAD_URL = 'http://kns.cnki.net/kns/'
+DOWNLOAD_URL = 'http://kdoc.cnki.net/kdoc/'
 # 切换页面基础链接
 CHANGE_PAGE_URL = 'http://kns.cnki.net/kns/brief/brief.aspx'
 
@@ -79,15 +83,16 @@ class SearchTools(object):
         change_page_pattern_compile = re.compile(
             r'.*?pagerTitleCell.*?<a href="(.*?)".*')
         try:
+            print(second_get_res.text)
             self.change_page_url = re.search(change_page_pattern_compile,
                                              second_get_res.text).group(1)
             try:
                 self.parse_page(
                     self.pre_parse_page(second_get_res.text), second_get_res.text,args)
-            except OSError:
-                pass
-        except OSError:
-            pass
+            except Exception as e:
+                print(e)
+        except Exception as e:
+            print(e)
 
 
     def pre_parse_page(self, page_source):
@@ -160,13 +165,16 @@ class SearchTools(object):
                 #     file.write(td_text + ' ')
                 # 寻找下载链接
                 dl_url = td_info.find('a', attrs={'class': 'briefDl_D'})
+
+
                 # 寻找详情链接
                 dt_url = td_info.find('a', attrs={'class': 'fz14'})
                 # 排除不是所需要的列
                 if dt_url:
                     detail_url = dt_url.attrs['href']
                 if dl_url:
-                    download_url = dl_url.attrs['href']
+                    download_url = dl_url.attrs['href']+"&dflag=pdfdown"
+                    # download_url = dl_url.attrs['href']
             try:
                 # 将每一篇文献的信息分组
                 single_refence_list = tr_text.split(' ')
@@ -241,14 +249,40 @@ class SearchTools(object):
             # if config.crawl_isdownload ==1:
             if not os.path.isdir('data/CAJs'):
                 os.mkdir(r'data/CAJs')
-            filename=self.docid+name+".caj"
+            filename = self.docid+name+".pdf"
             try:
                 if not os.path.isfile(os.path.join("data/CAJs/", filename)):
-                    refence_file = self.session.get(self.download_url)
-                    with open('data/CAJs/' + filename , 'wb') as file:
+                    sess = requests.Session()
+                    HEADER['Referer'] = self.download_url
+                    HEADER['Cookie'] = 'LID=WEEvREcwSlJHSldRa1FhcTdnTnhYQ21Nd00rdW84VTRKVTcxNTZac0FUdz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
+                    refence_file = sess.get(self.download_url, headers=HEADER)
+                    with open('data/CAJs/' + filename, 'wb') as file:
                         file.write(refence_file.content)
-                    # urllib.requxest.urlretrieve(self.download_url, os.path.join('data/CAJs/', filename))
+                    # refence_file = requests.get(self.download_url,headers=HEADER)
+                    # with open('data/CAJs/' + filename , 'wb') as file:
+                    #     file.write(refence_file.content)
+
+                    # print(self.download_url)
+
+                    # refence_file =sess.get(self.download_url,headers=HEADER)
+
+                    # htmls = refence_file.text
+                    # soup = BeautifulSoup(htmls, 'lxml')
+                    # print(soup.find_all(('img')))
+                    # if len(soup.find_all('img'))>0:
+
+                        # validCodeSubSrc = soup.find_all('img')[0]['src']
+
+                        # code=crack.get_image2(validCodeSubSrc, self.session)
+
+                        # HEADER['Referer'] = self.download_url
+
+                        # payload = "vcode=" + code
+
+
+
             except Exception as e:
+                logging.error(e)
                 logging.error('下载出错')
             time.sleep(config.crawl_stepWaitTime)
     '''移动文件到指定路径'''

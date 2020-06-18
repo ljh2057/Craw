@@ -1,4 +1,3 @@
-# from PyQt5.QtWidgets import QMainWindow, QTextEdit,QDesktopWidget, QFileDialog, QApplication,QPushButton,QTableWidget,QAbstractItemView,QComboBox,QHBoxLayout,QWidget,QGroupBox,QVBoxLayout
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QMutex

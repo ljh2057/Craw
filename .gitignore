@@ -6,6 +6,7 @@
 .idea
 .DS_Store
 .cache
+__pycache__/
 *.pyc
 *.html
 *.xlm

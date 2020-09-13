@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--mysql-->
+<!--<Importer>-->
+<!--    <FilePath>/Users/macbookair/Desktop/ljh/研一下/oth/cnki_craw/Craw/craw_datas</FilePath>-->
+<!--    <Type>pfile</Type>-->
+<!--    <Database>-->
+<!--        <IP>localhost</IP>-->
+<!--        <Port>3306</Port>-->
+<!--        <serviceName>cnki</serviceName>-->
+<!--        <userName>root</userName>-->
+<!--        <password>adminadmin</password>-->
+<!--    </Database>-->
+<!--</Importer>-->
+<!--oracle-->
 <Importer>
-    <FilePath>/Users/macbookair/Desktop/ljh/研一下/oth/cnki_craw/Craw/craw_datas</FilePath>
+    <FilePath>D:\data\new</FilePath>
     <Type>pfile</Type>
     <Database>
-        <IP>localhost</IP>
-        <Port>3306</Port>
-        <serviceName>cnki</serviceName>
-        <userName>root</userName>
-        <password>adminadmin</password>
+        <IP>192.168.1.107</IP>
+        <Port>1521</Port>
+        <serviceName>ORCL</serviceName>
+        <userName>LITERATURESYSTEM</userName>
+        <password>123456</password>
     </Database>
 </Importer>

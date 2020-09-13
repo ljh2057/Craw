@@ -5,6 +5,9 @@ import json
 import re
 import lxml.html
 import os
+
+import requests
+from bs4 import BeautifulSoup
 from lxml import etree
 from datetime import datetime
 from plugins.Craw_souhu import getxml
@@ -81,15 +84,23 @@ class Souhu(object):
         """获取content"""
         content = ''
         try:
-            html = lxml.html.parse(url, parser=etree.HTMLParser(encoding='utf-8'))
-            res = html.xpath(self.xpaths[net])
-            p_str_list = [etree.tostring(node).strip().decode('utf-8') for node in res]
-            content = '\n'.join(p_str_list)
-            html_content = lxml.html.fromstring(content)
-            content = html_content.text_content()
-            content = re.sub(r'(\r*\n)+', '\n', content)
+            html = requests.get(url)
+            bf = BeautifulSoup(html.content, 'html.parser')
+            f = bf.select('.article p')
+            for p in f[1:]:
+                if (p.string == None):
+                    pass
+                else:
+                    content = content + p.string
+            # html = lxml.html.parse(url, parser=etree.HTMLParser(encoding='utf-8'))
+            # res = html.xpath(self.xpaths[net])
+            # p_str_list = [etree.tostring(node).strip().decode('utf-8') for node in res]
+            # content = '\n'.join(p_str_list)
+            # html_content = lxml.html.fromstring(content)
+            # content = html_content.text_content()
+            # content = re.sub(r'(\r*\n)+', '\n', content)
         except Exception as e:
-            print(e)
+            print("hehehehehehehehehehehehe", e)
         return content
 
     def get_sohu_latest_news(self, template_url, path=None, top=80, show_content=True):
@@ -130,12 +141,17 @@ class Souhu(object):
                 if i < top:
                     rt = datetime.fromtimestamp(r['publicTime'] // 1000)
                     # time
-                    rt_str = datetime.strftime(rt, '%Y-%m-%d')
+                    # rt_str = datetime.strftime(rt, '%Y-%m-%d')
+                    rt_str = str(datetime.strftime(rt, '%Y-%m-%d')).replace('-','') + "000000"
+                    # print(rt_str)
+                    # rt_str1 = datetime.strftime(rt, '%Y-%m-%d %H:%i:%S')
+                    # rt_str = str(rt_str1).replace('-','').replace(':','').replace(' ','') + "00"
+                    # print(rt_str)
                     # url
-                    r_url = 'http://www.sohu.com/a/' + str(r['id']) + '_' + str(r['authorId'])
+                    r_url = 'https://www.sohu.com/a/' + str(r['id']) + '_' + str(r['authorId'])
                     # DOCID
                     DOCID = self.CRID + "%04d" % (i + 1)
-                    row = [self.CRID, DOCID, r['title'], rt_str, r_url]
+                    row = [self.CRID, DOCID, str(DOCID)+str(r['title']), rt_str, r_url]
                     # if show_content and self.flag:
                     # print(self.flag)
                     if self.flag==True:
@@ -147,13 +163,20 @@ class Souhu(object):
                             self.args["CrawProcess"].emit(str(self.pg))
                             row.append(self.latest_content('sohu', r_url))
                             # 写入TXT
-                            txtname = row[1] + row[2]
+                            # print("row1", row[1])
+                            # print("row2", row[2])
+                            # txtname = row[1] + row[2]
+                            txtname = row[2]
+                            # print("name",txtname)
                             tn = re.sub(r'[\/:*?"<>|]', '-', txtname)
+                            # print("tn", tn)
                             # tn = txtname.replace('"', '')
                             # tn = tn.replace(':', '')
                             # tn = tn.replace('?', '')
                             txtpath = str(path).replace('\\', '/') + "/" + tn + ".txt"
+                            # print(txtpath)
                             writetxt = open(txtpath, "w")
+                            # print("kpoihghfgdjbvjnd")
                             writetxt.write(row[5].encode("gbk", 'ignore').decode("gbk", "ignore"))
                             writetxt.close()
                         data.append(row)
@@ -189,7 +212,7 @@ class Souhu(object):
         news_df['关键字']=""
         news_df['摘要']=""
         news_df['来源']=""
-        news_df['后缀']=""
+        news_df['后缀']="txt"
         order=['标志','序号','题名','作者','单位','关键字','摘要','来源','发表时间','下载地址','后缀']
         news_df=news_df[order]
         fp = os.path.split(self.filepath)

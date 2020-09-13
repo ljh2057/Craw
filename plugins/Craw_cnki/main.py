@@ -18,15 +18,15 @@ from urllib.parse import quote_plus, urlencode
 
 HEADER = config.crawl_headers
 # 获取cookie
-BASIC_URL = 'http://kns.cnki.net/kns/brief/result.aspx'
+BASIC_URL = 'https://kns.cnki.net/kns/brief/result.aspx'
 # 利用post请求先行注册一次
-SEARCH_HANDLE_URL = 'http://kns.cnki.net/kns/request/SearchHandler.ashx'
+SEARCH_HANDLE_URL = 'https://kns.cnki.net/kns/request/SearchHandler.ashx'
 # 发送get请求获得文献资源
-GET_PAGE_URL = 'http://kns.cnki.net/kns/brief/brief.aspx?pagename='
+GET_PAGE_URL = 'https://kns.cnki.net/kns/brief/brief.aspx?pagename='
 # 下载的基础链接
-DOWNLOAD_URL = 'http://kdoc.cnki.net/kdoc/'
+DOWNLOAD_URL = 'https://kdoc.cnki.net/kdoc/'
 # 切换页面基础链接
-CHANGE_PAGE_URL = 'http://kns.cnki.net/kns/brief/brief.aspx'
+CHANGE_PAGE_URL = 'https://kns.cnki.net/kns/brief/brief.aspx'
 
 
 class SearchTools(object):
@@ -61,9 +61,10 @@ class SearchTools(object):
             'ua': '1.21',
             'isinEn': '1',
             'PageName': 'ASP.brief_result_aspx',
-            'DbPrefix': 'CFLS',
+            'DbPrefix': 'CJFQ',
             'DbCatalog': '中国学术期刊网络出版总库',
-            'ConfigFile': 'SCDB.xml',
+            # 'ConfigFile': 'SCDB.xml',
+            'ConfigFile': 'CJFQ.xml',
             'db_opt': 'CJFQ,CDFD,CMFD,CPFD,IPFD,CCND,CCJD',  # 搜索类别（CNKI右侧的）
             'his': '0',
             '__': time.asctime(time.localtime()) + ' GMT+0800 (中国标准时间)'
@@ -76,16 +77,20 @@ class SearchTools(object):
             SEARCH_HANDLE_URL, data=post_data, headers=HEADER)
         # get请求中需要传入第一个检索条件的值
         key_value = quote(ueser_input.get('txt_1_value1'))
+        # print("first_post_res:",first_post_res.text)
+        # print("key_value:",key_value)
         self.get_result_url = GET_PAGE_URL + first_post_res.text + '&t=1544249384932&keyValue=' + key_value + '&S=1&sorttype='
         # 检索结果的第一个页面
         second_get_res = self.session.get(self.get_result_url,headers=HEADER)
+        # print(second_get_res.text)
         # second_get_res = self.session.get(SEARCH_HANDLE_URL, data=post_data,headers=HEADER)
         change_page_pattern_compile = re.compile(
             r'.*?pagerTitleCell.*?<a href="(.*?)".*')
         try:
-            print(second_get_res.text)
             self.change_page_url = re.search(change_page_pattern_compile,
                                              second_get_res.text).group(1)
+            print(self.change_page_url)
+
             try:
                 self.parse_page(
                     self.pre_parse_page(second_get_res.text), second_get_res.text,args)
@@ -93,6 +98,9 @@ class SearchTools(object):
                 print(e)
         except Exception as e:
             print(e)
+        #     pass
+        # self.parse_page(
+        #     self.pre_parse_page(second_get_res.text), second_get_res.text,args)
 
 
     def pre_parse_page(self, page_source):
@@ -230,6 +238,7 @@ class SearchTools(object):
         '''
         # 拼接下载地址
         self.download_url = DOWNLOAD_URL + re.sub(r'../', '', url)
+        print("url---------------", self.download_url)
         if len(self.download_url) > 40:
             args['count']+=1
             self.pg="正在下载第%s/%s篇文献"%(args['count'],str(self.select_download_num))
@@ -254,7 +263,7 @@ class SearchTools(object):
                 if not os.path.isfile(os.path.join("data/CAJs/", filename)):
                     sess = requests.Session()
                     HEADER['Referer'] = self.download_url
-                    HEADER['Cookie'] = 'LID=WEEvREcwSlJHSldRa1FhcTdnTnhYQ21Nd00rdW84VTRKVTcxNTZac0FUdz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
+                    HEADER['Cookie'] = 'LID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVXVXlwQ1R1a2Rkc1VWNTJUZG9JQT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
                     refence_file = sess.get(self.download_url, headers=HEADER)
                     with open('data/CAJs/' + filename, 'wb') as file:
                         file.write(refence_file.content)

@@ -47,12 +47,14 @@ class PageDetail(object):
         self.session.cookies.set('cnkiUserKey', self.cnkiUserKey)
         self.download_url=download_url
         self.docid=docid
+        # cur_url_pattern_compile = re.compile(
+        #     r'.*?filename=(.*?)&.*?DbCode=(.*?)&')
         cur_url_pattern_compile = re.compile(
-            r'.*?FileName=(.*?)&.*?DbCode=(.*?)&')
+            r'.*?DbCode=(.*?)&.*?filename=(.*?)&')
         cur_url_set=re.search(cur_url_pattern_compile,page_url)
         # 前两次请求需要的验证参数
         params = {
-            'curUrl':'detail.aspx?dbCode=' + cur_url_set.group(2) + '&fileName='+cur_url_set.group(1),
+            'curUrl':'detail.aspx?dbCode=' + cur_url_set.group(1) + '&fileName='+cur_url_set.group(2),
             'referUrl': result_url+'#J_ORDER&',
             'cnkiUserKey': self.session.cookies['cnkiUserKey'],
             'action': 'file',
@@ -80,13 +82,14 @@ class PageDetail(object):
         '''
         soup=BeautifulSoup(detail_page,'lxml')
         # 获取作者单位信息
-        orgn_list=soup.find(name='div', class_='orgn').find_all('a')
+        orgn_list=soup.find(name='div', class_='wx-tit').find_all('a')
+        # orgn_list=soup.find(name='div', id='authorpart').strings
         self.orgn=''
         if len(orgn_list)==0:
             self.orgn='无单位来源'
         else:
             for o in orgn_list:
-                self.orgn+=o.string
+                self.orgn+=o.text
         # 获取摘要
         try:
             abstract_list = soup.find(name='span', id='ChDivSummary').strings
@@ -98,11 +101,18 @@ class PageDetail(object):
         # 获取关键词
         self.keywords=''
         try:
-            keywords_list = soup.find(name='label', id='catalog_KEYWORD').next_siblings
-            for k_l in keywords_list:
-                # 去除关键词中的空格，换行
-                for k in k_l.stripped_strings:
-                    self.keywords+=k
+            keywords_list = soup.find(name='p', class_='keywords').find_all('a')
+            if len(keywords_list) == 0:
+                self.keywords = '无单位来源'
+            else:
+                for k_l in keywords_list:
+                    for k in k_l.stripped_strings:
+                        self.keywords += k
+            # keywords_list = soup.find(name='label', id='catalog_KEYWORD').next_siblings
+            # for k_l in keywords_list:
+            #     # 去除关键词中的空格，换行
+            #     for k in k_l.stripped_strings:
+            #         self.keywords+=k
         except Exception:
             self.keywords='无关键词'
         self.wtire_excel()

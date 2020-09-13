@@ -85,7 +85,7 @@ def getAllPlugin(filepath):
 from PIL import Image
 
 import requests
-
+#
 # img_url="http://kns.cnki.net/kdoc/request/ValidateCode.ashx"
 # image_res = requests.get(img_url)
 # with open('data/crack_code.jpeg', 'wb') as file:
@@ -96,17 +96,62 @@ import requests
 url = "http://kdoc.cnki.net/kdoc/download.aspx?filename=rgVbrRmRNhWQmd1NZRnTvdzdyZ3RVdHRItmS1sUczR3U0llMN12RvMkeaVkaJlFNFVEZwcXY5FmTndXYzEzQvljZ2IEcvNjaXRXcxZEexUldKpGUQ9WNkRVOuFTWslnYo5EZIV3TUdmVwEHRjdmW4o2cwsiMvJ2T&tablename=CAPJLAST&dflag=pdfdown"
 # payload = 'vcode='+code
 headers = {
-  'Referer': 'http://kdoc.cnki.net/kdoc/download.aspx?filename=VbrRmRNhWQmd1NZRnTvdzdyZ3RVdHRItmS1sUczR3U0llMN12RvMkeaVkaJlFNFVEZwcXY5FmTndXY=0zaOBzdCRWOTlHa6NnYO1WcolWSzEEZtdXcpF1Qn5ENWJneqZ3cUdmVwEHRjdmW4o2cwsiMvJ2Trg&tablename=CJFDAUTO',
-    'Cookie':'LID=WEEvREcwSlJHSldRa1FhcTdnTnhYQ21Nd01oWm93MjJUR3ZDZEFmYkliMD0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
+    'Referer': url,
+    'Upgrade-Insecure-Requests': '1',
+    'Content-Type': 'application/x-www-form-urlencoded',
+}
+cookieValue=""
+s = requests.Session()
+response=s.get(url, headers=headers)
+for item in response.cookies:
+    if item.name=="LID":
+        cookieValue=item.name + '=' + item.value + ';'
+headers['Cookie'] = cookieValue
+response=s.get(url, headers=headers)
 
+with open('test2.pdf', 'wb') as file:
+    file.write(response.content)
+# print(response.cookies)
+# print(response.headers['location'])
+
+# cookieValue=''
+# for item in response.cookies:
+#     cookieValue += item.name + '=' + item.value + ';'
+# headers['Cookie'] = cookieValue
+# #
+# response2=s.post(url, headers=headers, data = payload)
+
+
+# from requests.cookies import RequestsCookieJar
+# c = requests.cookies.RequestsCookieJar()
+# for item in response.cookies:
+#     c.set(item["name"],item["value"])
+# # resd = requests.utils.dict_from_cookiejar(response.cookies)
+# # print(requests.utils.cookiejar_from_dict(resd))
+# print(c)
+# print(s.cookies)
+# s.cookies.update(c)
+# print(s.cookies)
+# cookie_jar.set([key for key in resd][0], resd[[key for key in resd][0]], domain='ckni.net')
+
+import requests
+
+url = "http://kdoc.cnki.net/kdoc/download.aspx?filename=rgVbrRmRNhWQmd1NZRnTvdzdyZ3RVdHRItmS1sUczR3U0llMN12RvMkeaVkaJlFNFVEZwcXY5FmTndXYzEzQvljZ2IEcvNjaXRXcxZEexUldKpGUQ9WNkRVOuFTWslnYo5EZIV3TUdmVwEHRjdmW4o2cwsiMvJ2T&tablename=CAPJLAST&dflag=pdfdown"
+headers = {
+    'Referer': url,
+    'Upgrade-Insecure-Requests': '1',
+    'Content-Type': 'application/x-www-form-urlencoded',
 }
 s = requests.Session()
+response = s.get(url, headers=headers)
 
-# headers.setdefault("Cookie",cookie)
-response=s.get(url, headers=headers)
-print(response.text)
-with open('data/CAJs/test.pdf', 'wb') as file:
+cookieValue=""
+for item in response.cookies:
+    if item.name=="LID":
+        cookieValue=item.name + '=' + item.value + ';'
+headers['Cookie'] = cookieValue
+print(headers['Cookie'])
+response = s.get(url, headers=headers)
+
+with open('test2.pdf', 'wb') as file:
     file.write(response.content)
-
-
-

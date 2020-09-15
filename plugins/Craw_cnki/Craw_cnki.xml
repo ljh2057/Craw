@@ -6,7 +6,7 @@
             <Name>知网爬虫</Name>
             <Describe>知网爬虫</Describe>
             <Condition>
-                <Motif>人工智能</Motif>
+                <Motif>时间</Motif>
                 <Keyword></Keyword>
                 <Relation></Relation>
                 <Magazine></Magazine>
@@ -16,5 +16,5 @@
             </Condition>
         </Record>
     </Address>
-<FilePath>/Users/macbookair/Desktop</FilePath>
+<FilePath>D:\data\new</FilePath>
 </Crawer>

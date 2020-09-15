@@ -217,6 +217,7 @@ class BlobDataTestor(QThread):
                             else:
                                 break
                         except Exception as e:
+                            print("1111111", e)
                     self.CrawProcess.emit("导入完成")
                     cursor.close()
                     self.conn.commit()
@@ -253,9 +254,14 @@ class BlobDataTestor(QThread):
 if __name__ == '__main__':
     from plugins.Craw_cnki import Getxml
     # getxml = Getxml.getXml('/Users/macbookair/Plugin_project/ImportFile/importer.xml')
-    getxml = Getxml.getXml('D:\\workspaces\\pythonworks\\200830new\\Craw-master\\importer.xml')
+    a = os.getcwd()+"\\importer.xml"
+    print(a.replace('/',"\\"))
+    # getxml = Getxml.getXml('D:\\workspaces\\pythonworks\\20200913new\\Craw\\importer.xml')
+    getxml = Getxml.getXml(a.replace('/',"\\"))
+
     configs = getxml.getDestination()
     bt=BlobDataTestor(configs)
+
     # cur_dir='/Users/macbookair/Plugin_project/craw_datas'
     '''
     构建字典存储爬虫插件对应的属性文件、原文文件夹、txt文本文件夹信息
@@ -273,4 +279,5 @@ if __name__ == '__main__':
     #         f_all_dict.setdefault(f[:f.find('文献属性')], []).append(filetxt) if os.path.exists(filetxt) else f_all_dict.setdefault(f[:f.find('文献属性')], []).append(None)
 
     # print(f_all_dict)
+
     bt.upload_pfile(configs['path'])

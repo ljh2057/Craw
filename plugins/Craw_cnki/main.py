@@ -12,8 +12,14 @@ from urllib.parse import quote
 # 引入beautifulsoup
 from bs4 import BeautifulSoup
 import shutil
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.chrome.options import Options
+
 from requests.cookies import RequestsCookieJar
 from urllib.parse import quote_plus, urlencode
+from http import cookiejar
+
 
 
 HEADER = config.crawl_headers
@@ -42,6 +48,33 @@ class SearchTools(object):
         # 保持会话
         self.session.get(BASIC_URL, headers=HEADER)
         self.count=count
+
+    def get_cookies(self):
+        self.webdriver_path = "D:\\workspaces\\pythonworks\\webdriver\\chromedriver_win32\\chromedriver.exe"
+        # options = webdriver.ChromeOptions()
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-gpu')
+        driver = webdriver.Chrome(executable_path=self.webdriver_path, chrome_options=chrome_options)
+        # driver = webdriver.Chrome(self.webdriver_path)
+        driver.get("https://www.cnki.net/")
+        driver.find_element_by_id("txt_SearchText").click()
+        sleep(2)
+        driver.find_element_by_id("txt_SearchText").send_keys("机器学习")
+        sleep(1)
+        element = driver.find_element_by_class_name("search-btn")
+        webdriver.ActionChains(driver).move_to_element(element).click(element).perform()
+        driver.find_element_by_class_name("search-btn").click()
+        sleep(1)
+        coo = driver.get_cookies()
+        cookies = {}
+        self.ck = str()
+        # 获取cookie中的name和value,转化成requests可以使用的形式
+        for cookie in coo:
+            cookies[cookie['name']] = cookie['value']
+            self.ck = self.ck + cookie['name'] + '=' + cookie['value'] + ';'
+            # print(cookie['name'] + '=' + cookie['value'] + ';')
+        return self.ck
 
     def search_reference(self, ueser_input,args):
         '''
@@ -72,6 +105,12 @@ class SearchTools(object):
         # 将固定字段与自定义字段组合
         post_data = {**static_post_data, **ueser_input}
 
+        try:
+            self.get_cookies()
+        except Exception as e:
+            print(e)
+            print("cookie获取失败")
+
         # 必须有第一次请求，否则会提示服务器没有用户
         first_post_res = self.session.post(
             SEARCH_HANDLE_URL, data=post_data, headers=HEADER)
@@ -82,6 +121,9 @@ class SearchTools(object):
         self.get_result_url = GET_PAGE_URL + first_post_res.text + '&t=1544249384932&keyValue=' + key_value + '&S=1&sorttype='
         # 检索结果的第一个页面
         second_get_res = self.session.get(self.get_result_url,headers=HEADER)
+        # cookies = second_get_res.cookies
+        # cookie = requests.utils.dict_from_cookiejar(cookies)
+        # print(cookie)
         # print(second_get_res.text)
         # second_get_res = self.session.get(SEARCH_HANDLE_URL, data=post_data,headers=HEADER)
         change_page_pattern_compile = re.compile(
@@ -101,6 +143,7 @@ class SearchTools(object):
         #     pass
         # self.parse_page(
         #     self.pre_parse_page(second_get_res.text), second_get_res.text,args)
+
 
 
     def pre_parse_page(self, page_source):
@@ -181,7 +224,8 @@ class SearchTools(object):
                 if dt_url:
                     detail_url = dt_url.attrs['href']
                 if dl_url:
-                    download_url = dl_url.attrs['href']+"&dflag=pdfdown"
+                    # download_url = dl_url.attrs['href']+"&dflag=pdfdown"
+                    download_url = dl_url.attrs['href']+"&dflag=cajdown"
                     # download_url = dl_url.attrs['href']
             try:
                 # 将每一篇文献的信息分组
@@ -258,12 +302,17 @@ class SearchTools(object):
             # if config.crawl_isdownload ==1:
             if not os.path.isdir('data/CAJs'):
                 os.mkdir(r'data/CAJs')
-            filename = self.docid+name+".pdf"
+            # filename = self.docid+name+".pdf"
+            filename = self.docid+name+".caj"
             try:
                 if not os.path.isfile(os.path.join("data/CAJs/", filename)):
                     sess = requests.Session()
                     HEADER['Referer'] = self.download_url
-                    HEADER['Cookie'] = 'LID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVXVXlwQ1R1a2Rkc1VWNTJUZG9JQT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
+                    # HEADER['Cookie'] = 'LID=WEEvREcwSlJHSldSdmVqelcxVTNETUwxSkpTdzNSelZPMGtUTTR3djg1QT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
+                    # HEADER['Cookie'] = 'CurrSortFieldType=desc;CurrSortField=%e5%8f%91%e8%a1%a8%e6%97%b6%e9%97%b4%2f(%e5%8f%91%e8%a1%a8%e6%97%b6%e9%97%b4%2c%27TIME%27);c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqelcxVTNETUwwTExCbEZsQXRxTzRsVnpSSVpvTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/15/2020 15:04:56;cnkiUserKey=80843df4-4597-8109-17a3-f4f7642134c4;Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"fC3r2l"};c_m_expire=2020-09-15 15:04:56;SID_kns8=123112;Ecp_session=1;ASP.NET_SessionId=cdwbc4sppmhjofebxlgpbbp4;SID_kns_new=kns123121;Ecp_ClientId=5200915144402179584;Ecp_notFirstLogin=fC3r2l;LID=WEEvREcwSlJHSldSdmVqelcxVTNETUwwTExCbEZsQXRxTzRsVnpSSVpvTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
+                    # HEADER['Cookie'] = 'c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVRTFY0MHlhNld6cXdxem9kRXpzcz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/15/2020 16:25:29;cnkiUserKey=700c6580-66f0-d89f-414c-c84f72dc52fa;c_m_expire=2020-09-15 16:25:29;SID_kns8=123106;ASP.NET_SessionId=qag4isl11jbdrt0mjunnyvjr;SID_kns_new=kns123117;Ecp_ClientId=1200915160502413634;Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"rptZbY"};Ecp_notFirstLogin=rptZbY;LID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVRTFY0MHlhNld6cXdxem9kRXpzcz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;Ecp_session=1;'
+                    HEADER['Cookie'] = self.ck
+                    # HEADER['Cookie'] = 'LID=WEEvREcwSlJHSldSdmVqMDh6aS9uaHNhNzBDTkc0T2JDR3YwelNIc2FMMD0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
                     refence_file = sess.get(self.download_url, headers=HEADER)
                     with open('data/CAJs/' + filename, 'wb') as file:
                         file.write(refence_file.content)
@@ -279,14 +328,16 @@ class SearchTools(object):
                     # soup = BeautifulSoup(htmls, 'lxml')
                     # print(soup.find_all(('img')))
                     # if len(soup.find_all('img'))>0:
-
-                        # validCodeSubSrc = soup.find_all('img')[0]['src']
-
-                        # code=crack.get_image2(validCodeSubSrc, self.session)
-
-                        # HEADER['Referer'] = self.download_url
-
-                        # payload = "vcode=" + code
+                    #
+                    #     validCodeSubSrc = soup.find_all('img')[0]['src']
+                    #
+                    #     code=crack.get_image2(validCodeSubSrc, self.session)
+                    #
+                    #     HEADER['Referer'] = self.download_url
+                    #
+                    #     payload = "vcode=" + code
+                    #     ret = sess.post(self.download_url, data=payload)
+                    #     print(ret)
 
 
 
@@ -310,3 +361,9 @@ class SearchTools(object):
         m, s = divmod(seconds, 60)
         h, m = divmod(m, 60)
         return ("%02d小时%02d分钟%02d秒" % (h, m, s))
+
+
+# Ecp_ClientId=1200824163400713266; RsPerPage=20; cnkiUserKey=3bc189b4-1612-5130-3b53-e91d7f426804; _pk_ref=%5B%22%22%2C%22%22%2C1599961800%2C%22https%3A%2F%2Fwww.cnki.net%2F%22%5D; LID=WEEvREcwSlJHSldSdmVqMDh6aS9uaHNiSkpvbExySllXaCs1MkpUR1NCST0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!; Ecp_session=1; Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"5BEo2M"}; ASP.NET_SessionId=xer0y025pdahbeg1pdbooazq; SID_kns8=123110; c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqMDh6aS9uaHNiSkpvbExySllXaCs1MkpUR1NCST0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/14/2020 10:08:51; c_m_expire=2020-09-14 10:08:51
+# Ecp_ClientId=1200824163400713266; RsPerPage=20; cnkiUserKey=3bc189b4-1612-5130-3b53-e91d7f426804; _pk_ref=%5B%22%22%2C%22%22%2C1599961800%2C%22https%3A%2F%2Fwww.cnki.net%2F%22%5D; LID=WEEvREcwSlJHSldSdmVqMDh6aS9uaHNiSkpvbExySllXaCs1MkpUR1NCST0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!; Ecp_session=1; Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"5BEo2M"}; ASP.NET_SessionId=xer0y025pdahbeg1pdbooazq; SID_kns8=123110; c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqMDh6aS9uaHNiSkpvbExySllXaCs1MkpUR1NCST0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/14/2020 10:08:51; c_m_expire=2020-09-14 10:08:51
+# Ecp_notFirstLogin=5BEo2M; Ecp_ClientId=1200824163400713266; RsPerPage=20; cnkiUserKey=3bc189b4-1612-5130-3b53-e91d7f426804; _pk_ref=%5B%22%22%2C%22%22%2C1599961800%2C%22https%3A%2F%2Fwww.cnki.net%2F%22%5D; LID=WEEvREcwSlJHSldSdmVqMDh6aS9uaHNiSkpvbExySllXaCs1MkpUR1NCST0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!; Ecp_session=1; Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"5BEo2M"}; ASP.NET_SessionId=xer0y025pdahbeg1pdbooazq; SID_kns8=123110; CurrSortField=%e5%8f%91%e8%a1%a8%e6%97%b6%e9%97%b4%2f(%e5%8f%91%e8%a1%a8%e6%97%b6%e9%97%b4%2c%27TIME%27); CurrSortFieldType=desc; SID_kcms=124108; c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqMDh6aS9uaHNiSkpvbExySllXaCs1MkpUR1NCST0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/14/2020 10:11:55; c_m_expire=2020-09-14 10:11:55
+# https://kns.cnki.net/kcms/download.aspx?filename=w5WUJNFV5pmdrlTbJp3SaNXa09Gbr4GWLZGOLVkcotyYNBDVl9WVyRHTxFnVzRHSuV2LWxkei9mbyhVUwVmdNxUanZ0d1VHZYVUQpJzZYJ1QEdWekx2cwJ3dyFjcxEzQitGWNhnQzoGNptSaj9yaNJ0NDdGMCllU&tablename=CAPJLAST&dflag=cajdown

@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QMutex
 from plugins.Craw_cnki import Getxml
 from ImportFile import SaveData
+import cx_Oracle as cx
 import pymysql
 from PyQt5.QtCore import QThread,pyqtSignal,Qt
 from plugins.Craw_cnki.Craw_cnki import Craw_cnki
@@ -673,7 +674,8 @@ class Window(QTabWidget):
             getxml = Getxml.getXml(filename)
             configs = getxml.getDestination()
             try:
-                self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']), user=configs['username'],passwd=configs['password'], db=configs['servicename'])
+                # self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']), user=configs['username'],passwd=configs['password'], db=configs['servicename'])
+                self.conn = cx.connect('LITERATURESYSTEM', '123456', '192.168.1.107/orcl')
             except Exception as e:
                 QMessageBox.about(self,'提示','数据库连接错误')
                 print(e)

@@ -82,7 +82,8 @@ class PageDetail(object):
         '''
         soup=BeautifulSoup(detail_page,'lxml')
         # 获取作者单位信息
-        orgn_list=soup.find(name='div', class_='wx-tit').find_all('a')
+        # orgn_list=soup.find(name='div', class_='wx-tit').find_all('a')
+        orgn_list=soup.find(name='div', class_='wx-tit').find('h3').next_sibling.next_sibling.find_all('a')
         # orgn_list=soup.find(name='div', id='authorpart').strings
         self.orgn=''
         if len(orgn_list)==0:

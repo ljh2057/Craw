@@ -4,6 +4,8 @@ from PyQt5.QtCore import QMutex
 from plugins.Craw_cnki import Getxml
 from ImportFile import SaveData
 import cx_Oracle as cx
+import time
+from threading import Thread
 import pymysql
 from PyQt5.QtCore import QThread,pyqtSignal,Qt
 from plugins.Craw_cnki.Craw_cnki import Craw_cnki
@@ -141,6 +143,7 @@ class UploadThread(QThread):
 
 class Window(QTabWidget):
     def __init__(self):
+        self.state = 0
         super().__init__()
         # self.initUI()
         self.names=self.__dict__
@@ -149,6 +152,7 @@ class Window(QTabWidget):
         '''plugin_job用来存储插件线程,jobList用来存储插件名'''
         self.plugin_job=[]
         self.jobList = []
+        self.chosedjob = []
         self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
         self.setWindowTitle("基于科技文献资料的数据抓取、识别及分析技术开发及应用")
         self.resize(800, 550)
@@ -287,14 +291,59 @@ class Window(QTabWidget):
             '''job[0]为线程对象,job[1]为对应的行号,通过行号修改爬取状态'''
             for job in self.plugin_job:
                 try:
+                    self.chosedjob.append(job[1])
                     state = QTableWidgetItem('正在爬取')
                     state.setTextAlignment(Qt.AlignCenter)
-                    job[0].crawSignal_f.connect(lambda :self.getState(job[1]))
+                    # self.state = job[1]
+                    job[0].crawSignal_f.connect(lambda: self.getState(job[1]))
+                    # job[0].crawSignal_f.connect(self.getState())
                     job[0].start()
-                    self.TableWidget.setItem(job[1], 2,state)
+                    self.TableWidget.setItem(job[1], 2, state)
+
+
+
+                    # state = QTableWidgetItem('正在爬取')
+                    # state.setTextAlignment(Qt.AlignCenter)
+                    #
+                    # # job[0].crawSignal_f.connect(lambda :self.getState(job[1]))
+                    # job[0].start()
+                    # # job[0].run()
+                    # QApplication.processEvents()
+                    # self.TableWidget.setItem(job[1], 2,state)
+                    # while job[0].isRunning():
+                    #     time.sleep(5)
+                    # job[0].crawSignal_f.connect(self.getState(job[1]))
+
+
+
+                    # state = QTableWidgetItem('正在爬取')
+                    # state.setTextAlignment(Qt.AlignCenter)
+                    # self.TableWidget.setItem(job[1], 2, state)
+                    # QApplication.processEvents()
+                    # job[0].start()
+                    # while job[0].isRunning():
+                    #     print(job[0].isRunning())
+                    #     time.sleep(5)
+                    # self.getState(job[1])
+                    # # job[0].crawSignal_f.connect(lambda: self.getState(job[1]))
+                    # # print("running-------", job[0].isRunning())
+
+
+
+                    # state = QTableWidgetItem('正在爬取')
+                    # state.setTextAlignment(Qt.AlignCenter)
+                    # self.TableWidget.setItem(job[1], 2, state)
+                    # QApplication.processEvents()
+                    # job[0].start()
+                    # # job[0].run()
+                    # self.getState(job[1])
+                    # # job[0].crawSignal_f.connect(self.getState(job[1]))
+                    # # QApplication.processEvents()
+
                 except:
                     pass
             QApplication.processEvents()
+            # time.sleep(5)
         else:
             QMessageBox.about(self, '提示', '未选择任务')
 
@@ -324,11 +373,14 @@ class Window(QTabWidget):
         self.textEdit.setText(info)
 
     '''插件运行结束后更新页面爬取状态'''
-    def getState(self,index):
-        print(index)
+    def getState(self, index):
+        ind = self.chosedjob[self.state]
+        print("indexxxxxxxxxxxxxxx", ind)
+        self.state = self.state + 1
+        print("self.state", self.state)
         state = QTableWidgetItem('爬取完成')
         state.setTextAlignment(Qt.AlignCenter)
-        self.TableWidget.setItem(index, 2, state)
+        self.TableWidget.setItem(ind, 2, state)
         self.btn3.setEnabled(False)
         self.btn2.setEnabled(True)
         QApplication.processEvents()

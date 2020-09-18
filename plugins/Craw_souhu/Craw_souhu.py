@@ -81,7 +81,8 @@ class Craw_souhu(BasePlugin):
 
     """
     def run(self):
-
+        # self.sh.flag = True
+        # self.args["state"] = '正在爬取'
         t = self.xml.getcount()
         t = int(t)
         # project_path = os.path.dirname(os.path.realpath(__file__))  # 获取项目路径
@@ -101,6 +102,7 @@ class Craw_souhu(BasePlugin):
         # ws = wb.worksheets[0]
 
         self.CrawProcess.emit('爬取完成')
+        # self.sh.flag = False
         # fp = os.path.join(news_path, 'sohu_latest_news.csv')
         # print("filepath......" + fp)
         # df = pd.read_csv(fp)
@@ -115,6 +117,7 @@ class Craw_souhu(BasePlugin):
 
     def stop(self):
         self.sh.flag = False
+        # self.args["state"] = '爬取结束'
         # self.args['flag'] = False
         # print("stop")
         self.trigger.emit()

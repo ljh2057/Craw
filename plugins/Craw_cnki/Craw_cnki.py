@@ -61,6 +61,7 @@ class Craw_cnki(BasePlugin):
 
     def stop(self):
         self.args["flag"] = False
+        # self.args["state"] = '爬取结束'
         self.trigger.emit()
     '''保存数据，判断Craw_cnki_ori是否存在当前路径，不存在时创建'''
     def saveData(self):
@@ -83,7 +84,7 @@ class Craw_cnki(BasePlugin):
             # if os.path.exists(propath+'/data'):
             try:
                 shutil.move('data/CAJs/Craw_cnki文献属性.xls',propath)
-                search.move_file('data/CAJs',savepath)
+                search.move_file('data/CAJs',savepath,self.args)
                 print("文件已存到%s目录下"%savepath)
             except:
                 pass

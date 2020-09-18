@@ -12,9 +12,9 @@
                 <Magazine></Magazine>
                 <Publishdate_from></Publishdate_from>
                 <Publishdate_to></Publishdate_to>
-                <DownloadCounts>10</DownloadCounts>
+                <DownloadCounts>5</DownloadCounts>
             </Condition>
         </Record>
     </Address>
-    <FilePath>D:\data\new</FilePath>
+    <FilePath>D:\data\test</FilePath>
 </Crawer>

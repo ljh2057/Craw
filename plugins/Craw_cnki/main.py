@@ -312,7 +312,7 @@ class SearchTools(object):
                     # HEADER['Cookie'] = 'CurrSortFieldType=desc;CurrSortField=%e5%8f%91%e8%a1%a8%e6%97%b6%e9%97%b4%2f(%e5%8f%91%e8%a1%a8%e6%97%b6%e9%97%b4%2c%27TIME%27);c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqelcxVTNETUwwTExCbEZsQXRxTzRsVnpSSVpvTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/15/2020 15:04:56;cnkiUserKey=80843df4-4597-8109-17a3-f4f7642134c4;Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"fC3r2l"};c_m_expire=2020-09-15 15:04:56;SID_kns8=123112;Ecp_session=1;ASP.NET_SessionId=cdwbc4sppmhjofebxlgpbbp4;SID_kns_new=kns123121;Ecp_ClientId=5200915144402179584;Ecp_notFirstLogin=fC3r2l;LID=WEEvREcwSlJHSldSdmVqelcxVTNETUwwTExCbEZsQXRxTzRsVnpSSVpvTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
                     # HEADER['Cookie'] = 'c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVRTFY0MHlhNld6cXdxem9kRXpzcz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/15/2020 16:25:29;cnkiUserKey=700c6580-66f0-d89f-414c-c84f72dc52fa;c_m_expire=2020-09-15 16:25:29;SID_kns8=123106;ASP.NET_SessionId=qag4isl11jbdrt0mjunnyvjr;SID_kns_new=kns123117;Ecp_ClientId=1200915160502413634;Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"rptZbY"};Ecp_notFirstLogin=rptZbY;LID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVRTFY0MHlhNld6cXdxem9kRXpzcz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;Ecp_session=1;'
                     HEADER['Cookie'] = self.ck
-                    # HEADER['Cookie'] = 'LID=WEEvREcwSlJHSldSdmVqMDh6aS9uaHNhNzBDTkc0T2JDR3YwelNIc2FMMD0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
+                    # HEADER['Cookie'] = 'Ecp_ClientId=1200824163400713266; cnkiUserKey=3bc189b4-1612-5130-3b53-e91d7f426804; SID=zhuye006; Ecp_session=1; _pk_ref=%5B%22%22%2C%22%22%2C1600247285%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3D1QNB3ozqZFmKQrJunLFuJn3iSEv6k-AZeBA3xHZ-8Wa%26wd%3D%26eqid%3Ded55ec7e00044464000000035f61627d%22%5D; _pk_ses=*; c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVUaFVEOGJ4TldxYkF6bEU4anQzZz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/16/2020 17:27:44; LID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVUaFVEOGJ4TldxYkF6bEU4anQzZz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!; c_m_expire=2020-09-16 17:27:44; Ecp_notFirstLogin=Gr0r31; Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"Gr0r31"}'
                     refence_file = sess.get(self.download_url, headers=HEADER)
                     with open('data/CAJs/' + filename, 'wb') as file:
                         file.write(refence_file.content)
@@ -346,13 +346,15 @@ class SearchTools(object):
                 logging.error('下载出错')
             time.sleep(config.crawl_stepWaitTime)
     '''移动文件到指定路径'''
-    def move_file(self,src_dir, target_dir):
+    def move_file(self,src_dir, target_dir,args):
+        args["CrawProcess"].emit("正在移动文件")
         if not os.path.exists(target_dir):
             os.mkdir(target_dir)
         for item in os.listdir(src_dir):
             src_name = os.path.join(src_dir, item)
             target_name = os.path.join(target_dir, item)
             shutil.move(src_name, target_name)
+        args["CrawProcess"].emit("文件移动完成，爬取完成")
 
     def s2h(self,seconds):
         '''

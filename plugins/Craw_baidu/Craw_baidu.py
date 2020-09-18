@@ -48,7 +48,8 @@ class Craw_baidu(BasePlugin):
                     os.makedirs(self.filepath+'Craw_baidu_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_baidu_ori')
                     self.filepath=self.filepath+'Craw_baidu_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_baidu_ori'
     def run(self):
-        urls=[]
+        # urls=[]
+        # self.args["state"] = '正在爬取'
         urls = self.bd.geturls()
         for url in urls:
             if (int(self.bd.num) < int(self.getxml.getcount())) and self.args['flag']:
@@ -63,8 +64,14 @@ class Craw_baidu(BasePlugin):
         self.CrawProcess.emit('爬取完成')
         self.args['flag']=False
 
+
+
+
+
+
     def stop(self):
         self.args['flag'] = False
+        # self.args["state"] = '爬取结束'
         self.trigger.emit()
 
 

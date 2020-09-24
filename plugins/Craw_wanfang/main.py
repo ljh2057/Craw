@@ -191,7 +191,8 @@ class SearchTools(object):
         保存页面信息
         解析每一页的下载地址
         '''
-        gettype = args['type']
+        # gettype = args['type']
+        gettype = "pdf"
         soup = BeautifulSoup(page_source, 'lxml')
         # 定位到内容表区域
         tr_table = soup.find(name='table', attrs={'class': 'GridTableContent'})
@@ -288,10 +289,11 @@ class SearchTools(object):
         拼接下载地址
         进行文献下载
         '''
-        gettype = args['type']
+        gettype = "pdf"
+        # gettype = args['type']
         # 拼接下载地址
         self.download_url = DOWNLOAD_URL + re.sub(r'../', '', url)
-        print("url---------------", self.download_url)
+        # print("url---------------", self.download_url)
         if len(self.download_url) > 40:
             args['count']+=1
             self.pg="正在下载第%s/%s篇文献"%(args['count'],str(self.select_download_num))
@@ -309,12 +311,12 @@ class SearchTools(object):
             # with open('data/Links.txt', 'a', encoding='utf-8') as file:
             #     file.write(self.download_url + '\n')
             # if config.crawl_isdownload ==1:
-            if not os.path.isdir('data/CAJs'):
-                os.mkdir(r'data/CAJs')
+            if not os.path.isdir('data/PDFs'):
+                os.mkdir(r'data/PDFs')
             # filename = self.docid+name+".pdf"
             filename = self.docid+name+"." + gettype
             try:
-                if not os.path.isfile(os.path.join("data/CAJs/", filename)):
+                if not os.path.isfile(os.path.join("data/PDFs/", filename)):
                     sess = requests.Session()
                     HEADER['Referer'] = self.download_url
                     # HEADER['Cookie'] = 'LID=WEEvREcwSlJHSldSdmVqelcxVTNETUwxSkpTdzNSelZPMGtUTTR3djg1QT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!;'
@@ -323,7 +325,7 @@ class SearchTools(object):
                     HEADER['Cookie'] = self.ck
                     # HEADER['Cookie'] = 'Ecp_ClientId=1200824163400713266; cnkiUserKey=3bc189b4-1612-5130-3b53-e91d7f426804; SID=zhuye006; Ecp_session=1; _pk_ref=%5B%22%22%2C%22%22%2C1600247285%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3D1QNB3ozqZFmKQrJunLFuJn3iSEv6k-AZeBA3xHZ-8Wa%26wd%3D%26eqid%3Ded55ec7e00044464000000035f61627d%22%5D; _pk_ses=*; c_m_LinID=LinID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVUaFVEOGJ4TldxYkF6bEU4anQzZz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&ot=09/16/2020 17:27:44; LID=WEEvREcwSlJHSldSdmVqM1BLUWdMWjVUaFVEOGJ4TldxYkF6bEU4anQzZz0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!; c_m_expire=2020-09-16 17:27:44; Ecp_notFirstLogin=Gr0r31; Ecp_LoginStuts={"IsAutoLogin":false,"UserName":"NJ0023","ShowName":"%E6%B2%B3%E6%B5%B7%E5%A4%A7%E5%AD%A6","UserType":"bk","BUserName":"","BShowName":"","BUserType":"","r":"Gr0r31"}'
                     refence_file = sess.get(self.download_url, headers=HEADER)
-                    with open('data/CAJs/' + filename, 'wb') as file:
+                    with open('data/PDFs/' + filename, 'wb') as file:
                         file.write(refence_file.content)
                     # refence_file = requests.get(self.download_url,headers=HEADER)
                     # with open('data/CAJs/' + filename , 'wb') as file:

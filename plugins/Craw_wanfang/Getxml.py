@@ -27,7 +27,7 @@ class getXml:
         passWord = dom.getElementsByTagName('password')
         Path = dom.getElementsByTagName('FilePath')
         # Path = dom.getElementsByTagName('Path')
-        Type=dom.getElementsByTagName('Type')
+        ##Type=dom.getElementsByTagName('Type')
         configs = {}
         if self.isNone(Path[0].firstChild):
             assert 1
@@ -46,7 +46,7 @@ class getXml:
                 configs['path'] = Path[0].firstChild.data[0:len(Path[0].firstChild.data)-1]
             else:
                 configs['path'] = Path[0].firstChild.data
-            configs['type']=Type[0].firstChild.data
+            ##configs['type']=Type[0].firstChild.data
             return configs
     def getfull(self):
         dom = xml.dom.minidom.parse(self.file)
@@ -61,7 +61,7 @@ class getXml:
         Publishdate_tos = dom.getElementsByTagName('Publishdate_to')
         DownloadCounts = dom.getElementsByTagName('DownloadCounts')
         FilePath = dom.getElementsByTagName('FilePath')
-        Type = dom.getElementsByTagName('Type')
+        ##Type = dom.getElementsByTagName('Type')
         # PropertyPath = dom.getElementsByTagName('PropertyPath')
 
         Conditions['name']=" " if self.isNone(name[0].firstChild) else name[0].firstChild.data
@@ -74,7 +74,7 @@ class getXml:
         Conditions['to']=" " if self.isNone(Publishdate_tos[0].firstChild) else Publishdate_tos[0].firstChild.data
         Conditions['count']=" " if self.isNone(DownloadCounts[0].firstChild) else DownloadCounts[0].firstChild.data
         Conditions['filepath']=" " if self.isNone(FilePath[0].firstChild) else FilePath[0].firstChild.data
-        Conditions['type']=" " if self.isNone(Type[0].firstChild) else Type[0].firstChild.data
+        ##Conditions['type']=" " if self.isNone(Type[0].firstChild) else Type[0].firstChild.data
         # Conditions['propertypath']=" " if self.isNone(PropertyPath[0].firstChild) else PropertyPath[0].firstChild.data
         return Conditions
     def getData(self):

@@ -7,15 +7,18 @@ import cx_Oracle as cx
 import time
 from threading import Thread
 import pymysql
+import globalVar
 from PyQt5.QtCore import QThread,pyqtSignal,Qt
 from plugins.Craw_cnki.Craw_cnki import Craw_cnki
 from plugins.Craw_baidu.Craw_baidu import Craw_baidu
 from plugins.Craw_souhu.Craw_souhu import Craw_souhu
+from plugins.Craw_wanfang.Craw_wanfang import Craw_wanfang
 import os
 import LoadPlugins as lp
 qumt1 = QMutex()
 qumt2 = QMutex()
 qumt3 = QMutex()
+qumt4 = QMutex()
 class CrawCnkiThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     crawSignal=pyqtSignal(str)
@@ -107,6 +110,40 @@ class CrawSouhuThread(QThread):
     '''加载爬虫对象属性信息'''
     def loadFromConfig(self):
         return self.craw_souhu.getParameters()
+class CrawWanfangThread(QThread):
+    '''信号槽获取爬虫对象的爬取进度信息'''
+    crawSignal=pyqtSignal(str)
+    '''该信号作为插件运行结束标志'''
+    crawSignal_f=pyqtSignal()
+    def __init__(self,filepath=None,propath=None):
+        super().__init__()
+        '''实例化爬虫对象'''
+        self.craw_wanfang = Craw_wanfang(filepath=filepath,propath=propath)
+    '''启动线程'''
+    def run(self):
+        qumt1.lock()
+        qumt2.lock()
+        qumt3.lock()
+        qumt4.lock()
+        self.craw_wanfang.CrawProcess.connect(self.update)
+        self.craw_wanfang.run()
+        self.craw_wanfang.saveData()
+        self.crawSignal_f.emit()
+        qumt4.unlock()
+        qumt3.unlock()
+        qumt2.unlock()
+        qumt1.unlock()
+    '''传递爬虫对象中的进度信息'''
+    def update(self, data):
+        self.crawSignal.emit(data)
+
+    '''停止线程'''
+    def stop(self):
+        self.craw_wanfang.stop()
+    '''加载爬虫对象属性信息'''
+    def loadFromConfig(self):
+        return self.craw_wanfang.getParameters()
+
 class UploadThread(QThread):
     '''信号槽获取爬虫对象的爬取进度信息'''
     uploadSignal = pyqtSignal(str)
@@ -149,11 +186,13 @@ class Window(QTabWidget):
         self.names=self.__dict__
         self.filePath=None
         self.proPath=None
+        # self.stoped = 1
         '''plugin_job用来存储插件线程,jobList用来存储插件名'''
         self.plugin_job=[]
         self.jobList = []
         self.chosedjob = []
         self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
+        # self.craw_wanfang_thread = CrawWanfangThread(filepath=self.filePath,propath=self.proPath)
         self.setWindowTitle("基于科技文献资料的数据抓取、识别及分析技术开发及应用")
         self.resize(800, 550)
 
@@ -272,7 +311,8 @@ class Window(QTabWidget):
         plugins={
             'Craw_cnki':[self.cnki_plugin_init(),plugin_name[1]],
             'Craw_baidu':[self.baidu_plugin_init(),plugin_name[1]],
-            'Craw_souhu':[self.souhu_plugin_init(),plugin_name[1]]
+            'Craw_souhu':[self.souhu_plugin_init(),plugin_name[1]],
+            'Craw_wanfang':[self.wanfang_plugin_init(),plugin_name[1]]
         }
         return plugins.get(plugin_name[0],None)
     '''启动插件'''
@@ -353,6 +393,13 @@ class Window(QTabWidget):
         '''通过信号槽传递,实现实时更新爬取进度'''
         self.craw_cnki_thread.crawSignal.connect(self.updateTextEdit)
         return self.craw_cnki_thread
+
+    '''wanfang插件线程初始化'''
+    def wanfang_plugin_init(self):
+        self.craw_wanfang_thread = CrawWanfangThread(filepath=self.filePath,propath=self.proPath)
+        '''通过信号槽传递,实现实时更新爬取进度'''
+        self.craw_wanfang_thread.crawSignal.connect(self.updateTextEdit)
+        return self.craw_wanfang_thread
 
     '''baidu插件线程初始化'''
     def baidu_plugin_init(self):
@@ -634,12 +681,18 @@ class Window(QTabWidget):
         if up_thread is not None:
             up_thread.uploadSignal_f.connect(self.updateState)
             up_thread.start()
+            # while 1:
+            #     if self.stoped:
+            #         break
         else:
             QMessageBox.about(self, '提示', '文件位置不存在**')
         self.textEdit_tab2.setText('导入完毕')
 
     '''停止插件运行'''
     def stop_tab2(self):
+        globalVar.set_st(0)
+        print("stop!!!!!!!")
+        print(globalVar.get_st())
         self.btn_stop.setEnabled(False)
         self.btn_start.setEnabled(True)
         QApplication.processEvents()

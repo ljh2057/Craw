@@ -1,11 +1,11 @@
 from plugins.BasePlugin.BasePlugin import BasePlugin
-from plugins.Craw_cnki import Getxml
-from plugins.Craw_cnki import main
+from plugins.Craw_wanfang import Getxml
+from plugins.Craw_wanfang import main
 import os
 from PyQt5.QtCore import  pyqtSignal
 import shutil
 
-class Craw_cnki(BasePlugin):
+class Craw_wanfang(BasePlugin):
     trigger = pyqtSignal()
     CrawProcess=pyqtSignal(str)
     def __init__(self, state=None, text=None,args={},filepath=None,propath=None):
@@ -35,7 +35,7 @@ class Craw_cnki(BasePlugin):
         获取爬虫name，爬虫描述、保存文件路径和属性文件路径
         '''
         self.name=configDate['name']
-        self.type=configDate['type']
+        ##self.type=configDate['type']
         self.describe=configDate['describe']
         if self.filepath==None:
             self.filepath = configDate['filepath']
@@ -49,7 +49,7 @@ class Craw_cnki(BasePlugin):
         self.args["state"] = '正在爬取'
         self.args["text"] = self.text
         self.args["CrawProcess"]=self.CrawProcess
-        self.args["type"]=self.type
+        ##self.args["type"]=self.type
         getxml = Getxml.getXml(self.configPath)
         user_input = getxml.getData()
         count = int(getxml.getCount()) * 20
@@ -69,25 +69,25 @@ class Craw_cnki(BasePlugin):
     '''保存数据，判断Craw_cnki_ori是否存在当前路径，不存在时创建'''
     def saveData(self):
         if os.path.exists(self.filepath):
-            if self.filepath.find('Craw_cnki_ori') > 0:
+            if self.filepath.find('Craw_wanfang_ori') > 0:
                 savepath = self.filepath
             else:
-                if 'Craw_cnki_ori' in os.listdir(self.filepath):
-                    savepath=self.filepath+'Craw_cnki_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_cnki_ori'
+                if 'Craw_wanfang_ori' in os.listdir(self.filepath):
+                    savepath=self.filepath+'Craw_wanfang_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_wanfang_ori'
                 else:
-                    os.makedirs(self.filepath+'Craw_cnki_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_cnki_ori')
-                    savepath=self.filepath+'Craw_cnki_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_cnki_ori'
+                    os.makedirs(self.filepath+'Craw_wanfang_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_wanfang_ori')
+                    savepath=self.filepath+'Craw_wanfang_ori' if self.filepath[-1] == '/' else self.filepath + '/Craw_wanfang_ori'
             count = self.getxml.getCount()
             search = main.SearchTools(count)
             propath=os.path.abspath(os.path.join(savepath, ".."))
             # print(propath+'/Craw_cnki文献属性.xls')
             print(propath)
-            if os.path.exists(propath+'/Craw_cnki文献属性.xls'):
-                os.remove(propath+'/Craw_cnki文献属性.xls')
+            if os.path.exists(propath+'/Craw_wanfang文献属性.xls'):
+                os.remove(propath+'/Craw_wanfang文献属性.xls')
             # if os.path.exists(propath+'/data'):
             try:
-                shutil.move('data/CAJs/Craw_cnki文献属性.xls',propath)
-                search.move_file('data/CAJs',savepath,self.args)
+                shutil.move('data/PDFs/Craw_wanfang文献属性.xls',propath)
+                search.move_file('data/PDFs',savepath,self.args)
                 print("文件已存到%s目录下"%savepath)
             except:
                 pass

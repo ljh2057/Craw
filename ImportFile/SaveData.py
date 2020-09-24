@@ -9,6 +9,10 @@ import shutil
 import uuid
 from PyQt5.QtCore import pyqtSignal,QThread
 
+import globalVar
+from MainPage import Window
+
+
 class BlobDataTestor(QThread):
     trigger = pyqtSignal()
     CrawProcess=pyqtSignal(str)
@@ -134,7 +138,7 @@ class BlobDataTestor(QThread):
                     if sheet.cell(r, 0).value[0:3]=="CRA":
                         # values = (sheet.cell(r, 0).value[3:], sheet.cell(r, 2).value, sheet.cell(r, 3).value,sheet.cell(r, 4).value,sheet.cell(r, 5).value,sheet.cell(r, 6).value,sheet.cell(r, 7).value,sheet.cell(r, 8).value,sheet.cell(r, 9).value,sheet.cell(r,10).value,ut)
                         values = (sheet.cell(r, 0).value[3:], sheet.cell(r, 3).value, sheet.cell(r, 4).value,sheet.cell(r, 5).value,sheet.cell(r, 2).value,sheet.cell(r, 7).value,sheet.cell(r, 8).value,sheet.cell(r, 9).value,sheet.cell(r, 10).value,ut,sheet.cell(r,6).value)
-                        print("6666666666666", values)
+                        # print("6666666666666", values)
                         ops.append(values)
                     else:
                         tag = "UPA" + time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
@@ -181,43 +185,48 @@ class BlobDataTestor(QThread):
                                 print('未找到文件' % file[4][21:])
                     cursor = self.conn.cursor()
                     for n in range(0, len(save_file)):
-                        self.CrawProcess.emit(str("正在导入%s\n" % (save_file[n][7])))
-                        try:
-                            self.hdfs_ip = "http://192.168.1.107:50070"
-                            self.inputpath = '/4516/upload'
-                            self.client = hdfs.Client(self.hdfs_ip)
-                            if self.configs['flag'] == True:
-                                # cursor.executemany(
-                                #     "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,ABSTRACT,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,CONTENT_ORI,SOURCE_CODE,LANG)values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s, %s, %s)",
-                                #     save_file[n:n+1])
-                                # sql = "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,SOURCE_CODE,LANG,ABSTRACT,CONTENT_ORI)values(:1, to_date(:2,'yyyy-mm-dd hh24:mi:ss'), :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15)"
-                                # sql = "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,SOURCE_CODE,LANG,ABSTRACT)values(:1, to_date(:2,'yyyy-mm-dd hh24:mi:ss'), :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14)"
-                                # txt导入
-                                sql = "insert into DOCUMENTS(UUID,SOURCE_CODE,LANG,CRA_DT,AUTHOR,KYWRD,AURDEPT,TITLE,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,ABSTRACT,CONTENT_ORI)values(:1, :2, :3, to_date(:4,'yyyy-mm-dd hh24:mi:ss'), :5, :6, :7, :8, :9, to_date(:10,'yyyy-mm-dd hh24:mi:ss'), :11, :12, to_date(:13,'yyyy-mm-dd hh24:mi:ss'), :14,:15)"
-                                # pdf导入
-                                # sql = "insert into DOCUMENTS(UUID,SOURCE_CODE,LANG,CRA_DT,AUTHOR,KYWRD,AURDEPT,TITLE,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,ABSTRACT)values(:1, :2, :3, to_date(:4,'yyyy-mm-dd hh24:mi:ss'), :5, :6, :7, :8, :9, to_date(:10,'yyyy-mm-dd hh24:mi:ss'), :11, :12, to_date(:13,'yyyy-mm-dd hh24:mi:ss'), :14)"
-                                # sql = "insert into DOCUMENTS(UUID,SOURCE_CODE,LANG,CRA_DT,AUTHOR,ABSTRACT,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,TITLE)values('ce017578ec0411ea91d6a85e45b3a491', '1010', 'ZH', to_date('20200830203320','yyyy-mm-dd hh24:mi:ss'), '龙视要闻', '', '', '', '', to_date('20200830203320','yyyy-mm-dd hh24:mi:ss'), 'http://baijiahao.baidu.com/s?id=1676355714433432996', 'txt', to_date('20200830203320','yyyy-mm-dd hh24:mi:ss'), 'CRA202008302033200001美国最机密武器五年来首次现身，莫斯科：敢挑衅就摧毁')"
-                                # sql = "insert into DOCUMENTS(UUID,SOURCE_CODE,LANG,CRA_DT,AUTHOR,ABSTRACT,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,TITLE)values('fUiiiuid', '', '', '', '', '', '', '', '', '', '', '', '', '')"
-                                # sql = "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD)values('fUuid', to_date('2020-06-29 00:00:00','yyyy-mm-dd hh24:mi:ss'), 'hhhhhhhh', 'jjjjjjjjj', 'ooooo', 'ppppppp')"
-                                # a = ('ce017578ec0411ea91d6a85e45b3a491', '1010', 'ZH', '20200830203320', '龙视要闻', '', '', '', '', '2020-08-29', 'http://baijiahao.baidu.com/s?id=1676355714433432996', 'txt', '20200901113956', 'CRA202008302033200001美国最机密武器五年来首次现身，莫斯科：敢挑衅就摧毁')
-                                # 上传到oracle
-                                cursor.executemany(sql,
-                                #     # "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,SOURCE_CODE,LANG,ABSTRACT,CONTENT_ORI)values(:1, to_date(:2,'yyyy-mm-dd hh24:mi:ss'), :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15)",
-                                #     # "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,ABSTRACT,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,CONTENT_ORI,SOURCE_CODE,LANG)values(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)",
-                                #     # "insert into DOCUMENTS(UUID,CRA_DT,TITLE)values(:1, :2, :3)",
-                                save_file[n:n+1])
-                                # str(save_file[n:n+1]).replace('[','').replace(']',''))
-                                # cursor.execute(sql)
-                                try:
-                                    # 上传到hdfs
-                                    t = self.upload_filepath.rindex('/')
-                                    self.client.upload(self.inputpath, self.upload_filepath[0:t+1]+save_file[n][7]+self.suffix)
-                                except Exception as e:
-                                    print("upload error!", e)
-                            else:
-                                break
-                        except Exception as e:
-                            print("1111111", e)
+                        a = globalVar.get_st()
+                        print(a)
+                        if a == 1:
+                            self.CrawProcess.emit(str("正在导入%s\n" % (save_file[n][7])))
+                            try:
+                                self.hdfs_ip = "http://192.168.1.107:50070"
+                                self.inputpath = '/4516/upload'
+                                self.client = hdfs.Client(self.hdfs_ip)
+                                if self.configs['flag'] == True:
+                                    # cursor.executemany(
+                                    #     "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,ABSTRACT,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,CONTENT_ORI,SOURCE_CODE,LANG)values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s, %s, %s)",
+                                    #     save_file[n:n+1])
+                                    # sql = "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,SOURCE_CODE,LANG,ABSTRACT,CONTENT_ORI)values(:1, to_date(:2,'yyyy-mm-dd hh24:mi:ss'), :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15)"
+                                    # sql = "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,SOURCE_CODE,LANG,ABSTRACT)values(:1, to_date(:2,'yyyy-mm-dd hh24:mi:ss'), :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14)"
+                                    # txt导入
+                                    sql = "insert into DOCUMENTS(UUID,SOURCE_CODE,LANG,CRA_DT,AUTHOR,KYWRD,AURDEPT,TITLE,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,ABSTRACT,CONTENT_ORI)values(:1, :2, :3, to_date(:4,'yyyy-mm-dd hh24:mi:ss'), :5, :6, :7, :8, :9, to_date(:10,'yyyy-mm-dd hh24:mi:ss'), :11, :12, to_date(:13,'yyyy-mm-dd hh24:mi:ss'), :14,:15)"
+                                    # pdf导入
+                                    # sql = "insert into DOCUMENTS(UUID,SOURCE_CODE,LANG,CRA_DT,AUTHOR,KYWRD,AURDEPT,TITLE,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,ABSTRACT)values(:1, :2, :3, to_date(:4,'yyyy-mm-dd hh24:mi:ss'), :5, :6, :7, :8, :9, to_date(:10,'yyyy-mm-dd hh24:mi:ss'), :11, :12, to_date(:13,'yyyy-mm-dd hh24:mi:ss'), :14)"
+                                    # sql = "insert into DOCUMENTS(UUID,SOURCE_CODE,LANG,CRA_DT,AUTHOR,ABSTRACT,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,TITLE)values('ce017578ec0411ea91d6a85e45b3a491', '1010', 'ZH', to_date('20200830203320','yyyy-mm-dd hh24:mi:ss'), '龙视要闻', '', '', '', '', to_date('20200830203320','yyyy-mm-dd hh24:mi:ss'), 'http://baijiahao.baidu.com/s?id=1676355714433432996', 'txt', to_date('20200830203320','yyyy-mm-dd hh24:mi:ss'), 'CRA202008302033200001美国最机密武器五年来首次现身，莫斯科：敢挑衅就摧毁')"
+                                    # sql = "insert into DOCUMENTS(UUID,SOURCE_CODE,LANG,CRA_DT,AUTHOR,ABSTRACT,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,TITLE)values('fUiiiuid', '', '', '', '', '', '', '', '', '', '', '', '', '')"
+                                    # sql = "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD)values('fUuid', to_date('2020-06-29 00:00:00','yyyy-mm-dd hh24:mi:ss'), 'hhhhhhhh', 'jjjjjjjjj', 'ooooo', 'ppppppp')"
+                                    # a = ('ce017578ec0411ea91d6a85e45b3a491', '1010', 'ZH', '20200830203320', '龙视要闻', '', '', '', '', '2020-08-29', 'http://baijiahao.baidu.com/s?id=1676355714433432996', 'txt', '20200901113956', 'CRA202008302033200001美国最机密武器五年来首次现身，莫斯科：敢挑衅就摧毁')
+                                    # 上传到oracle
+                                    cursor.executemany(sql,
+                                    #     # "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,SOURCE_CODE,LANG,ABSTRACT,CONTENT_ORI)values(:1, to_date(:2,'yyyy-mm-dd hh24:mi:ss'), :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15)",
+                                    #     # "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,ABSTRACT,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,CONTENT_ORI,SOURCE_CODE,LANG)values(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)",
+                                    #     # "insert into DOCUMENTS(UUID,CRA_DT,TITLE)values(:1, :2, :3)",
+                                    save_file[n:n+1])
+                                    # str(save_file[n:n+1]).replace('[','').replace(']',''))
+                                    # cursor.execute(sql)
+                                    try:
+                                        # 上传到hdfs
+                                        t = self.upload_filepath.rindex('/')
+                                        self.client.upload(self.inputpath, self.upload_filepath[0:t+1]+save_file[n][7]+self.suffix)
+                                    except Exception as e:
+                                        print("upload error!", e)
+                                else:
+                                    break
+                            except Exception as e:
+                                print("1111111", e)
+                        else:
+                            break
                     self.CrawProcess.emit("导入完成")
                     cursor.close()
                     self.conn.commit()

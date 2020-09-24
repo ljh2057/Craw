@@ -3,17 +3,17 @@
     <Address>
         <Record>
             <CrawId>Craw_cnki</CrawId >
-            <Name>知网爬虫</Name>
-            <Describe>知网爬虫</Describe>
+            <Name>万方爬虫</Name>
+            <Describe>万方爬虫</Describe>
             <Condition>
-                <Motif>爆炸 空气冲击波</Motif>
+                <Motif>大数据</Motif>
                 <Keyword></Keyword>
                 <Relation></Relation>
                 <Magazine></Magazine>
                 <Publishdate_from>1999</Publishdate_from>
                 <Publishdate_to>2020</Publishdate_to>
                 <DownloadCounts>1</DownloadCounts>
-                <Type>pdf</Type>
+<!--                <Type>pdf</Type>-->
             </Condition>
         </Record>
     </Address>

@@ -6,7 +6,7 @@
             <Name>知网爬虫</Name>
             <Describe>知网爬虫</Describe>
             <Condition>
-                <Motif>爆炸 空气冲击波</Motif>
+                <Motif>深度学习</Motif>
                 <Keyword></Keyword>
                 <Relation></Relation>
                 <Magazine></Magazine>
@@ -17,5 +17,5 @@
             </Condition>
         </Record>
     </Address>
-<FilePath>D:\data\test</FilePath>
+<FilePath>D:\PythonProjects\cnkidata</FilePath>
 </Crawer>

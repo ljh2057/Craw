@@ -1,6 +1,6 @@
 import hdfs
 import pymysql
-import cx_Oracle as cx
+# import cx_Oracle as cx
 import xlrd
 import xlwt
 import os
@@ -20,9 +20,9 @@ class BlobDataTestor(QThread):
         super(BlobDataTestor, self).__init__()
         self.configs=configs
         try:
-            # self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']),user=configs['username'], passwd=configs['password'], db=configs['servicename'])
-            self.conn = cx.connect(configs['username'], configs['password'],
-                                   configs['ip'] + ":" + configs['port'] + "/" + configs['servicename'])
+            self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']),user=configs['username'], passwd=configs['password'], db=configs['servicename'])
+            # self.conn = cx.connect(configs['username'], configs['password'],
+            #                        configs['ip'] + ":" + configs['port'] + "/" + configs['servicename'])
         except:
             pass
     def __del__(self):
@@ -111,7 +111,6 @@ class BlobDataTestor(QThread):
            当ori或txt文件夹不存在时,使用None占位
         '''
         f_all_dict = {}
-        print("mmmmmmmmmmmmmm",cur_dir)
         for f in os.listdir(cur_dir):
             if f.find('文献属性.xls') > 0 or f.find('文献属性.xlsx') > 0:
                 filepro = cur_dir + f if cur_dir[-1] == '/' else cur_dir + '/' + f
@@ -190,13 +189,13 @@ class BlobDataTestor(QThread):
                         if a == 1:
                             self.CrawProcess.emit(str("正在导入%s\n" % (save_file[n][7])))
                             try:
-                                self.hdfs_ip = "http://192.168.1.107:50070"
-                                self.inputpath = '/4516/upload'
-                                self.client = hdfs.Client(self.hdfs_ip)
+                                # self.hdfs_ip = "http://192.168.1.107:50070"
+                                # self.inputpath = '/4516/upload'
+                                # self.client = hdfs.Client(self.hdfs_ip)
                                 if self.configs['flag'] == True:
-                                    # cursor.executemany(
-                                    #     "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,ABSTRACT,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,CONTENT_ORI,SOURCE_CODE,LANG)values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s, %s, %s)",
-                                    #     save_file[n:n+1])
+                                    cursor.executemany(
+                                        "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,ABSTRACT,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,CONTENT_ORI,SOURCE_CODE,LANG)values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s, %s, %s)",
+                                        save_file[n:n+1])
                                     # sql = "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,SOURCE_CODE,LANG,ABSTRACT,CONTENT_ORI)values(:1, to_date(:2,'yyyy-mm-dd hh24:mi:ss'), :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14, :15)"
                                     # sql = "insert into DOCUMENTS(UUID,CRA_DT,TITLE,AUTHOR,AURDEPT,KYWRD,JOURNAL,PUB_DT,URL,SUFFIX,UPLD_DT,SOURCE_CODE,LANG,ABSTRACT)values(:1, to_date(:2,'yyyy-mm-dd hh24:mi:ss'), :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14)"
                                     # txt导入

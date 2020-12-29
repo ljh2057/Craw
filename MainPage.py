@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QMutex
 from plugins.Craw_cnki import Getxml
 from ImportFile import SaveData
-import cx_Oracle as cx
+# import cx_Oracle as cx
 import time
 from threading import Thread
 import pymysql
@@ -194,7 +194,7 @@ class Window(QTabWidget):
         self.craw_cnki_thread = CrawCnkiThread(filepath=self.filePath,propath=self.proPath)
         # self.craw_wanfang_thread = CrawWanfangThread(filepath=self.filePath,propath=self.proPath)
         self.setWindowTitle("基于科技文献资料的数据抓取、识别及分析技术开发及应用")
-        self.resize(800, 550)
+        self.resize(1200, 800)
 
         self.tab1=QWidget()
         self.tab2=QWidget()
@@ -422,7 +422,6 @@ class Window(QTabWidget):
     '''插件运行结束后更新页面爬取状态'''
     def getState(self, index):
         ind = self.chosedjob[self.state]
-        print("indexxxxxxxxxxxxxxx", ind)
         self.state = self.state + 1
         print("self.state", self.state)
         state = QTableWidgetItem('爬取完成')
@@ -779,8 +778,8 @@ class Window(QTabWidget):
             getxml = Getxml.getXml(filename)
             configs = getxml.getDestination()
             try:
-                # self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']), user=configs['username'],passwd=configs['password'], db=configs['servicename'])
-                self.conn = cx.connect('LITERATURESYSTEM', '123456', '192.168.1.107/orcl')
+                self.conn = pymysql.connect(host=configs['ip'], port=int(configs['port']), user=configs['username'],passwd=configs['password'], db=configs['servicename'])
+                # self.conn = cx.connect('LITERATURESYSTEM', '123456', '192.168.1.107/orcl')
             except Exception as e:
                 QMessageBox.about(self,'提示','数据库连接错误')
                 print(e)

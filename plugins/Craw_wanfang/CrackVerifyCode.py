@@ -1,5 +1,5 @@
 from PIL import Image
-import pytesseract
+# import pytesseract
 import re
 from urllib.parse import quote_plus, urlencode
 from .GetConfig import config

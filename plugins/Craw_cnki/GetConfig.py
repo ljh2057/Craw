@@ -56,13 +56,19 @@ class GetConfig(object):
     @LazyProperty
     def crawl_stepWaitTime(self):
         return 2
-        # return int(self.conf.get('crawl', 'stepWaitTime'))
 
     @LazyProperty
     def crawl_isDownLoadLink(self):
         return 1
 
-        # return int(self.conf.get('crawl', 'isDownLoadLink'))
+    @LazyProperty
+    def baidu_AK(self):
+        return "AK"
+
+    @LazyProperty
+    def baidu_SK(self):
+        return "SK"
+
 
 config=GetConfig()
 

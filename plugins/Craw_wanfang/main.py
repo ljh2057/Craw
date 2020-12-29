@@ -50,19 +50,14 @@ class SearchTools(object):
         self.count=count
 
     def get_cookies(self):
-        # self.webdriver_path = "D:\\workspaces\\pythonworks\\webdriver\\chromedriver_win32\\chromedriver.exe"
-        self.webdriver_path = "D:\\chromedriver.exe"
+        self.webdriver_path = "D:\\PythonProjects\\chromedriver.exe"
         # self.webdriver_path = "D:\\安装包\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe"
         # options = webdriver.ChromeOptions()
         chrome_options = Options()
         # options1 = webdriver.ChromeOptions()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
-        # options1.add_experimental_option('excludeSwitches', ['enable-logging'])
-        # driver = webdriver.Chrome(executable_path=self.webdriver_path, chrome_options=chrome_options, options=options1)
-        # driver = webdriver.PhantomJS(executable_path=self.webdriver_path)
         driver = webdriver.Chrome(executable_path=self.webdriver_path, chrome_options=chrome_options)
-        # driver = webdriver.Chrome(self.webdriver_path)
         driver.get("https://www.cnki.net/")
         driver.find_element_by_id("txt_SearchText").click()
         sleep(2)
